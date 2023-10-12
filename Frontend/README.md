@@ -6,8 +6,8 @@ Providing a solution for Enterprise
 ```sh
 Luxtech/
 └── src/
-    ├── api
-    ├── app
+    ├── api           # Chứa các tập lệnh axios tương tác với api của server
+    ├── app           # Store lưu trữ các Redux reducer
     ├── assets
     ├── features      # Các màn hình của dự án
     └── general       # Các component, constant của dự án
