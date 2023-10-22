@@ -18,9 +18,9 @@ pull project về máy
 - npm start
 
 ## Công nghệ sử dụng
-Platform NodeJS
-Framework Express
-Database MySQL với thư viện Sequelize (https://sequelize.org/docs/v6/getting-started/)
+- Platform NodeJS
+- Framework Express
+- Database MySQL với thư viện Sequelize (https://sequelize.org/docs/v6/getting-started/)
 
 
 
