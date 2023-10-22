@@ -1,0 +1,51 @@
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+  border-top-color: white;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+  border-bottom-color: white;
+}
+
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+  border-left-color: white;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+  border-right-color: white;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.AppHideScrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.AppHideScrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.AppButton {
+  height: 41px !important;
+  border-radius: 6px !important;
+}
+
+.ButtonCancel {
+  background-color: #f2f3f7 !important;
+  border: 1px solid #dbe3ef !important;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.06) !important;
+}
+.ButtonCancel:hover {
+  background-color: #eeeff3 !important;
+  border: 1px solid #dbe3ef !important;
+}
+
+.ButtonPrimary {
+  background-color: #e92e4e !important;
+  border: 1px solid #c80022 !important;
+  box-shadow: 0px 4px 8px rgba(255, 148, 148, 0.71) !important;
+}
+.ButtonPrimary:hover {
+  background-color: #e42042 !important;
+  border: 1px solid #a2001c !important;
+} /*# sourceMappingURL=app.style.css.map */
