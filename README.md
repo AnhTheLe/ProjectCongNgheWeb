@@ -14,6 +14,7 @@
 ## Chạy chương trình
 pull project về máy 
 - tạo file .env ( cấu hình các biến môi trường)
+
 - npm install
 - npm start
 
