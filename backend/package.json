@@ -16,8 +16,10 @@
     "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
-    "mysql2": "^2.2.5",
-    "sequelize": "^6.6.2"
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.6.2",
+    "sequelize-auto": "^0.8.8",
+    "tedious": "^6.7.0"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

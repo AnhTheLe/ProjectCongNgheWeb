@@ -2,10 +2,10 @@ const { Sequelize } = require('sequelize');
 
 
 
-const sequelize = new Sequelize('qa', 'root', null , {
-  host: 'localhost',
-  dialect: 'mysql', 
-  logging: false
+const sequelize = new Sequelize('cnweb', 'root', null, {
+    host: 'localhost',
+    dialect: 'mysql',
+    logging: false
 });
 
 let connectDB = async () => {
