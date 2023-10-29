@@ -4,7 +4,9 @@ package com.projectcnw.salesmanagement.controllers.ProductManagerControllers;
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.productDtos.BaseProductDto;
+import com.projectcnw.salesmanagement.dto.productDtos.VariantDto;
 import com.projectcnw.salesmanagement.services.ProductManagerServices.BaseProductService;
+import com.projectcnw.salesmanagement.services.ProductManagerServices.VariantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +19,9 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private BaseProductService baseProductService;
+
+    @Autowired
+    private VariantService variantService;
 
 //
     //viewListProducts
@@ -38,6 +43,7 @@ public class ProductController {
                         .data(products)
                         .build());
     }
+
 //    private int page;
 //    private int perPage;
 //    private int totalItems;
@@ -74,6 +80,16 @@ public class ProductController {
                 .responseCode(200)
                 .message("Success")
                 .data(baseProductDto1)
+                .build());
+    }
+
+    @PostMapping("/base-products/{id}/variants")
+    public ResponseEntity<ResponseObject> createVariantOfBaseProduct(@PathVariable("id") int baseId,@Valid @RequestBody VariantDto variantDto){
+        VariantDto variantDto1 = variantService.createVariant(baseId, variantDto);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(variantDto1)
                 .build());
     }
 
