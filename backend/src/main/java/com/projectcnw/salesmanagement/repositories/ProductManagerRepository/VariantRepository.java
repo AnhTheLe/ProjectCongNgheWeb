@@ -1,10 +1,3 @@
-package com.sapo.salemanagement.repositories.ProductManagerRepository;
-
-
-import com.sapo.salemanagement.dto.productDtos.ICount;
-import com.sapo.salemanagement.dto.productDtos.ILastIdVariant;
-import com.sapo.salemanagement.dto.productDtos.IVariantDto;
-import com.sapo.salemanagement.models.Variant;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
