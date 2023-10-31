@@ -1,0 +1,40 @@
+@import 'normalize.css';
+
+:root {
+    --primary: #f44336;
+    --white-color: #fff;
+    --dark-color: #121212;
+    --defaultIconColor: #a3a8af;
+    --hoverIconColor: #f3f4f5;
+    --text-color: #585858;
+
+    --text-side-bar: rgb(80, 82, 90);
+
+}
+
+html *::-webkit-scrollbar {
+    border-radius: 0;
+    width: 8px;
+    height: 2px;
+}
+
+html *::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(22, 24, 35, 0.1);
+}
+
+html *::-webkit-scrollbar-track {
+    border-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    text-rendering: optimizeSpeed;
+    overflow-y: overlay;
+}

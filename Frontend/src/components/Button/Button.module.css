@@ -1,0 +1,120 @@
+.wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  -moz-user-select: none;
+       user-select: none;
+  -webkit-user-select: none;
+  cursor: pointer;
+  box-sizing: border-box;
+  font-family: ProximaNova, Arial, Tahoma, PingFangSC, sans-serif;
+  font-weight: 700;
+  font-size: 1.6rem;
+  line-height: 22px;
+  margin-left: 16px;
+  min-width: 100px;
+  border: 1px solid transparent;
+}
+.wrapper + .wrapper {
+  margin-left: 16px;
+}
+.wrapper.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.primary {
+  height: 36px;
+  color: var(--white-color);
+  background-color: var(--primary);
+  padding: 6px 8px;
+}
+.primary:hover {
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.06)), #fe2c55;
+}
+
+.upload {
+  height: 36px;
+  min-width: 110px;
+  color: var(--dark-color);
+  background-color: var(--white-color);
+  padding: 6px 8px;
+  border-color: rgba(22, 24, 35, 0.12);
+}
+.upload .title {
+  font-weight: 600;
+}
+.upload:hover {
+  background-color: rgba(22, 24, 35, 0.03);
+}
+
+.iconLeft {
+  min-width: 24px;
+  text-align: center;
+}
+
+.small {
+  height: 28px;
+  min-width: 88px;
+  color: var(--primary);
+  background-color: var(--white-color);
+  padding: 10px 0px;
+  border-color: var(--primary);
+}
+.small:hover {
+  background-color: rgba(254, 44, 85, 0.06);
+}
+
+.rounded {
+  color: rgba(22, 24, 35, 0.75);
+  min-width: 90px;
+  height: 32px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 52px;
+  border-color: rgba(22, 24, 35, 0.12);
+  background-color: rgb(255, 255, 255);
+}
+.rounded:hover {
+  border-color: rgba(22, 24, 35, 0.2);
+  background-color: rgb(255, 255, 255);
+}
+
+.large {
+  min-width: 168px;
+  min-height: 48px;
+  width: 100%;
+  padding: 6px 8px;
+  font-size: 1.8rem;
+  line-height: 2.5rem;
+  color: var(--primary);
+  background-color: var(--white-color);
+  padding: 10px 0px;
+  border-color: var(--primary);
+}
+.large:hover {
+  background-color: rgba(254, 44, 85, 0.06);
+}
+
+.title {
+  margin-left: 10px;
+  font-weight: 500;
+}
+
+.previewBtn {
+  width: 106px;
+  height: 34px;
+}
+.previewBtn .title {
+  margin-left: 0px;
+}
+
+.getApp {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #383636;
+}
+.getApp .title {
+  margin-left: 0px;
+}/*# sourceMappingURL=Button.module.css.map */
