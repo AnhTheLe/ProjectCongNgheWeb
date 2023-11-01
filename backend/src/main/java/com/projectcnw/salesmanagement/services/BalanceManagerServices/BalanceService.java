@@ -77,5 +77,11 @@ public class BalanceService extends BaseService {
         return Arrays.asList(modelMapper.map(iWarehouseBalanceDtos, WarehouseBalanceDto[].class));
     }
 
+    public List<WarehouseBalanceDto> getAllWarehouseBalanceByKeyword(String keyword) {
+        List<IWarehouseBalanceDto> iWarehouseBalanceDtos = warehouseBalanceRepository.findAllWarehouseBalanceByKeyword(keyword);
+
+        return Arrays.asList(modelMapper.map(iWarehouseBalanceDtos, WarehouseBalanceDto[].class));
+    }
+
 
 }

@@ -21,7 +21,7 @@ public class BalanceController {
     @Autowired
     private BalanceService balanceService;
 
-
+    //post warehouse_balance
     @PostMapping("/balances")
     public ResponseEntity<ResponseObject> createBalance(@Valid @RequestBody WarehouseBalanceDto warehouseBalanceDto, @AuthenticationPrincipal UserDetails userDetails) {
         WarehouseBalanceDto warehouseBalanceDto1 = balanceService.createBalance(warehouseBalanceDto, userDetails);
@@ -31,6 +31,8 @@ public class BalanceController {
                 .data(warehouseBalanceDto1)
                 .build());
     }
+
+    //get all warehouse_balances
     @GetMapping("/balances")
     public ResponseEntity<PagedResponseObject> getAllBalance(@RequestParam(name = "page", defaultValue = "1") int page,
                                                              @RequestParam(name = "size", defaultValue = "10") int size) {
@@ -42,6 +44,17 @@ public class BalanceController {
                 .perPage(size)
                 .totalItems(totalItems)
                 .totalPages(totalPages)
+                .responseCode(200)
+                .message("Success")
+                .data(warehouseBalanceDtos)
+                .build());
+    }
+
+    //search warehouse_balance by keyword
+    @GetMapping("/balances/search")
+    public ResponseEntity<ResponseObject> getAllBalanceByKeyword(@RequestParam(name = "keyword") String keyword) {
+        List<WarehouseBalanceDto> warehouseBalanceDtos = balanceService.getAllWarehouseBalanceByKeyword(keyword);
+        return ResponseEntity.ok(ResponseObject.builder()
                 .responseCode(200)
                 .message("Success")
                 .data(warehouseBalanceDtos)

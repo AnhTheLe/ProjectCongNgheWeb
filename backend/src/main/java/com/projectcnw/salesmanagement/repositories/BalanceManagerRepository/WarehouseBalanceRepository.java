@@ -17,4 +17,13 @@ public interface WarehouseBalanceRepository extends JpaRepository<WarehouseBalan
             +"              ORDER BY w.created_at DESC\n"
             +"              LIMIT :size OFFSET :offset", nativeQuery = true)
     List<IWarehouseBalanceDto> findAllWarehouseBalance(@Param("size") int size, @Param("offset") int offset);
+
+    @Query(value = "SELECT w.id as id, w.created_at as createdAt, w.updated_at as updatedAt,w.note as note, u.full_name as personInCharge\n"
+            +"              FROM warehouse_balance w \n"
+            +"              LEFT JOIN user u ON w.person_in_charge = u.id\n"
+            +"              WHERE w.is_deleted = false and (u.full_name LIKE CONCAT('%', :keyword, '%') OR w.id =:keyword )\n"
+            +"              ORDER BY w.created_at DESC\n", nativeQuery = true)
+    List<IWarehouseBalanceDto> findAllWarehouseBalanceByKeyword(@Param("keyword") String keyword);
+
+
 }
