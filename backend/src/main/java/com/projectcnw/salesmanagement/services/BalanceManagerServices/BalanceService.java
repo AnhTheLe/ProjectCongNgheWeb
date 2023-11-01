@@ -1,10 +1,7 @@
 package com.projectcnw.salesmanagement.services.BalanceManagerServices;
 
 import com.projectcnw.salesmanagement.dto.balanceDtos.BalanceVariantDto;
-import com.projectcnw.salesmanagement.dto.balanceDtos.IBalanceVariantDto;
-import com.projectcnw.salesmanagement.dto.balanceDtos.IWarehouseBalanceDto;
 import com.projectcnw.salesmanagement.dto.balanceDtos.WarehouseBalanceDto;
-import com.projectcnw.salesmanagement.dto.productDtos.VariantDto;
 import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.exceptions.ProductManagerExceptions.ProductException;
 import com.projectcnw.salesmanagement.models.UserEntity;
