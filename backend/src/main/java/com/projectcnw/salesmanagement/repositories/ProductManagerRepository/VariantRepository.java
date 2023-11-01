@@ -32,4 +32,9 @@ public interface VariantRepository extends JpaRepository<Variant, Integer> {
     @Query(value = "SELECT MAX(v.id) as lastId FROM variant v", nativeQuery = true)
     ILastIdVariant getLastSetId();
 
+    @Transactional
+    @Modifying
+    @Query(value = "UPDATE variant SET quantity = :realQuantity WHERE id =:variantId", nativeQuery = true)
+    void updateQuantityAfterBalance(@Param("variantId") int variantId, @Param("realQuantity") int realQuantity);
+
 }
