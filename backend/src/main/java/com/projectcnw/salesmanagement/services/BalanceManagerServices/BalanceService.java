@@ -2,6 +2,7 @@ package com.projectcnw.salesmanagement.services.BalanceManagerServices;
 
 import com.projectcnw.salesmanagement.dto.balanceDtos.BalanceVariantDto;
 import com.projectcnw.salesmanagement.dto.balanceDtos.WarehouseBalanceDto;
+import com.projectcnw.salesmanagement.dto.balanceDtos.IWarehouseBalanceDto;
 import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.exceptions.ProductManagerExceptions.ProductException;
 import com.projectcnw.salesmanagement.models.UserEntity;
@@ -63,6 +64,17 @@ public class BalanceService extends BaseService {
 
         return warehouseBalanceDto1;
 
+    }
+
+    public long countWarehouseBalance() {
+        return warehouseBalanceRepository.count();
+    }
+
+    public List<WarehouseBalanceDto> getAllWarehouseBalance(int page, int size) {
+        int offset = (page -1)*size;
+        List<IWarehouseBalanceDto> iWarehouseBalanceDtos = warehouseBalanceRepository.findAllWarehouseBalance(size, offset);
+
+        return Arrays.asList(modelMapper.map(iWarehouseBalanceDtos, WarehouseBalanceDto[].class));
     }
 
 
