@@ -1,16 +1,18 @@
 package com.projectcnw.salesmanagement.controllers.OrderControllers;
 
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
+import com.projectcnw.salesmanagement.dto.ResponseObject;
+import com.projectcnw.salesmanagement.dto.orderDtos.OrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.OrderListItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.CreateOrderDto;
 import com.projectcnw.salesmanagement.services.OrderServices.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -38,6 +40,26 @@ public class OrderController {
                 .totalPages(totalPages)
                 .data(orders)
                 .message("Success")
+                .responseCode(200)
+                .build());
+    }
+
+    @PostMapping
+    public ResponseEntity<ResponseObject> createOrder(@RequestBody @Valid CreateOrderDto createOrderDto, @AuthenticationPrincipal UserDetails userDetails) {
+        String staffPhone = userDetails.getUsername();
+        orderService.createOrder(createOrderDto, staffPhone);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ResponseObject> getOrderDetailInfo(@PathVariable @Valid int id) {
+        OrderDetailInfo orderDetailInfo = orderService.getOrderDetailInfo(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .data(orderDetailInfo)
+                .message("success")
                 .responseCode(200)
                 .build());
     }

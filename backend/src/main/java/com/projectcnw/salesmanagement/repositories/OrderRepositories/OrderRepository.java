@@ -1,5 +1,6 @@
 package com.projectcnw.salesmanagement.repositories.OrderRepositories;
 
+import com.projectcnw.salesmanagement.dto.orderDtos.IOrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.IOrderListItemDto;
 import com.projectcnw.salesmanagement.models.Order;
 import org.springframework.data.domain.Page;
@@ -22,5 +23,39 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             " or lower(c.phone) like concat('%', lower(:search), '%'))" +
             " order by o.created_at desc", nativeQuery = true)
     Page<IOrderListItemDto> getOrderList(@Param("search") String search, Pageable paging);
+
+    @Query(value = "SELECT" +
+            " o.id AS id," +
+            " o.discount AS discount," +
+            " c.name AS customerName," +
+            " c.phone AS phone," +
+            " c.id AS customerId," +
+            " o.created_at AS createdAt," +
+            " u.full_name AS staffName," +
+            " p.payment_status AS paymentStatus," +
+            " p.amount AS amount," +
+            " r.id AS returnOrderId," +
+            " r.amount AS returnAmount" +
+            " FROM" +
+            " _order o" +
+            " JOIN" +
+            " customer c ON o.customer_id = c.id" +
+            " JOIN" +
+            " user u ON o.person_in_charge = u.id" +
+            " JOIN" +
+            " payment p ON p.order_id = o.id AND p.order_type = 'ORDER'\n" +
+            " LEFT JOIN (" +
+            " SELECT" +
+            " return_order.id AS id," +
+            " swap_order," +
+            " payment.amount AS amount" +
+            " FROM" +
+            " return_order" +
+            " JOIN" +
+            " payment ON return_order.id = payment.order_id AND payment.order_type = 'RETURN'" +
+            ") AS r ON r.swap_order = o.id" +
+            " WHERE" +
+            " o.id = :orderId", nativeQuery = true)
+    IOrderDetailInfo getOrderDetailInfo(@Param("orderId") Integer id);
 
 }
