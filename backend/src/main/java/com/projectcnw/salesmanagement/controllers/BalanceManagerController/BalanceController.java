@@ -60,4 +60,14 @@ public class BalanceController {
                 .data(warehouseBalanceDtos)
                 .build());
     }
+
+    @GetMapping("/balances/{id}")
+    public ResponseEntity<ResponseObject> getDetailWarehouseBalance(@PathVariable("id") int warehouseBalanceId) {
+        WarehouseBalanceDto warehouseBalanceDto = balanceService.getDetailWarehouseBalanceById(warehouseBalanceId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(warehouseBalanceDto)
+                .build());
+    }
 }

@@ -25,5 +25,13 @@ public interface WarehouseBalanceRepository extends JpaRepository<WarehouseBalan
             +"              ORDER BY w.created_at DESC\n", nativeQuery = true)
     List<IWarehouseBalanceDto> findAllWarehouseBalanceByKeyword(@Param("keyword") String keyword);
 
+    @Query(value = "SELECT COUNT(*) FROM warehouse_balance wp WHERE wp.is_deleted = false", nativeQuery = true)
+    long count();
+    @Query(value = "SELECT w.id as id,w.note as note, w.created_at as createdAt, w.updated_at as updatedAt, u.full_name as personInCharge\n"
+            +"              FROM warehouse_balance w \n"
+            +"              LEFT JOIN user u ON w.person_in_charge = u.id\n"
+            +"              WHERE w.id =:warehouseBalanceId" , nativeQuery = true)
+    IWarehouseBalanceDto findWarehouseBalanceById(@Param("warehouseBalanceId") int warehouseBalanceId);
+
 
 }
