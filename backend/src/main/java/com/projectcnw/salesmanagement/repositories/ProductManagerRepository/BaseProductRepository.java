@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 public interface BaseProductRepository extends JpaRepository<BaseProduct, Integer> {
 
     // lấy danh sách base-product
