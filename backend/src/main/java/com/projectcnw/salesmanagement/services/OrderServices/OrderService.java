@@ -5,11 +5,16 @@ import com.projectcnw.salesmanagement.dto.orderDtos.OrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.OrderListItemDto;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.CreateOrderDto;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.OrderVariant;
+import com.projectcnw.salesmanagement.exceptions.BadRequestException;
 import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.models.*;
+import com.projectcnw.salesmanagement.models.enums.OrderType;
+import com.projectcnw.salesmanagement.models.enums.PaymentStatus;
 import com.projectcnw.salesmanagement.repositories.CustomerRepositories.CustomerRepository;
 import com.projectcnw.salesmanagement.repositories.OrderRepositories.OrderLineRepository;
 import com.projectcnw.salesmanagement.repositories.OrderRepositories.OrderRepository;
+import com.projectcnw.salesmanagement.repositories.PaymentRepository;
+import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.VariantRepository;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -31,7 +36,9 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final CustomerRepository customerRepository;
     private final UserRepository userRepository;
-    ptivate final OrderLineRepository orderLineRepository;
+    private final OrderLineRepository orderLineRepository;
+    private final VariantRepository variantRepository;
+    private final PaymentRepository paymentRepository;
 
     public long countTotalOrders() {
         return orderRepository.count();

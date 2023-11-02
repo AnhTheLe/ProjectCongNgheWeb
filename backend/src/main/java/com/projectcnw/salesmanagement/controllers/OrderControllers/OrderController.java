@@ -4,7 +4,9 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.orderDtos.OrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.OrderListItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.ReturnHistoryItemDto;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.CreateOrderDto;
+import com.projectcnw.salesmanagement.models.OrderLine;
 import com.projectcnw.salesmanagement.services.OrderServices.OrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -61,6 +63,26 @@ public class OrderController {
                 .data(orderDetailInfo)
                 .message("success")
                 .responseCode(200)
+                .build());
+    }
+
+    @GetMapping("{id}/order_lines")
+    public ResponseEntity<ResponseObject> getAllOrderLines(@PathVariable @Valid int id) {
+        List<OrderLine> orderLines = orderService.getAllOrderLines(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("success")
+                .data(orderLines)
+                .build());
+    }
+
+    @GetMapping("{id}/return_histories")
+    public ResponseEntity<ResponseObject> getReturnHistories(@PathVariable @Valid int id) {
+        List<ReturnHistoryItemDto> historyItemDtoList = returnOrderService.getReturnHistories(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("success")
+                .data(historyItemDtoList)
                 .build());
     }
 }
