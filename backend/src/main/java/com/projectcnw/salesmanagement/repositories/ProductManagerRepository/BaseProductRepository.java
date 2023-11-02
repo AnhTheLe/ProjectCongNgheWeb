@@ -1,3 +1,9 @@
+package com.projectcnw.salesmanagement.repositories.ProductManagerRepository;
+
+import com.projectcnw.salesmanagement.dto.productDtos.BaseProductDto;
+import com.projectcnw.salesmanagement.dto.productDtos.IBaseProductDto;
+import com.projectcnw.salesmanagement.dto.productDtos.IVariantDto;
+import com.projectcnw.salesmanagement.models.BaseProduct;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -25,7 +31,7 @@ public interface BaseProductRepository extends JpaRepository<BaseProduct, Intege
             "GROUP BY bp.id, bp.name, bp.is_deleted\n"+
             "ORDER BY bp.created_at DESC\n"+
             "LIMIT :size OFFSET :offset", nativeQuery = true)
-    List<IBaseProductDto> findAllBaseProduct(@Param("size") int size,@Param("offset") int offset);
+    List<IBaseProductDto> findAllBaseProduct(@Param("size") int size, @Param("offset") int offset);
 
     @Query(value = "SELECT COUNT(*) FROM base_product bp WHERE bp.is_deleted = false", nativeQuery = true)
     long count();
