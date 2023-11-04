@@ -23,7 +23,8 @@ public class BalanceController {
 
     //post warehouse_balance
     @PostMapping("/balances")
-    public ResponseEntity<ResponseObject> createBalance(@Valid @RequestBody WarehouseBalanceDto warehouseBalanceDto, @AuthenticationPrincipal UserDetails userDetails) {
+    //chưa thực hiện authen
+    public ResponseEntity<ResponseObject> createBalance(@Valid @RequestBody WarehouseBalanceDto warehouseBalanceDto, UserDetails userDetails) {
         WarehouseBalanceDto warehouseBalanceDto1 = balanceService.createBalance(warehouseBalanceDto, userDetails);
         return ResponseEntity.ok(ResponseObject.builder()
                 .responseCode(200)
