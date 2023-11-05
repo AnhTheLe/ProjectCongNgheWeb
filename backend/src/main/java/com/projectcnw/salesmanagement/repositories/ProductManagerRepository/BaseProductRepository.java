@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
+
 public interface BaseProductRepository extends JpaRepository<BaseProduct, Integer> {
 
     // lấy danh sách base-product
@@ -75,29 +76,6 @@ public interface BaseProductRepository extends JpaRepository<BaseProduct, Intege
 
     BaseProduct save(BaseProductDto baseProductDto);
     BaseProduct findById(int baseId);
-
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE base_product SET attribute1 = :name WHERE id = :baseId", nativeQuery = true)
-    void updateNameAttribute1(@Param("baseId") int baseId, @Param("name") String name);
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE base_product SET attribute2 = :name WHERE id = :baseId", nativeQuery = true)
-    void updateNameAttribute2(@Param("baseId") int baseId, @Param("name") String name);
-    @Transactional
-    @Modifying
-    @Query(value = "UPDATE base_product SET attribute3 = :name WHERE id = :baseId", nativeQuery = true)
-    void updateNameAttribute3(@Param("baseId") int baseId, @Param("name") String name);
-    @Transactional
-    @Modifying
-    @Query(value ="UPDATE variant SET value2 =:value WHERE base_id =:baseId", nativeQuery = true)
-    void createValue2AttributeForVariant(@Param("baseId") int baseId, @Param("value") String value);
-
-    @Transactional
-    @Modifying
-    @Query(value ="UPDATE variant SET value3 =:value WHERE base_id =:baseId", nativeQuery = true)
-    void createValue3AttributeForVariant(@Param("baseId") int baseId, @Param("value") String value);
-
 
     @Transactional
     @Modifying
