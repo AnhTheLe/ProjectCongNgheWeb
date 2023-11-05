@@ -8,6 +8,7 @@ import com.projectcnw.salesmanagement.dto.orderDtos.ReturnHistoryItemDto;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.CreateOrderDto;
 import com.projectcnw.salesmanagement.models.OrderLine;
 import com.projectcnw.salesmanagement.services.OrderServices.OrderService;
+import com.projectcnw.salesmanagement.services.OrderServices.ReturnOrderService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,6 +17,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -26,6 +28,7 @@ public class OrderController {
 
 
     private final OrderService orderService;
+    private final ReturnOrderService returnOrderService;
 
 
     @GetMapping
@@ -83,6 +86,17 @@ public class OrderController {
                 .responseCode(200)
                 .message("success")
                 .data(historyItemDtoList)
+                .build());
+    }
+
+    @GetMapping("/statistical")
+    public ResponseEntity<ResponseObject> statisticalByTime(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate, @AuthenticationPrincipal UserDetails userDetails) {
+//        String staffPhone = userDetails.getUsername();
+        List<OrderLine> list = orderService.statisticalByTime(startDate, endDate);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("success")
+                .data(list)
                 .build());
     }
 }
