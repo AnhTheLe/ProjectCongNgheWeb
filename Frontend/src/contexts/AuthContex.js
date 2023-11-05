@@ -4,44 +4,44 @@ import { verifyToken } from '../services/auth/verifyToken';
 export const AuthContext = createContext({});
 
 export const AuthContextProvider = ({ children }) => {
-  const [token, setToken] = useState(() => localStorage.getItem('token'));
-  const [user, setUser] = useState({});
+    const [token, setToken] = useState(() => localStorage.getItem('token'));
+    const [user, setUser] = useState({});
 
-  useEffect(() => {
-    const token = localStorage.getItem('token');
+    useEffect(() => {
+        const token = localStorage.getItem('token');
 
-    if (token) {
-      verifyToken(token)
-        .then((res) => {
-          setUser(res.data);
-          setToken(token);
-        })
-        .catch((err) => {
-          setToken(null);
-        });
-    }
-  }, []);
+        if (token) {
+            verifyToken(token)
+                .then((res) => {
+                    setUser(res.data);
+                    setToken(token);
+                })
+                .catch((err) => {
+                    setToken(null);
+                });
+        }
+    }, []);
 
-  const handleLoggedin = (token, user) => {
-    localStorage.setItem('token', token);
+    const handleLoggedin = (token, user) => {
+        localStorage.setItem('token', token);
 
-    setUser(user);
-    setToken(token);
-  };
+        setUser(user);
+        setToken(token);
+    };
 
-  const handleLoggedOut = () => {
-    localStorage.removeItem('token');
+    const handleLoggedOut = () => {
+        localStorage.removeItem('token');
 
-    setToken(null);
-    setUser(null);
-  };
+        setToken(null);
+        setUser(null);
+    };
 
-  const value = {
-    user,
-    token,
-    handleLoggedin,
-    handleLoggedOut,
-  };
+    const value = {
+        user,
+        token,
+        handleLoggedin,
+        handleLoggedOut,
+    };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
