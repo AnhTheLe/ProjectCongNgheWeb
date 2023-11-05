@@ -1,0 +1,7 @@
+.wrapContent {
+  width: calc(100% - 230px);
+  height: auto;
+  min-height: 100vh;
+  margin-left: 230px;
+  background-color: rgb(240, 241, 241);
+}/*# sourceMappingURL=DefaultLayout.module.css.map */
