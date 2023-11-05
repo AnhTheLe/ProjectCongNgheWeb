@@ -2,6 +2,7 @@ package com.projectcnw.salesmanagement.repositories.OrderRepositories;
 
 import com.projectcnw.salesmanagement.dto.orderDtos.IOrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.IOrderListItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.OrderStatistical;
 import com.projectcnw.salesmanagement.models.Order;
 import com.projectcnw.salesmanagement.models.OrderLine;
 import org.springframework.data.domain.Page;
