@@ -1,8 +1,6 @@
 package com.projectcnw.salesmanagement.services.OrderServices;
 
-import com.projectcnw.salesmanagement.dto.orderDtos.IOrderListItemDto;
-import com.projectcnw.salesmanagement.dto.orderDtos.OrderDetailInfo;
-import com.projectcnw.salesmanagement.dto.orderDtos.OrderListItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.*;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.CreateOrderDto;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.OrderVariant;
 import com.projectcnw.salesmanagement.exceptions.BadRequestException;
@@ -24,6 +22,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -139,6 +138,50 @@ public class OrderService {
             java.util.Date nextDate = calendar.getTime();
             List<OrderLine> statisticalList = orderRepository.statisticalOrderByTime(currentDate, nextDate);
             result.addAll(statisticalList);
+        }
+
+        return result;
+    }
+
+    public List<OrderStatistical> statisticalListByTime(java.util.Date startDate, java.util.Date endDate) {
+        List<OrderStatistical> result = new ArrayList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+
+        while (!calendar.getTime().after(endDate)) {
+            java.util.Date currentDate = calendar.getTime();
+            calendar.add(Calendar.DAY_OF_MONTH, 1); // Tăng ngày lên 1 để lấy ngày tiếp theo
+            java.util.Date nextDate = calendar.getTime();
+            OrderStatistical statistical = orderRepository.statisticalByTime(currentDate, nextDate);
+            result.add(statistical);
+        }
+
+        return result;
+    }
+
+    public List<TopOrder> topOrder(java.util.Date startDate, java.util.Date endDate, String type) {
+        List<TopOrder> result = new ArrayList<>();
+        List<Object[]> listVariant = orderRepository.topProductByRevenue(startDate, endDate);
+        if("revenue".equals(type)) {
+            listVariant = orderRepository.topProductByRevenue(startDate, endDate);
+            System.out.println("revenue");
+        } else if("quantity".equals(type)) {
+            listVariant = orderRepository.topProductByQuantity(startDate, endDate);
+            System.out.println("quantity");
+        } else if("order".equals(type)) {
+            listVariant = orderRepository.topProductByOrder(startDate, endDate);
+            System.out.println("order");
+        }
+
+        for (Object[] data : listVariant) {
+            int variantId = (int) data[0];
+            Variant variant = null;
+            variant = variantRepository.findById((Integer) variantId)
+                    .orElseThrow(() -> new NotFoundException("variant " + variantId + " not found"));
+            BigDecimal value = BigDecimal.valueOf(((Number) data[1]).doubleValue());
+            TopOrder topOrder = new TopOrder(variant, value);
+            result.add(topOrder);
         }
 
         return result;
