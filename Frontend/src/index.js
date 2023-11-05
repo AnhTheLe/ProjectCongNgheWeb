@@ -7,17 +7,18 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import GlobalStyles from '../src/components/GlobalStyles';
 import { AuthContextProvider } from './contexts/AuthContex';
 
-const root = ReactDOM.createRoot(document.getElementById('root'));
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <AuthContextProvider>
-      <GlobalStyles>
-        <Router>
-          <App />
-        </Router>
-      </GlobalStyles>
-    </AuthContextProvider>
-  </React.StrictMode>
+    <React.StrictMode>
+        <AuthContextProvider>
+            <GlobalStyles>
+                <Router>
+                    <App />
+                </Router>
+            </GlobalStyles>
+        </AuthContextProvider>
+    </React.StrictMode>,
 );
 
 // If you want to start measuring performance in your app, pass a function
