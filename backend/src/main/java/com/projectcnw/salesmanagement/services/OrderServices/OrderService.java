@@ -27,6 +27,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 @Service
@@ -124,5 +125,22 @@ public class OrderService {
         }
 
         return orderLineRepository.findAllByOrderId(id);
+    }
+
+    public List<OrderLine> statisticalByTime(java.util.Date startDate, java.util.Date endDate) {
+        List<OrderLine> result = new ArrayList<>();
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(startDate);
+
+        while (!calendar.getTime().after(endDate)) {
+            java.util.Date currentDate = calendar.getTime();
+            calendar.add(Calendar.DAY_OF_MONTH, 1); // Tăng ngày lên 1 để lấy ngày tiếp theo
+            java.util.Date nextDate = calendar.getTime();
+            List<OrderLine> statisticalList = orderRepository.statisticalOrderByTime(currentDate, nextDate);
+            result.addAll(statisticalList);
+        }
+
+        return result;
     }
 }

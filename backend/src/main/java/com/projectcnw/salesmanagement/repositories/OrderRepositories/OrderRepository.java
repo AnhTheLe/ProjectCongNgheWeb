@@ -3,12 +3,16 @@ package com.projectcnw.salesmanagement.repositories.OrderRepositories;
 import com.projectcnw.salesmanagement.dto.orderDtos.IOrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.IOrderListItemDto;
 import com.projectcnw.salesmanagement.models.Order;
+import com.projectcnw.salesmanagement.models.OrderLine;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+
+import java.util.Date;
+import java.util.List;
 
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Integer> {
@@ -57,5 +61,11 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             " WHERE" +
             " o.id = :orderId", nativeQuery = true)
     IOrderDetailInfo getOrderDetailInfo(@Param("orderId") Integer id);
+
+    @Query("SELECT o FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
+    List<OrderLine> statisticalOrderByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("SELECT new com.projectcnw.salesmanagement.dto.orderDtos.OrderStatistical(sum(o.quantity), count(distinct o.order.id), sum(o.price * o.quantity), :startDate) FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
+    OrderStatistical statisticalByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 }
