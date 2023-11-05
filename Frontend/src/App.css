@@ -1,0 +1,68 @@
+
+
+.MuiTablePagination-selectLabel.css-pdct74-MuiTablePagination-selectLabel {
+    margin: 0;
+    /* visibility: hidden; */
+}
+
+.MuiInputBase-root.MuiInputBase-colorPrimary.css-16c50h-MuiInputBase-root-MuiTablePagination-select {
+    
+}
+
+.MuiTablePagination-displayedRows.css-levciy-MuiTablePagination-displayedRows {
+    margin: 0;
+}
+
+.MuiDataGrid-columnHeadersInner.css-gl260s-MuiDataGrid-columnHeadersInner {
+    color: #000;
+    font-weight: 600;
+    background-color: rgb(244, 246, 248);
+    width: 100%;
+}
+
+.MuiFormControl-root.MuiTextField-root.css-1u3bzj6-MuiFormControl-root-MuiTextField-root {
+    width: 100%;
+    
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.Mui-error.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    height: 40px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-formControl.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    height: 40px;
+}
+
+.MuiOutlinedInput-notchedOutline.css-1d3z3hw-MuiOutlinedInput-notchedOutline {
+    border-color: #ccc !important;
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-adornedEnd.css-o9k5xi-MuiInputBase-root-MuiOutlinedInput-root {
+    width: 100%;
+}
+
+.MuiInputBase-root.MuiOutlinedInput-root.MuiInputBase-colorPrimary.MuiInputBase-fullWidth.MuiInputBase-formControl.MuiInputBase-adornedEnd.MuiAutocomplete-inputRoot.css-154xyx0-MuiInputBase-root-MuiOutlinedInput-root {
+    height: 100%;
+    width: 100%;
+}
+
+.MuiFormControl-root.MuiFormControl-fullWidth.MuiTextField-root.css-wb57ya-MuiFormControl-root-MuiTextField-root {
+    height: 100%;
+    width: 100%;
+}
+
+.MuiAutocomplete-root.MuiAutocomplete-hasPopupIcon.css-1h51icj-MuiAutocomplete-root {
+    height: 100%;
+    width: 100%;
+}
+
+.MuiInputBase-input.MuiOutlinedInput-input.MuiInputBase-inputAdornedEnd.MuiAutocomplete-input.MuiAutocomplete-inputFocused.css-nxo287-MuiInputBase-input-MuiOutlinedInput-input {
+    position: relative;
+    top: -6px;
+}

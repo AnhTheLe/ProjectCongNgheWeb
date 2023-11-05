@@ -21,7 +21,6 @@ export const AuthContextProvider = ({ children }) => {
                 });
         }
     }, []);
-    // jkkhgk
 
     const handleLoggedin = (token, user) => {
         localStorage.setItem('token', token);
