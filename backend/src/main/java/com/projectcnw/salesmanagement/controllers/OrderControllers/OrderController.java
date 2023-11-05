@@ -2,9 +2,7 @@ package com.projectcnw.salesmanagement.controllers.OrderControllers;
 
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
-import com.projectcnw.salesmanagement.dto.orderDtos.OrderDetailInfo;
-import com.projectcnw.salesmanagement.dto.orderDtos.OrderListItemDto;
-import com.projectcnw.salesmanagement.dto.orderDtos.ReturnHistoryItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.*;
 import com.projectcnw.salesmanagement.dto.orderDtos.createOrder.CreateOrderDto;
 import com.projectcnw.salesmanagement.models.OrderLine;
 import com.projectcnw.salesmanagement.services.OrderServices.OrderService;
@@ -99,4 +97,27 @@ public class OrderController {
                 .data(list)
                 .build());
     }
+
+    @GetMapping("/statistical/list")
+    public ResponseEntity<ResponseObject> statisticalListByTime(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate) {
+        List<OrderStatistical> list = orderService.statisticalListByTime(startDate, endDate);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("success")
+                .data(list)
+                .build());
+    }
+
+    @GetMapping("/top_sale")
+    public ResponseEntity<ResponseObject> topOrder(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate, @RequestParam("type") String type, @AuthenticationPrincipal UserDetails userDetails) {
+//        String staffPhone = userDetails.getUsername();
+        List<TopOrder> list = orderService.topOrder(startDate, endDate, type);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("success")
+                .data(list)
+                .build());
+    }
+
+
 }

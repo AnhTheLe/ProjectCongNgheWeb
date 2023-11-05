@@ -69,4 +69,39 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT new com.projectcnw.salesmanagement.dto.orderDtos.OrderStatistical(sum(o.quantity), count(distinct o.order.id), sum(o.price * o.quantity), :startDate) FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
     OrderStatistical statisticalByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
+    //    @Query("SELECT o FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate GROUP BY o.variant.id ORDER BY o.price DESC LIMIT 6")
+//    List<OrderLine> topProductByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+//    @Query("SELECT o FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate GROUP BY o.variant.id ORDER BY SUM(o.price) DESC LIMIT 6")
+//    List<OrderLine> topProductByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("SELECT o.variant.id, SUM(o.price * o.quantity) AS totalRevenue " +
+            "FROM OrderLine o " +
+            "WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate " +
+            "GROUP BY o.variant.id " +
+            "ORDER BY totalRevenue DESC")
+    List<Object[]> topProductByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("SELECT o.variant.id, SUM(o.quantity) AS totalQuantity " +
+            "FROM OrderLine o " +
+            "WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate " +
+            "GROUP BY o.variant.id " +
+            "ORDER BY totalQuantity DESC")
+    List<Object[]> topProductByQuantity(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("SELECT o.variant.id, COUNT (DISTINCT o.order.id) AS totalOrder " +
+            "FROM OrderLine o " +
+            "WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate " +
+            "GROUP BY o.variant.id " +
+            "ORDER BY totalOrder DESC")
+    List<Object[]> topProductByOrder(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+    @Query("SELECT c.id, SUM(p.amount) AS totalRevenue " +
+            "FROM Customer c LEFT JOIN Order o ON c.id = o.customer.id LEFT JOIN Payment p ON o.id = p.orderId " +
+            "WHERE p.createdAt >= :startDate AND p.createdAt <= :endDate AND p.orderType = 'ORDER' AND c.phone != '-1' " +
+            "GROUP BY c.id " +
+            "ORDER BY totalRevenue DESC")
+    List<Object[]> topCustomerByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+
 }
