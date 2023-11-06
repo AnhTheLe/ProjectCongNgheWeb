@@ -11,9 +11,9 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface UserRepository extends JpaRepository<UserEntity, Integer>  {
+public interface UserRepository extends JpaRepository<UserEntity, Integer> {
 
-    @Query("select u from UserEntity u where u.phone = :phone and u.workStatus = 'WORKING'")
+    @Query("select u from UserEntity u where u.phone = :phone")
     Optional<UserEntity> findByPhone(@Param("phone") String phone);
 
     Boolean existsByPhone(String phone);
