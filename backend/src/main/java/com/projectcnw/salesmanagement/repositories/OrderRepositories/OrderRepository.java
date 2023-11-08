@@ -103,5 +103,14 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             "ORDER BY totalRevenue DESC")
     List<Object[]> topCustomerByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
+    @Query("SELECT c.id, COUNT (c.id) AS totalRevenue " +
+            "FROM Customer c LEFT JOIN Order o ON c.id = o.customer.id LEFT JOIN Payment p ON o.id = p.orderId " +
+            "WHERE p.createdAt >= :startDate AND p.createdAt <= :endDate AND p.orderType = 'ORDER' AND c.phone != '-1' " +
+            "GROUP BY c.id " +
+            "ORDER BY totalRevenue DESC")
+    List<Object[]> topCustomerByOrder(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+
+//    @Query("SELECT new com.sapo.salemanagement.dto.orderdtos.OrderStatistical(sum(o.quantity), count(distinct o.order.id), sum(o.price)) FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
+//    List<OrderStatistical> statisticalListByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 }

@@ -119,5 +119,16 @@ public class OrderController {
                 .build());
     }
 
+    @GetMapping("/top_customer")
+    public ResponseEntity<ResponseObject> topCustomer(@RequestParam("startDate") Date startDate, @RequestParam("endDate") Date endDate, @RequestParam("type") String type, @AuthenticationPrincipal UserDetails userDetails) {
+//        String staffPhone = userDetails.getUsername();
+        List<TopCustomer> list = orderService.topCustomer(startDate, endDate, type);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("success")
+                .data(list)
+                .build());
+    }
+
 
 }
