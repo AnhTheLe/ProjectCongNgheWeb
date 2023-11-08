@@ -2,6 +2,7 @@ package com.projectcnw.salesmanagement.services.OrderServices;
 
 import com.projectcnw.salesmanagement.dto.orderDtos.IReturnOrderItemDto;
 import com.projectcnw.salesmanagement.dto.orderDtos.ReturnHistoryItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.ReturnOrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.ReturnOrderItemDto;
 import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.repositories.OrderRepositories.OrderLineRepository;
@@ -64,6 +65,13 @@ public class ReturnOrderService {
         return Arrays.asList(modelMapper.map(returnOrderRepository.getReturnHistories(orderId), ReturnHistoryItemDto[].class));
     }
 
+    public ReturnOrderDetailInfo getReturnOrderDetailInfo(int returnId) {
+        if (!returnOrderRepository.existsById(returnId)) {
+            throw new NotFoundException("return order not found");
+        }
+        ModelMapper modelMapper = new ModelMapper();
+        return modelMapper.map(returnOrderRepository.getReturnOrderDetailInfo(returnId), ReturnOrderDetailInfo.class);
+    }
 
 
 }
