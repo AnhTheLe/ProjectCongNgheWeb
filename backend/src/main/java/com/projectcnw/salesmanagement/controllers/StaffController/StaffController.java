@@ -60,6 +60,15 @@ public class StaffController {
                 .build());
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<ResponseObject> deleteStaff(@PathVariable Integer id) {
+        staffService.deleteStaff(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
 
 
 }

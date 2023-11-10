@@ -63,4 +63,10 @@ public class StaffService {
     public UserEntity getStaffDetailByID(int id) {
         return userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
     }
+
+    public void deleteStaff(int id) {
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+        user.setWorkStatus(WorkStatus.QUIT);
+        userRepository.save(user);
+    }
 }
