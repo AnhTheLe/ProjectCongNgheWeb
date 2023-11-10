@@ -9,6 +9,7 @@ import com.projectcnw.salesmanagement.services.StaffService.StaffService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import com.projectcnw.salesmanagement.models.UserEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,6 +37,16 @@ public class StaffController {
                 .totalPages(totalPages)
                 .data(staffs)
                 .message("Success")
+                .responseCode(200)
+                .build());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<ResponseObject> getStaffDetail(@PathVariable Integer id) {
+        UserEntity user = staffService.getStaffDetailByID(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .data(user)
+                .message("success")
                 .responseCode(200)
                 .build());
     }

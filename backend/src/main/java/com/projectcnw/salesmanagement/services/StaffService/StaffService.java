@@ -60,4 +60,7 @@ public class StaffService {
         user.setRoles(roles);
         userRepository.save(user);
     }
+    public UserEntity getStaffDetailByID(int id) {
+        return userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+    }
 }
