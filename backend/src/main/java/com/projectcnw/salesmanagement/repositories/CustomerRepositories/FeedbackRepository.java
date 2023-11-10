@@ -26,3 +26,4 @@ public interface FeedbackRepository extends JpaRepository<Feedback, Integer> {
     @Query(value = "SELECT COUNT(*) FROM feedback", nativeQuery = true)
     long count();
 }
+            
