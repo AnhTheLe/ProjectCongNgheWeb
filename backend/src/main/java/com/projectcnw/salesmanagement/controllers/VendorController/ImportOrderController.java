@@ -1,4 +1,4 @@
-package com.projectcnw.salesmanagement.controllers.VendorController;
+package com.sapo.salemanagement.controllers.VendorController;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.vendorDtos.ImportOrderDTO;
@@ -30,4 +30,36 @@ public class ImportOrderController {
                 .build());
     }
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<ResponseObject> getImportOrderById(@PathVariable Integer id){
+        ImportOrderDTO importOrderDTOList = importOrderService.findById(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(importOrderDTOList)
+                .build());
+    }
+
+    @PostMapping
+    public ResponseEntity<ResponseObject> createImportOrder(@RequestBody @Valid ImportOrderDTO importOrderDTO, @AuthenticationPrincipal UserDetails userDetails) {
+        String phoneUser = userDetails.getUsername();
+        ImportOrderDTO importOrderDTO1 = importOrderService.save(importOrderDTO, phoneUser);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .data(importOrderDTO1)
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
+    @PutMapping(value= "/{id}")
+    public ResponseEntity<ResponseObject> upadateImportOrder(@RequestBody @Valid ImportOrderDTO importOrderDTO, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails){
+        String phoneUser = userDetails.getUsername();
+        importOrderDTO.setId(id);
+        ImportOrderDTO importOrderDTO1 = importOrderService.save(importOrderDTO, phoneUser);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .data(importOrderDTO1)
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
 }
