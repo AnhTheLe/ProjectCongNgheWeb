@@ -84,4 +84,10 @@ public class StaffService {
         user.setRoles(roles);
         userRepository.save(user);
     }
+
+    public void updateStaffPassword(int id, String password) {
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+        user.setPassword(passwordEncoder.encode(password));
+        userRepository.save(user);
+    }
 }
