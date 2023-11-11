@@ -5,6 +5,7 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.staff.CreateStaffDto;
 import com.projectcnw.salesmanagement.dto.staff.StaffItemDto;
+import com.projectcnw.salesmanagement.dto.staff.UpdateStaffDto;
 import com.projectcnw.salesmanagement.services.StaffService.StaffService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,6 +64,15 @@ public class StaffController {
     @DeleteMapping("{id}")
     public ResponseEntity<ResponseObject> deleteStaff(@PathVariable Integer id) {
         staffService.deleteStaff(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ResponseObject> updateStaffInfo(@PathVariable Integer id, @RequestBody @Valid UpdateStaffDto updateStaffDto) {
+        staffService.updateStaffInfo(id, updateStaffDto);
         return ResponseEntity.ok(ResponseObject.builder()
                 .message("success")
                 .responseCode(200)

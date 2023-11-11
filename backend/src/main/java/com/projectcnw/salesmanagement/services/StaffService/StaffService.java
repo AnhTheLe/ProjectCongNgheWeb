@@ -3,6 +3,7 @@ package com.projectcnw.salesmanagement.services.StaffService;
 
 import com.projectcnw.salesmanagement.dto.staff.StaffItemDto;
 import com.projectcnw.salesmanagement.dto.staff.CreateStaffDto;
+import com.projectcnw.salesmanagement.dto.staff.UpdateStaffDto;
 import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.models.Role;
 import com.projectcnw.salesmanagement.models.UserEntity;
@@ -68,6 +69,19 @@ public class StaffService {
     public void deleteStaff(int id) {
         UserEntity user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
         user.setWorkStatus(WorkStatus.QUIT);
+        userRepository.save(user);
+    }
+
+    public void updateStaffInfo(int id, UpdateStaffDto updateStaffDto) {
+        UserEntity user = userRepository.findById(id).orElseThrow(() -> new NotFoundException("user not found"));
+        List<Role> roles = new ArrayList<>();
+        for (RoleType roleName: updateStaffDto.getRoleNames()) {
+            Role role = roleRepository.findByName(roleName).orElseThrow(() -> new NotFoundException("role not found"));
+            roles.add(role);
+        }
+        ModelMapper modelMapper = new ModelMapper();
+        modelMapper.map(updateStaffDto, user);
+        user.setRoles(roles);
         userRepository.save(user);
     }
 }
