@@ -62,4 +62,9 @@ public class ImportOrderController {
                 .responseCode(200)
                 .build());
     }
+    @PostMapping(value= "/{id}/pay")
+    public ResponseEntity<ResponseObject> createPay(@RequestBody @Valid String amount, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails)
+    {
+       return null;
+    }
 }
