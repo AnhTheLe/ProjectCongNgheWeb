@@ -5,6 +5,8 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.staff.CreateStaffDto;
 import com.projectcnw.salesmanagement.dto.staff.StaffItemDto;
+import com.projectcnw.salesmanagement.dto.staff.UpdatePasswordDto;
+import com.projectcnw.salesmanagement.dto.staff.UpdateStaffDto;
 import com.projectcnw.salesmanagement.services.StaffService.StaffService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,6 +70,26 @@ public class StaffController {
                 .responseCode(200)
                 .build());
     }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ResponseObject> updateStaffInfo(@PathVariable Integer id, @RequestBody @Valid UpdateStaffDto updateStaffDto) {
+        staffService.updateStaffInfo(id, updateStaffDto);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
+    @PutMapping("{id}/password")
+    public ResponseEntity<ResponseObject> updateStaffPassword(@PathVariable Integer id, @RequestBody @Valid UpdatePasswordDto updatePasswordDto) {
+        staffService.updateStaffPassword(id, updatePasswordDto.getPassword());
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
+
 
 
 
