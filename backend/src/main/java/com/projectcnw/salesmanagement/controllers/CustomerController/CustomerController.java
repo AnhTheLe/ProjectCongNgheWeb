@@ -81,4 +81,14 @@ public class CustomerController extends BaseController {
                 .data(customer)
                 .build());
     }
+    @GetMapping("/customer/count")
+    public ResponseEntity<ResponseObject> getCountCustomer() {
+        long countCustomer = customerServices.countCustomer();
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(countCustomer)
+                .build());
+    }
+
 }
