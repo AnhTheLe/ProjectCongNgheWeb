@@ -3,6 +3,7 @@ package com.projectcnw.salesmanagement.controllers.CustomerController;
 import com.projectcnw.salesmanagement.controllers.BaseController;
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 
+import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.customer.CustomerSpendingDTO;
 import com.projectcnw.salesmanagement.models.Customer;
 
@@ -67,6 +68,17 @@ public class CustomerController extends BaseController {
                 .responseCode(200)
                 .message("Success")
                 .data(customers)
+                .build());
+    }
+
+    //lây chi tiết khách hàng
+    @GetMapping("/customer/{id}")
+    public ResponseEntity<ResponseObject> getDetailCustomer(@PathVariable("id") int customerId) {
+        Customer customer = customerServices.getDetailCustomer(customerId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(customer)
                 .build());
     }
 }

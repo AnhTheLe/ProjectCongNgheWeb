@@ -57,5 +57,10 @@ public class CustomerServices {
         return customerList;
     }
 
+    public Customer getDetailCustomer(int customerId) {
+        // Sử dụng findById để tìm khách hàng dựa trên id
+        return customerRepository.findById(customerId)
+                .orElseThrow(() -> new BadRequestException("Không tìm thấy khách hàng với ID: " + customerId));
+    }
 
 }
