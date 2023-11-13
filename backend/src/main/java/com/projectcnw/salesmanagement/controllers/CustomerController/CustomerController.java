@@ -3,6 +3,7 @@ package com.projectcnw.salesmanagement.controllers.CustomerController;
 import com.projectcnw.salesmanagement.controllers.BaseController;
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 
+import com.projectcnw.salesmanagement.dto.customer.CustomerSpendingDTO;
 import com.projectcnw.salesmanagement.models.Customer;
 
 import com.projectcnw.salesmanagement.services.CustomerServices.CustomerServices;
@@ -50,6 +51,22 @@ public class CustomerController extends BaseController {
                         .build());
     }
 
+    //lấy danh sách khách hàng theo chi tiêu
+    @GetMapping("/customer/spending")
+    public ResponseEntity<PagedResponseObject> getAllCustomerBySpending(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                                        @RequestParam(value = "size", defaultValue = "10") int size) {
 
-
+        long totalItems = customerServices.countCustomer();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
+        List<CustomerSpendingDTO> customers = customerServices.getAllCustomerBySpending(page, size);
+        return ResponseEntity.ok(PagedResponseObject.builder()
+                .page(page)
+                .perPage(size)
+                .totalItems(totalItems)
+                .totalPages(totalPages)
+                .responseCode(200)
+                .message("Success")
+                .data(customers)
+                .build());
+    }
 }
