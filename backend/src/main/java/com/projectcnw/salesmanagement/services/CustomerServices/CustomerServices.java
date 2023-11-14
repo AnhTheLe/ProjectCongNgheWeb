@@ -63,4 +63,7 @@ public class CustomerServices {
                 .orElseThrow(() -> new BadRequestException("Không tìm thấy khách hàng với ID: " + customerId));
     }
 
+    public List<Customer> searchCustomers1(String searchTerm) {
+        return customerRepository.searchCustomersByNameOrPhone1(searchTerm);
+    }
 }

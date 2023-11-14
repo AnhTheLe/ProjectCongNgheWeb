@@ -91,4 +91,17 @@ public class CustomerController extends BaseController {
                 .build());
     }
 
+    // Xử lý yêu cầu GET để tìm khách hàng dựa trên tên và số điện thoại
+    @GetMapping("/customer/search")
+    public ResponseEntity<ResponseObject> searchCustomers(@RequestParam("searchTerm") String searchTerm) {
+        List<Customer> listCustomer = customerServices.searchCustomers1(searchTerm);
+        ResponseObject responseObject = ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(listCustomer)
+                .build();
+
+        return ResponseEntity.ok(responseObject);
+    }
+
 }
