@@ -66,4 +66,30 @@ public class CustomerServices {
     public List<Customer> searchCustomers1(String searchTerm) {
         return customerRepository.searchCustomersByNameOrPhone1(searchTerm);
     }
+
+    public List<CustomerSpendingDTO> searchCustomers(String searchTerm) {
+        List<Object[]> customerDataList = customerRepository.searchCustomersByNameOrPhone(searchTerm);
+
+        List<CustomerSpendingDTO> customerList = new ArrayList<>();
+
+        for (Object[] data : customerDataList) {
+            Customer customer = null;
+            if (data[0] != null) {
+                int customerId = (int) data[0];
+                customer = customerRepository.findById(customerId)
+                        .orElseThrow(() -> new NotFoundException("customer " + customerId + " not found"));
+                BigDecimal totalAmount = BigDecimal.valueOf(((Number) data[1]).doubleValue());
+                BigDecimal orderCount = BigDecimal.valueOf(((Number) data[2]).doubleValue());
+
+                CustomerSpendingDTO customerSpending = new CustomerSpendingDTO(customer, totalAmount, orderCount);
+                customerList.add(customerSpending);
+            }
+
+//            BigDecimal totalAmount = (BigDecimal) data[1];
+//            BigDecimal orderCount = (BigDecimal) data[2];
+
+        }
+
+        return customerList;
+    }
 }

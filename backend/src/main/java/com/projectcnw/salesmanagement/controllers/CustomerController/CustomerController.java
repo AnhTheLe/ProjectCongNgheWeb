@@ -104,4 +104,16 @@ public class CustomerController extends BaseController {
         return ResponseEntity.ok(responseObject);
     }
 
+    @GetMapping("/customer/search_spending")
+    public ResponseEntity<ResponseObject> searchCustomersSpending(@RequestParam("searchTerm") String searchTerm) {
+        List<CustomerSpendingDTO> listCustomer = customerServices.searchCustomers(searchTerm);
+        ResponseObject responseObject = ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(listCustomer)
+                .build();
+
+        return ResponseEntity.ok(responseObject);
+    }
+
 }
