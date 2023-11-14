@@ -11,6 +11,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.Date;
+import java.sql.Time;
+import java.util.Calendar;
 import java.util.List;
 
 @RestController
@@ -66,9 +69,11 @@ public class ImportOrderController {
                 .build());
     }
     @PostMapping(value= "/{id}/pay")
-    public ResponseEntity<ResponseObject> createPay(@RequestBody @Valid String amount, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails)
+    public ResponseEntity<ResponseObject> createPay(@RequestBody @Valid int amount, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails)
     {
         PaymentDTO paymentDTO = new PaymentDTO();
+        paymentDTO.setAmount(amount);
+        paymentDTO.setOrderId(id);
         PaymentDTO paymentDTO1 = paymentService.save(paymentDTO);
         return ResponseEntity.ok(ResponseObject.builder()
                 .responseCode(200)
