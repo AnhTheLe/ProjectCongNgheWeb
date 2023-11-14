@@ -1,7 +1,9 @@
-package com.sapo.salemanagement.controllers.VendorController;
+package com.projectcnw.salesmanagement.controllers.VendorController;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.vendorDtos.ImportOrderDTO;
+import com.projectcnw.salesmanagement.dto.vendorDtos.PaymentDTO;
+import com.projectcnw.salesmanagement.services.VendorService.IPaymentService;
 import com.projectcnw.salesmanagement.services.VendorService.impl.ImportOrderService;
 import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
@@ -15,9 +17,10 @@ import java.util.List;
 @RequestMapping("/admin/import")
 public class ImportOrderController {
     private ImportOrderService importOrderService;
-
-    ImportOrderController(ImportOrderService importOrderService){
+    private IPaymentService paymentService;
+    ImportOrderController(ImportOrderService importOrderService,IPaymentService paymentService){
         this.importOrderService = importOrderService;
+        this.paymentService = paymentService;
     }
 
     @GetMapping
@@ -65,6 +68,12 @@ public class ImportOrderController {
     @PostMapping(value= "/{id}/pay")
     public ResponseEntity<ResponseObject> createPay(@RequestBody @Valid String amount, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails)
     {
-       return null;
+        PaymentDTO paymentDTO = new PaymentDTO();
+        PaymentDTO paymentDTO1 = paymentService.save(paymentDTO);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(paymentDTO1)
+                .build());
     }
 }
