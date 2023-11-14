@@ -41,7 +41,7 @@ public class PaymentService implements IPaymentService {
     }
 
     @Override
-    public PaymentDTO findById_ImportOrderId(Integer id) {
+    public PaymentDTO findPaymentById(Integer id) {
         Payment payment = paymentRepository.findPaymentByOrderId(id);
         PaymentConverter converter = new PaymentConverter();
         return converter.toDto(payment);
