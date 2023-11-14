@@ -82,8 +82,13 @@ public class ImportOrderController {
                 .build());
     }
     @GetMapping(value= "/{id}/pay")
-    public ResponseEntity<ResponseObject> getPayHistory(@AuthenticationPrincipal UserDetails userDetails)
+    public ResponseEntity<ResponseObject> getPayHistory(@PathVariable int id,@AuthenticationPrincipal UserDetails userDetails)
     {
-        return null;
+        PaymentDTO paymentDTO = paymentService.findPaymentById(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(paymentDTO)
+                .build());
     }
 }
