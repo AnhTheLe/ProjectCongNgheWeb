@@ -5,6 +5,9 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.orderDtos.ReturnOrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.ReturnOrderItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.createreturnorder.CreateReturnOrderDto;
+import com.projectcnw.salesmanagement.models.ReturnOrder;
+import com.projectcnw.salesmanagement.models.ReturnOrderLine;
 import com.projectcnw.salesmanagement.services.OrderServices.ReturnOrderService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,31 @@ public class ReturnOrderController {
                         .responseCode(200)
                         .build());
     }
+
+    @GetMapping("{id}/return_order_lines")
+    public ResponseEntity<ResponseObject> getReturnOrderLines(@PathVariable int id) {
+        List<ReturnOrderLine> returnOrderLines = returnOrderService.getAllReturnOrderLines(id);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .data(returnOrderLines)
+                .message("success")
+                .responseCode(200)
+                .build());
+    }
+
+    @PostMapping("create")
+    public ResponseEntity<ResponseObject> createReturnOrder(@RequestParam(name = "order_id") int orderId,
+                                                            @RequestBody @Valid CreateReturnOrderDto createReturnOrderDto,
+                                                            @AuthenticationPrincipal UserDetails userDetails) {
+        String staffPhone = userDetails.getUsername();
+        ReturnOrder returnOrder = returnOrderService.createReturnOrder(orderId, createReturnOrderDto, staffPhone);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .data(returnOrder.getId())
+                .responseCode(200)
+                .build());
+    }
+
+
 
 
 }
