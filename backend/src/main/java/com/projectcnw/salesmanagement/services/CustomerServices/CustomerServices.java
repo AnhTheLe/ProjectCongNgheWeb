@@ -135,4 +135,18 @@ public class CustomerServices {
         return customerRepository.save(existingCustomer);
     }
 
+    @Transactional
+    public void deleteCustomerById(int customerId) {
+        // Kiểm tra xem khách hàng có tồn tại dựa trên customerId hay không
+        boolean exists = customerRepository.existsById(customerId);
+
+        if (exists) {
+            // Nếu khách hàng tồn tại, xóa khách hàng khỏi cơ sở dữ liệu
+            customerRepository.deleteById(customerId);
+        } else {
+            // Nếu không tìm thấy khách hàng, bạn có thể ném một ngoại lệ hoặc xử lý theo ý muốn
+            throw new BadRequestException("Không tìm thấy khách hàng với ID: " + customerId);
+        }
+    }
+
 }

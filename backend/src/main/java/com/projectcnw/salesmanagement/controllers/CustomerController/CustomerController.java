@@ -7,6 +7,7 @@ import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.customer.CustomerSpendingDTO;
 import com.projectcnw.salesmanagement.models.Customer;
 
+import com.projectcnw.salesmanagement.models.Feedback;
 import com.projectcnw.salesmanagement.services.CustomerServices.CustomerServices;
 import com.projectcnw.salesmanagement.services.CustomerServices.FeedbackService;
 import com.projectcnw.salesmanagement.services.OrderServices.OrderService;
@@ -162,5 +163,29 @@ public class CustomerController extends BaseController {
                 .data(newCustomer)
                 .build());
     }
+
+    //xóa khách hàng
+    @DeleteMapping("/customer/{id}")
+    public ResponseEntity<ResponseObject> deleteCustomer(@PathVariable("id") int customerId) {
+        customerServices.deleteCustomerById(customerId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Deleted Customer")
+                .data(null)
+                .build());
+    }
+
+    //Feedback
+    @GetMapping("/customer/{customerId}/feedback")
+    public ResponseEntity<ResponseObject> getFeedbackList(@PathVariable int customerId) {
+        List<Feedback> feedbackList = feedbackService.getFeedbackList(customerId);
+        ResponseObject responseObject = ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(feedbackList)
+                .build();
+        return ResponseEntity.ok(responseObject);
+    }
+
 
 }
