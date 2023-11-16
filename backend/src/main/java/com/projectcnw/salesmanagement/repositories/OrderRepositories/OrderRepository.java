@@ -113,4 +113,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 //    @Query("SELECT new com.sapo.salemanagement.dto.orderdtos.OrderStatistical(sum(o.quantity), count(distinct o.order.id), sum(o.price)) FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
 //    List<OrderStatistical> statisticalListByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
+    @Query("SELECT o FROM Order o WHERE o.customer.id = :customerId")
+    List<Order> findAllOrderByCustomer(@Param("customerId") int customerId);
 }

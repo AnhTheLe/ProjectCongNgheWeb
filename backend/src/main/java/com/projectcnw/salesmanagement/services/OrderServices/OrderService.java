@@ -28,6 +28,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -213,4 +214,17 @@ public class OrderService {
 
         return result;
     }
+    public List<OrderListByCustomer> getOrderListByCustomerId(int customerId) {
+        Customer existingCustomer = customerRepository.findById(customerId)
+                .orElseThrow(() -> new BadRequestException("Khách hàng không tồn tại."));
+
+        List<Order> orderList = orderRepository.findAllOrderByCustomer(customerId);
+
+        List<OrderListByCustomer> orderListByCustomer = orderList.stream()
+                .map(order -> new OrderListByCustomer(order, paymentRepository.findPaymentByOrder(order.getId())))
+                .collect(Collectors.toList());
+
+        return orderListByCustomer;
+    }
+
 }

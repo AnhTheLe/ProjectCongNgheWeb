@@ -5,6 +5,8 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.customer.CustomerSpendingDTO;
+import com.projectcnw.salesmanagement.dto.customer.FeedbackDTO;
+import com.projectcnw.salesmanagement.dto.orderDtos.OrderListByCustomer;
 import com.projectcnw.salesmanagement.models.Customer;
 
 import com.projectcnw.salesmanagement.models.Feedback;
@@ -17,6 +19,8 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -183,6 +187,82 @@ public class CustomerController extends BaseController {
                 .responseCode(200)
                 .message("Success")
                 .data(feedbackList)
+                .build();
+        return ResponseEntity.ok(responseObject);
+    }
+
+    @GetMapping("/customer/feedback")
+    public ResponseEntity<PagedResponseObject> getAllFeedback(@RequestParam(value = "page", defaultValue = "1") int page,
+                                                              @RequestParam(value = "size", defaultValue = "10") int size) {
+
+        long totalItems = feedbackService.countFeedback();
+        int totalPages = (int) Math.ceil((double) totalItems / size);
+        List<Feedback> feedbackList = feedbackService.getAllFeedback(page, size);
+        return ResponseEntity.ok(PagedResponseObject.builder()
+                .page(page)
+                .perPage(size)
+                .totalItems(totalItems)
+                .totalPages(totalPages)
+                .responseCode(200)
+                .message("Success")
+                .data(feedbackList)
+                .build());
+    }
+
+    // Xử lý yêu cầu GET để tìm khách hàng dựa trên tên và số điện thoại
+    @GetMapping("/customer/feedback/search")
+    public ResponseEntity<ResponseObject> searchCustomersFeedback(@RequestParam("searchTerm") String searchTerm) {
+        List<Feedback> listFeedback = feedbackService.searchFeedbacks(searchTerm);
+        ResponseObject responseObject = ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(listFeedback)
+                .build();
+
+        return ResponseEntity.ok(responseObject);
+    }
+
+    @PostMapping("/customer/feedback")
+    public ResponseEntity<ResponseObject> createFeedback(@RequestBody @Valid FeedbackDTO feedbackDTO, @AuthenticationPrincipal UserDetails userDetails) {
+        String staffPhone = userDetails.getUsername();
+        feedbackService.createFeedback(feedbackDTO, staffPhone);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .message("success")
+                .data(feedbackDTO)
+                .responseCode(200)
+                .build());
+    }
+
+    @PutMapping("/customer/feedback/{id}")
+    public ResponseEntity<ResponseObject> updateFeedback(@PathVariable("id") int feedbackId, @RequestBody @Valid FeedbackDTO feedbackDTO, @AuthenticationPrincipal UserDetails userDetails){
+        String staffPhone = userDetails.getUsername();
+        Feedback updateFeedback = feedbackService.updateFeedback(feedbackId, feedbackDTO, staffPhone);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success update feedback")
+                .data(updateFeedback)
+                .build());
+    }
+
+    //xóa khách hàng
+    @DeleteMapping("/customer/feedback/{id}")
+    public ResponseEntity<ResponseObject> deleteFeedback(@PathVariable("id") int feedbackId) {
+        feedbackService.deleteFeedbackById(feedbackId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Deleted Feedback")
+                .data(null)
+                .build());
+    }
+
+    //Order
+    @GetMapping("/customer/{customerId}/order")
+    public ResponseEntity<ResponseObject> getOrderListByCustomerId(@PathVariable int customerId) {
+        List<OrderListByCustomer> orderList = orderService.getOrderListByCustomerId(customerId);
+        ResponseObject responseObject = ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(orderList)
                 .build();
         return ResponseEntity.ok(responseObject);
     }
