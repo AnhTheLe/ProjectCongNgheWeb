@@ -283,42 +283,160 @@ function Order() {
             {/* <div className={cx('orderlines', 'panel')}>
                 <h6>Thông tin sản phẩm</h6>
             </div> */}
-
-            {buttonHistoryResponse ? (
-                <div className={cx('wrapItem')}>
-                    {returnHistories.map((item, index) => (
-                        <div className={cx('historyContentRow')} key={item.returnOrderId}>
-                            <Link to={`/order_returns/${item.returnOrderId}`} style={linkStyle}>
-                                <div
-                                    className={cx('returnOrderId')}
-                                    style={{ color: '#0088FF', cursor: 'pointer' }}
-                                >
-                                    {item.returnOrderId}
-                                </div>
-                            </Link>
-                            <div className={cx('createdAt')}>{moment(item.createdAt).format('DD/MM/YYYY')}</div>
-                            <div className={cx('quantityReturn')}>{item.returnQuantity}</div>
-                            <div className={cx('returnValue')}>{numeral(item.returnValue).format('0,0')}</div>
-                            <div className={cx('swapOrderId')} style={{ color: '#0088FF', cursor: 'pointer' }}>
-                                {item.swapOrderId ? (
-                                    <Link to={`/order_returns/${item.returnOrderId}`} style={linkStyle}>
-                                        <div>{item.swapOrderId}</div>
-                                    </Link>
-                                ) : (
-                                    <></>
-                                )}
-                            </div>
-                            <div className={cx('quantitySwap')}>{item.swapQuantity}</div>
-                            <div className={cx('swapValue')}>
-                                {item.swapValue ? numeral(item.swapValue).format('0,0') : ''}
-                            </div>
-                        </div>
-                    ))}
-                    {returnHistories.length === 0 && <div className={cx('historyEmpty')}>Không có dữ liệu</div>}
+            <div className={cx('history')}>
+                <div className={cx('historyHeader')}>
+                    <button onClick={handleHistoryPurchase} className={cx({ active: buttonHistoryPurchase })}>
+                        Thông tin sản phẩm
+                    </button>
+                    <button onClick={handleHistoryResponse} className={cx({ active: buttonHistoryResponse })}>
+                        Lịch sử trả hàng
+                    </button>
                 </div>
-            ) : (
-                <></>
-            )}
+                <div className={cx('historyContent')}>
+                    <div className={cx('historyContentTitle')}>
+                        {buttonHistoryPurchase ? (
+                            <>
+                                <div className={cx('number', 'header')}>STT</div>
+                                <div className={cx('image', 'header')}>Ảnh</div>
+                                <div className={cx('sku', 'header')}>SKU</div>
+                                <div className={cx('name', 'header')}>Tên sản phẩm</div>
+                                <div className={cx('quantity', 'header')}>Số lượng</div>
+                                <div className={cx('price', 'header')}>Đơn giá</div>
+                                <div className={cx('discount', 'header')}>Chiết khấu</div>
+                                <div className={cx('amount', 'header')}>Thành tiền</div>
+                            </>
+                        ) : (
+                            <></>
+                        )}
+                        {buttonHistoryResponse ? (
+                            <>
+                                <div className={cx('returnOrderId')} style={{ textAlign: 'center' }}>
+                                    Mã đơn trả hàng
+                                </div>
+                                <div className={cx('createdAt')}>Ngày trả hàng</div>
+                                <div className={cx('quantityReturn')}>Số lượng hàng trả</div>
+                                <div className={cx('returnValue')}>Giá trị hàng trả</div>
+                                <div className={cx('swapOrderId')}>Mã đơn đổi</div>
+                                <div className={cx('quantitySwap')}>Số lượng hàng đổi</div>
+                                <div className={cx('swapValue')}>Giá trị hàng đổi</div>
+                            </>
+                        ) : (
+                            <></>
+                        )}
+                    </div>
+
+                    {buttonHistoryPurchase ? (
+                        <>
+                            <div className={cx('wrapItem')}>
+                                {orderLines.map((item, index) => (
+                                    <div className={cx('historyContentRow')} key={item.id}>
+                                        <div className={cx('number', 'row')}>{index + 1}</div>
+                                        <div className={cx('image', 'row')}>
+                                            {item.variant.image ? (
+                                                <div className={cx('alignImageProduct', 'row')}>
+                                                    <img alt="product" src={item.variant.image} />
+                                                </div>
+                                            ) : (
+                                                <DefaultIcon />
+                                            )}
+                                        </div>
+                                        <div className={cx('sku', 'row')}>{item.variant.sku}</div>
+                                        <div className={cx('name', 'row')}>{item.variant.name}</div>
+                                        <div className={cx('quantity', 'row')}>{item.quantity}</div>
+                                        <div className={cx('price', 'row')}>{numeral(item.price).format('0,0')}</div>
+                                        <div className={cx('discount', 'row')}>
+                                            {numeral(item.discount || 0).format('0,0')}
+                                        </div>
+                                        <div className={cx('amount', 'row')}>{numeral(item.price).format('0,0')}</div>
+                                    </div>
+                                ))}
+                                {orderLines.length === 0 && <div className={cx('historyEmpty')}>Không có dữ liệu</div>}
+                            </div>
+                            <div className={cx('summary')}>
+                                <div className={cx('summary-item')}>
+                                    <div>Tổng tiền ({orderLines.length} sản phẩm)</div>
+                                    <div>{numeral(buyValue).format(0, 0)}</div>
+                                </div>
+                                <div className={cx('summary-item')}>
+                                    <div>Chiết khấu</div>
+                                    <div>{numeral(orderInfo.discount).format(0, 0)}</div>
+                                </div>
+                                <div className={cx('summary-item')}>
+                                    <div>Mã giảm giá</div>
+                                    <div>0</div>
+                                </div>
+                                {orderInfo.returnOrderId && (
+                                    <>
+                                        <div className={cx('summary-item')} style={{ fontWeight: 600 }}>
+                                            <div>Giá trị mua hàng</div>
+                                            <div>{buyValue - orderInfo.discount}</div>
+                                        </div>
+                                        <div className={cx('summary-item')} style={{ fontWeight: 600 }}>
+                                            <div>
+                                                Giá trị trả hàng (
+                                                <Link
+                                                    to={`/order_returns/${orderInfo.returnOrderId}`}
+                                                    style={{ textDecoration: 'none' }}
+                                                >
+                                                    <span>SRN000{orderInfo.returnOrderId}</span>
+                                                </Link>
+                                                )
+                                            </div>
+                                            <div>{orderInfo.returnAmount}</div>
+                                        </div>
+                                    </>
+                                )}
+                                <div style={{ fontWeight: 600 }} className={cx('summary-item')}>
+                                    <div>{amount > returnAmount ? 'Khách phải trả' : 'Cần trả khách'}</div>
+                                    <div style={{ color: amount > returnAmount ? 'black' : 'rgb(255, 77, 77)' }}>
+                                        {amount > returnAmount
+                                            ? numeral(amount - returnAmount).format(0, 0)
+                                            : numeral(returnAmount - amount).format(0, 0)}
+                                    </div>
+                                </div>
+                            </div>
+                        </>
+                    ) : (
+                        <></>
+                    )}
+
+                    {buttonHistoryResponse ? (
+                        <div className={cx('wrapItem')}>
+                            {returnHistories.map((item, index) => (
+                                <div className={cx('historyContentRow')} key={item.returnOrderId}>
+                                    <Link to={`/order_returns/${item.returnOrderId}`} style={linkStyle}>
+                                        <div
+                                            className={cx('returnOrderId')}
+                                            style={{ color: '#0088FF', cursor: 'pointer' }}
+                                        >
+                                            {item.returnOrderId}
+                                        </div>
+                                    </Link>
+                                    <div className={cx('createdAt')}>{moment(item.createdAt).format('DD/MM/YYYY')}</div>
+                                    <div className={cx('quantityReturn')}>{item.returnQuantity}</div>
+                                    <div className={cx('returnValue')}>{numeral(item.returnValue).format('0,0')}</div>
+                                    <div className={cx('swapOrderId')} style={{ color: '#0088FF', cursor: 'pointer' }}>
+                                        {item.swapOrderId ? (
+                                            <Link to={`/order_returns/${item.returnOrderId}`} style={linkStyle}>
+                                                <div>{item.swapOrderId}</div>
+                                            </Link>
+                                        ) : (
+                                            <></>
+                                        )}
+                                    </div>
+                                    <div className={cx('quantitySwap')}>{item.swapQuantity}</div>
+                                    <div className={cx('swapValue')}>
+                                        {item.swapValue ? numeral(item.swapValue).format('0,0') : ''}
+                                    </div>
+                                </div>
+                            ))}
+                            {returnHistories.length === 0 && <div className={cx('historyEmpty')}>Không có dữ liệu</div>}
+                        </div>
+                    ) : (
+                        <></>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
