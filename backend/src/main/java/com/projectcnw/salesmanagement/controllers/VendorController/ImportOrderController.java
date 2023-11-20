@@ -72,8 +72,9 @@ public class ImportOrderController {
     public ResponseEntity<ResponseObject> createPay(@RequestBody @Valid int amount, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails)
     {
         PaymentDTO paymentDTO = new PaymentDTO();
-        paymentDTO.setAmount(amount);
         paymentDTO.setOrderId(id);
+
+        paymentDTO.setAmount(amount);
         PaymentDTO paymentDTO1 = paymentService.save(paymentDTO);
         return ResponseEntity.ok(ResponseObject.builder()
                 .responseCode(200)
