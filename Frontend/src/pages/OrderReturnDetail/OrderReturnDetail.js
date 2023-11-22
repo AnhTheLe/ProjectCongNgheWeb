@@ -199,6 +199,36 @@ function OrderReturnDetail() {
                                 </div>
                             </div>
                         </div>
+                        <div>
+                            <div className={cx('personalInfoContentRow')}>
+                                <div className={cx('personalInfoTitle')}>Chi nhánh trả</div>
+                                <div className={cx('personalInfoValue')}>: Chi nhánh mặc định</div>
+                            </div>
+
+                            <div className={cx('personalInfoContentRow')}>
+                                <div className={cx('personalInfoTitle')}>Mã đơn đổi hàng</div>
+                                <div className={cx('personalInfoValue')}>
+                                    :{' '}
+                                    {returnOrderInfo.swapOrderId ? (
+                                        <Link
+                                            to={`/order/${returnOrderInfo.swapOrderId}`}
+                                            style={{ textDecoration: 'none' }}
+                                        >
+                                            <span>
+                                                {returnOrderInfo.swapOrderId && `SON000${returnOrderInfo.swapOrderId}`}
+                                            </span>
+                                        </Link>
+                                    ) : (
+                                        <></>
+                                    )}
+                                </div>
+                            </div>
+
+                            <div className={cx('personalInfoContentRow')}>
+                                <div className={cx('personalInfoTitle')}>Nhân viên tạo phiếu</div>
+                                <div className={cx('personalInfoValue')}>: {returnOrderInfo.staffName}</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div className={cx('purchaseInfo')}>
@@ -315,6 +345,48 @@ function OrderReturnDetail() {
                     )}
                 </div>
 
+                {returnOrderInfo.paymentStatus === PAYMENT_STATUS.INIT && (
+                    <div style={{ padding: '0 20px' }}>
+                        <div style={{ fontSize: '14px', marginTop: '13px' }}>
+                            Cần trả khách:{' '}
+                            <span style={{ fontWeight: 600 }}>
+                                {totalReturnValue > swapAmount ? totalReturnValue - swapAmount : 0}
+                            </span>
+                        </div>
+                        {returnOrderInfo.swapOrderId && (
+                            <div style={{ fontSize: '14px' }}>
+                                {totalReturnValue > swapAmount ? (
+                                    <div className={cx('noti')}>
+                                        <InfoOutlinedIcon sx={{ color: '#FFAE06', mr: '10px' }} />{' '}
+                                        <div>
+                                            Bạn vui lòng thực hiện hoàn tiền trên đơn đổi hàng{' '}
+                                            <Link
+                                                to={`/order/${returnOrderInfo.swapOrderId}`}
+                                                style={{ textDecoration: 'none' }}
+                                            >
+                                                <span>SON000{returnOrderInfo.swapOrderId}</span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                ) : (
+                                    <div className={cx('noti')}>
+                                        <InfoOutlinedIcon sx={{ color: '#FFAE06', mr: '10px' }} />{' '}
+                                        <div>
+                                            Đơn trả hàng có giá trị nhỏ hơn đơn đổi hàng. Bạn vui lòng thực hiện thanh
+                                            toán trên đơn đổi hàng{' '}
+                                            <Link
+                                                to={`/order/${returnOrderInfo.swapOrderId}`}
+                                                style={{ textDecoration: 'none' }}
+                                            >
+                                                <span>SON000{returnOrderInfo.swapOrderId}</span>
+                                            </Link>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        )}
+                    </div>
+                )}
             </div>
         </div>
     );
