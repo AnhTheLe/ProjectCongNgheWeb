@@ -1,0 +1,389 @@
+.wrap {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0 32px 40px;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+.personalInfo {
+    display: flex;
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    flex-direction: column;
+    border-radius: 4px;
+    margin-top: 12px;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+
+    .personalInfoHeader {
+        flex: 1 0 auto;
+        max-height: 52px;
+        width: 100%;
+        height: 52px;
+        display: flex;
+        padding: 0 16px;
+        align-items: center;
+        border-bottom: 1px solid #e8eaeb;
+        justify-content: space-between;
+
+        span {
+            color: black;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        button {
+            border: none;
+            background-color: transparent;
+            color: #0088ff;
+            font-weight: 600;
+            font-size: 15px;
+        }
+    }
+
+    .personalInfoContent {
+        padding: 16px 0 4px 16px;
+
+        .personalInfoContentRow {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #747c87;
+            margin-bottom: 16px;
+
+            .personalInfoContentCol {
+                width: 50%;
+                margin-right: 28px;
+
+                // gap: 28px;
+                .personalInfoTitle {
+                    width: 100%;
+                    margin-bottom: 4px;
+                }
+
+                .personalInfoValue {
+                    width: 100%;
+                    height: 40px;
+                    color: black;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-right: 16px;
+
+                    input {
+                        background: transparent;
+                        box-sizing: border-box;
+                        padding: 10px 12px;
+                        width: 100%;
+                        height: 100%;
+                        border: 1px solid #ccc;
+                        outline: none;
+                        border-radius: 3px;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                            Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                        margin: 0px;
+                        color: rgb(15, 24, 36);
+
+                        &:hover {
+                            border: 1px solid #637381;
+                        }
+
+                        &:focus {
+                            border: 1px solid #0088ff;
+                        }
+                    }
+                }
+            }
+
+            .oneColumnPerRow {
+                align-items: center;
+                width: 100%;
+
+                .personalInfoTitle {
+                    width: 205px;
+                    margin-bottom: 4px;
+                }
+
+                .personalInfoValue {
+                    width: calc(100% - 16px);
+                    height: 40px;
+                    color: black;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-right: 16px;
+
+                    input {
+                        background: transparent;
+                        box-sizing: border-box;
+                        padding: 10px 12px;
+                        width: 100%;
+                        height: 100%;
+                        border: 1px solid #ccc;
+                        outline: none;
+                        border-radius: 3px;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                            Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                        margin: 0px;
+                        color: rgb(15, 24, 36);
+
+                        &:hover {
+                            border: 1px solid #637381;
+                        }
+
+                        &:focus {
+                            border: 1px solid #0088ff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.attribute {
+    display: flex;
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    flex-direction: column;
+    border-radius: 4px;
+    margin-top: 24px;
+    background-color: white;
+    width: 90%;
+    height: auto;
+    padding-bottom: 20px;
+
+    button {
+        font-size: 10px;
+    }
+
+    .attribute-add-button {
+        margin-left: 30px;
+    }
+
+    .attributeHeader {
+        flex: 1 0 auto;
+        max-height: 52px;
+        width: 100%;
+        height: 52px;
+        display: flex;
+        padding: 0 16px;
+        align-items: center;
+        border-bottom: 1px solid #e8eaeb;
+        justify-content: space-between;
+
+        span {
+            color: black;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+    }
+
+    .attributeContent {
+        padding: 10px;
+
+        .attributeRow {
+            display: flex;
+            margin-bottom: 10px;
+            flex-direction: row;
+
+            span {
+                line-height: 38px;
+                width: 30%;
+                padding-left: 40px;
+                font-size: 14px;
+                color: #747c87;
+            }
+
+            input {
+                width: 60%;
+                background: transparent;
+                box-sizing: border-box;
+                padding: 10px 12px;
+                height: 100%;
+                border: 1px solid #ccc;
+                outline: none;
+                border-radius: 3px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                margin: 0px;
+                color: rgb(15, 24, 36);
+
+                &:hover {
+                    border: 1px solid #637381;
+                }
+
+                &:focus {
+                    border: 1px solid #0088ff;
+                }
+            }
+
+            .delete-button {
+                span {
+                    padding: 0;
+                    margin: 0;
+                }
+            }
+        }
+    }
+}
+
+
+.variants {
+    display: flex;
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    flex-direction: column;
+    border-radius: 4px;
+    margin-top: 24px;
+    background-color: white;
+    width: 100%;
+    height: auto;
+    padding-bottom: 20px;
+    button {
+        font-size: 10px;
+    }
+    .variant-add-button {
+        margin-left: 30px;
+    }
+
+    .variantsHeader {
+        flex: 1 0 auto;
+        max-height: 52px;
+        width: 100%;
+        height: 52px;
+        display: flex;
+        padding: 0 16px;
+        align-items: center;
+        border-bottom: 1px solid #e8eaeb;
+        justify-content: space-between;
+
+        span {
+            color: black;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+    }
+
+    position: relative;
+
+    .variantContainer {
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+
+        div {
+            .variantNumber {
+                margin-bottom: 5px;
+            }
+
+
+            .variantItem {
+                width: 100%;
+                border: 1px solid rgb(223, 222, 222);
+                display: flex;
+                flex-direction: row;
+
+                .variantName {
+                    border-right: 1px solid rgb(223, 222, 222);
+                    flex: 2.5;
+                    padding: 10px;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    justify-content: center;
+                    text-align: center;
+
+                    img {
+                        height: 120px;
+                    }
+
+                    input {
+                        font-size: 14px;
+                        margin-top: 10px;
+                        font-weight: 700;
+                    }
+
+                }
+
+                .variantDetail {
+                    flex: 7;
+                    padding: 10px;
+
+                    display: flex;
+                    flex-direction: column;
+
+                    .detailGroup {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 20px;
+
+                        .itemGroup {
+                            width: 30%;
+
+                            .labelItem {
+                                font-size: 14px;
+                                color: #747c87;
+                            }
+                        }
+                    }
+                }
+            }
+
+            .inputItem {
+                width: 100%;
+                background: transparent;
+                box-sizing: border-box;
+                padding: 10px 12px;
+                height: 36px;
+                border: 1px solid #ccc;
+                outline: none;
+                border-radius: 3px;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                margin: 0px;
+                color: rgb(15, 24, 36);
+
+                &:hover {
+                    border: 1px solid #637381;
+                }
+
+                &:focus {
+                    border: 1px solid #0088ff;
+                }
+            }
+        }
+    }
+
+
+}
