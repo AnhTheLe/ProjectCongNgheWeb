@@ -53,4 +53,3 @@ const WeeklySalesChart = ({ data, nameChart }) => {
     );
 };
 
-export { DailySalesChart, WeeklySalesChart, MonthlySalesChart };
