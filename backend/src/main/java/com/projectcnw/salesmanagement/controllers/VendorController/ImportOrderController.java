@@ -25,7 +25,7 @@ public class ImportOrderController {
         this.importOrderService = importOrderService;
         this.paymentService = paymentService;
     }
-
+//------QuynhAnh-------
     @GetMapping
     public ResponseEntity<ResponseObject> getImportOrderList(){
         List<ImportOrderDTO> importOrderDTOList = importOrderService.findAll();
@@ -35,7 +35,7 @@ public class ImportOrderController {
                 .data(importOrderDTOList)
                 .build());
     }
-
+//------MinhLinh--------
     @GetMapping(value = "/{id}")
     public ResponseEntity<ResponseObject> getImportOrderById(@PathVariable Integer id){
         ImportOrderDTO importOrderDTOList = importOrderService.findById(id);
