@@ -44,16 +44,7 @@ function Button({
         props.href = href;
     }
 
-    const classes = cx('wrapper', {
-        [className]: className,
-        primary,
-        outline,
-        upload,
-        disabled,
-        rounded,
-        small,
-        large,
-    });
+
 
     return (
         <Component className={classes} {...props}>
