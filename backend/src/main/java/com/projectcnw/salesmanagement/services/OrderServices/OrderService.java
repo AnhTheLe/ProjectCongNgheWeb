@@ -186,4 +186,31 @@ public class OrderService {
 
         return result;
     }
+
+    public List<TopCustomer> topCustomer(java.util.Date startDate, java.util.Date endDate, String type) {
+        List<TopCustomer> result = new ArrayList<>();
+        List<Object[]> listCustomer = orderRepository.topCustomerByRevenue(startDate, endDate);
+        if("revenue".equals(type)) {
+            listCustomer = orderRepository.topCustomerByRevenue(startDate, endDate);
+            System.out.println("revenue");
+//        } else if("quantity".equals(type)) {
+//            listVariant = orderRepository.topCustomerByQuantity(startDate, endDate);
+//            System.out.println("quantity");
+        } else if("order".equals(type)) {
+            listCustomer = orderRepository.topCustomerByOrder(startDate, endDate);
+            System.out.println("order");
+        }
+
+        for (Object[] data : listCustomer) {
+            int customerId = (int) data[0];
+            Customer customer = null;
+            customer = customerRepository.findById((Integer) customerId)
+                    .orElseThrow(() -> new NotFoundException("customer " + customerId + " not found"));
+            BigDecimal value = BigDecimal.valueOf(((Number) data[1]).doubleValue());
+            TopCustomer topCustomer = new TopCustomer(customer, value);
+            result.add(topCustomer);
+        }
+
+        return result;
+    }
 }

@@ -2,6 +2,7 @@ package com.projectcnw.salesmanagement.repositories.OrderRepositories;
 
 
 import com.projectcnw.salesmanagement.dto.orderDtos.IReturnHistoryItemDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.IReturnOrderDetailInfo;
 import com.projectcnw.salesmanagement.dto.orderDtos.IReturnOrderItemDto;
 import com.projectcnw.salesmanagement.models.ReturnOrder;
 import org.springframework.data.domain.Page;
@@ -45,4 +46,30 @@ public interface ReturnOrderRepository extends JpaRepository<ReturnOrder, Intege
             " where r.id = ol_sum.return_id" +
             " and r.base_order = :orderId) osrs", nativeQuery = true)
     List<IReturnHistoryItemDto> getReturnHistories(@Param("orderId") Integer orderId);
+
+    @Query(value = "SELECT" +
+            " c.name AS customerName," +
+            " c.id AS customerId," +
+            " r.base_order AS baseOrderId," +
+            " r.created_at AS createdAt," +
+            " r.swap_order AS swapOrderId," +
+            " u.full_name AS staffName," +
+            " r.return_reason AS returnReason," +
+            " p.amount AS swapAmount," +
+            " p1.payment_status AS paymentStatus" +
+            " FROM" +
+            " return_order r" +
+            " INNER JOIN" +
+            " user u ON r.person_in_charge = u.id" +
+            " INNER JOIN" +
+            " _order o ON o.id = r.base_order" +
+            " INNER JOIN" +
+            " customer c ON o.customer_id = c.id" +
+            " INNER JOIN" +
+            " payment p1 ON p1.order_id = r.id AND p1.order_type = 'RETURN'" +
+            " LEFT JOIN" +
+            " payment p ON r.swap_order = p.order_id AND p.order_type = 'ORDER'" +
+            " WHERE" +
+            " r.id = :returnId", nativeQuery = true)
+    IReturnOrderDetailInfo getReturnOrderDetailInfo(@Param("returnId") Integer returnId);
 }

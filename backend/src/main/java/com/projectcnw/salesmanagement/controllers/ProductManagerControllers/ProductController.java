@@ -1,10 +1,13 @@
 package com.projectcnw.salesmanagement.controllers.ProductManagerControllers;
 
-
+import com.projectcnw.salesmanagement.controllers.BaseController;
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
-import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.productDtos.BaseProductDto;
+import com.projectcnw.salesmanagement.dto.ResponseObject;
+import com.projectcnw.salesmanagement.dto.productDtos.AttributeDto;
+import com.projectcnw.salesmanagement.dto.productDtos.VariantDto;
 import com.projectcnw.salesmanagement.services.ProductManagerServices.BaseProductService;
+import com.projectcnw.salesmanagement.services.ProductManagerServices.VariantService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -14,11 +17,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
-public class ProductController {
+public class ProductController extends BaseController {
     @Autowired
     private BaseProductService baseProductService;
-
-//
+    @Autowired
+    private VariantService variantService;
+    //
     //viewListProducts
     //lấy danh sách sản phẩm (gồm tồn kho, số phiên bản)
     @GetMapping("/base-products")
@@ -29,14 +33,14 @@ public class ProductController {
         int totalPages = (int) Math.ceil((double) totalItems / size);
         List<BaseProductDto> products = baseProductService.getAll(page, size);
         return ResponseEntity.ok(PagedResponseObject.builder()
-                        .page(page)
-                        .perPage(size)
-                        .totalItems(totalItems)
-                        .totalPages(totalPages)
-                        .responseCode(200)
-                        .message("Success")
-                        .data(products)
-                        .build());
+                .page(page)
+                .perPage(size)
+                .totalItems(totalItems)
+                .totalPages(totalPages)
+                .responseCode(200)
+                .message("Success")
+                .data(products)
+                .build());
     }
 //    private int page;
 //    private int perPage;
@@ -77,4 +81,93 @@ public class ProductController {
                 .build());
     }
 
+    @PostMapping("/base-products/{id}/variants")
+    public ResponseEntity<ResponseObject> createVariantOfBaseProduct(@PathVariable("id") int baseId,@Valid @RequestBody VariantDto variantDto){
+        VariantDto variantDto1 = variantService.createVariant(baseId, variantDto);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(variantDto1)
+                .build());
+    }
+    @GetMapping("/base-products/{baseId}/variants/{variantId}")
+    public ResponseEntity<ResponseObject> getVariantById(@PathVariable("baseId") int baseId, @PathVariable("variantId") int variantId) {
+        VariantDto variantDto = baseProductService.getVariantById(variantId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(variantDto)
+                .build());
+    }
+
+
+    @PutMapping("/base-products/{id}/variants")
+    public ResponseEntity<ResponseObject> updateVariantOfBaseProduct(@PathVariable("id") int baseId,@Valid @RequestBody VariantDto variantDto){
+        VariantDto variantDto1 = variantService.updateVariant(baseId, variantDto);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(variantDto1)
+                .build());
+    }
+
+    @PutMapping("/base-products/{id}/attributes")
+    public ResponseEntity<ResponseObject> updateNameAttribute(@PathVariable("id") int baseId, @RequestBody AttributeDto nameAttributeDto){
+        baseProductService.updateNameAttribute(baseId, nameAttributeDto);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(null)
+                .build());
+    }
+
+    @PostMapping("/base-products/{id}/attributes")
+    public ResponseEntity<ResponseObject> createAttribute(@PathVariable("id") int baseId, @RequestBody AttributeDto attributeDto){
+        baseProductService.createAttribute(baseId, attributeDto);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Created Attriute")
+                .data(null)
+                .build());
+    }
+
+    @DeleteMapping("/base-products/{baseId}/attributes")
+    public ResponseEntity<ResponseObject> deleteAttribute(@PathVariable("baseId") int baseId, @RequestBody AttributeDto attributeDto) {
+        baseProductService.deleteAttributeOfProduct(baseId, attributeDto.getKeyAttribute());
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Deleted")
+                .data(null)
+                .build());
+    }
+
+    @DeleteMapping("/base-products/{id}")
+    public ResponseEntity<ResponseObject> deleteBaseProductAndVariantOfBaseProduct(@PathVariable("id") int baseId) {
+        baseProductService.deleteBaseProductAndVariantOfBaseProductByBaseId(baseId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Deleted")
+                .data(null)
+                .build());
+    }
+
+    @DeleteMapping("/base-products/{baseId}/variants/{variantId}")
+    public ResponseEntity<ResponseObject> deleteVariantById(@PathVariable("baseId") int baseId, @PathVariable("variantId") int variantId) {
+        variantService.deleteVariantById(baseId, variantId);
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Deleted")
+                .data(null)
+                .build());
+    }
+    @GetMapping("base-products/search")
+    public ResponseEntity<ResponseObject> getAllBaseProductsByKeyword(@RequestParam(name = "keyword") String keyword) {
+        List<BaseProductDto> baseProductDtos = baseProductService.getAllBaseProductsByKeyword(keyword);
+
+        return ResponseEntity.ok(ResponseObject.builder()
+                .responseCode(200)
+                .message("Success")
+                .data(baseProductDtos)
+                .build());
+    }
 }
