@@ -1,0 +1,13 @@
+.wrapper {
+    display: flex;
+    justify-content: end;
+}
+
+.wrapContent {
+    // width: calc(100% - 230px);
+    height: auto;
+    min-height: 100vh;
+    // margin-left: 230px;
+    background-color: rgb(240, 241, 241);
+    transition: width 200ms;
+}
