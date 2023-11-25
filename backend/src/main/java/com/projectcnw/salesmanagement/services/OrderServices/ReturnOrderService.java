@@ -20,6 +20,7 @@ import com.projectcnw.salesmanagement.repositories.OrderRepositories.ReturnOrder
 import com.projectcnw.salesmanagement.repositories.PaymentRepository;
 import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.VariantRepository;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -31,28 +32,21 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 
 @Service
+@RequiredArgsConstructor
 public class ReturnOrderService {
+    private final ReturnOrderRepository returnOrderRepository;
 
-    @Autowired
-    private ReturnOrderRepository returnOrderRepository;
+    private final ReturnOrderLineRepository returnOrderLineRepository;
 
-    @Autowired
-    private ReturnOrderLineRepository returnOrderLineRepository;
+    private final OrderRepository orderRepository;
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderLineRepository orderLineRepository;
 
-    @Autowired
-    private OrderLineRepository orderLineRepository;
+    private final VariantRepository variantRepository;
 
-    @Autowired
-    private VariantRepository variantRepository;
+    private final PaymentRepository paymentRepository;
 
-    @Autowired
-    private PaymentRepository paymentRepository;
-
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public long countTotalReturnOrders() {
         return returnOrderRepository.count();

@@ -14,9 +14,8 @@ import com.projectcnw.salesmanagement.repositories.BalanceManagerRepository.Bala
 import com.projectcnw.salesmanagement.repositories.BalanceManagerRepository.WarehouseBalanceRepository;
 import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.VariantRepository;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
-import com.projectcnw.salesmanagement.services.BaseService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,16 +24,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class BalanceService extends BaseService {
-    @Autowired
-    private WarehouseBalanceRepository warehouseBalanceRepository;
-    @Autowired
-    private BalanceVariantRepository balanceVariantRepository;
-    @Autowired
-    private VariantRepository variantRepository;
-    @Autowired
-    private UserRepository userRepository;
-    private ModelMapper modelMapper = new ModelMapper();
+@RequiredArgsConstructor
+public class BalanceService {
+    private final WarehouseBalanceRepository warehouseBalanceRepository;
+    private final BalanceVariantRepository balanceVariantRepository;
+    private final VariantRepository variantRepository;
+    private final UserRepository userRepository;
+    private final ModelMapper modelMapper = new ModelMapper();
 
 
     @Transactional

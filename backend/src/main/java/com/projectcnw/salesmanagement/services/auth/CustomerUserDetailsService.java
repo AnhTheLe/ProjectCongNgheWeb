@@ -4,6 +4,7 @@ import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.models.Role;
 import com.projectcnw.salesmanagement.models.UserEntity;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,14 +18,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class CustomerUserDetailsService implements UserDetailsService {
 
-    @Autowired
     private final UserRepository userRepository;
-
-    public CustomerUserDetailsService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Override
     public UserDetails loadUserByUsername(String phone) throws NotFoundException {

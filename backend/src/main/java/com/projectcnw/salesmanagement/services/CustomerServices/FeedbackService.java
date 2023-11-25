@@ -9,6 +9,7 @@ import com.projectcnw.salesmanagement.models.*;
 import com.projectcnw.salesmanagement.repositories.CustomerRepositories.CustomerRepository;
 import com.projectcnw.salesmanagement.repositories.CustomerRepositories.FeedbackRepository;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,18 +21,13 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class FeedbackService {
-    private FeedbackRepository feedbackRepository;
+    private final FeedbackRepository feedbackRepository;
 
-    private CustomerRepository customerRepository;
+    private final CustomerRepository customerRepository;
 
     private final UserRepository userRepository;
-
-    public FeedbackService(FeedbackRepository feedbackRepository, CustomerRepository customerRepository, UserRepository userRepository) {
-        this.feedbackRepository = feedbackRepository;
-        this.customerRepository = customerRepository;
-        this.userRepository = userRepository;
-    }
 
     public long countFeedback() {
         return feedbackRepository.count();

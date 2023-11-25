@@ -12,6 +12,7 @@ import com.projectcnw.salesmanagement.models.enums.RoleType;
 import com.projectcnw.salesmanagement.models.enums.WorkStatus;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
 import com.projectcnw.salesmanagement.repositories.RoleRepository;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -27,15 +28,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StaffService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    private final RoleRepository roleRepository;
+    private final PasswordEncoder passwordEncoder;
 
     public long countTotalStaffs() {
         return userRepository.count() - 1;
