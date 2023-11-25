@@ -1,0 +1,35 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://127.0.0.1/cnw
+    username: root
+    password:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    database: MYSQL
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+  main:
+    web-application-type: servlet
+
+application:
+  security:
+    jwt:
+      secret-key: ${SECRET_KEY}
+      expiration: ${JWT_EXPIRATION} # a day
+      refresh-token:
+        expiration: 604800000 # 7 days
+
+
+cloudinary:
+  cloud-name: dnfqh0xor
+  api-key: 824374795628962
+  api-secret: ZkW3BqawOuplLWv2Kq--llPkWlk
+  secure: true
+
+twilio:
+  account-sid: ACe470770b4f1a732bc8d039797d8ec33a
+  auth-token: ed69f9839146b3fb5fac0b7c9b59de44
+  outgoing-sms-number: +84388735470

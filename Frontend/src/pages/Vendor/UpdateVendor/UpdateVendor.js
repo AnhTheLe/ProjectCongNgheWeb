@@ -70,16 +70,16 @@ function CreateVendor() {
             messages.push('SĐT không đúng định dạng');
         } else if (result.phone.length !== 10) {
             messages.push('SĐT không đúng định dạng');
-        }
+        } 
         if (result.fax !=='' && result.fax !== null && !/^[+]?[0-9.-]+$/.test(result.fax)) {
             console.log(result.fax);
             messages.push('Số fax không đúng định dạng');
-        }
+        } 
         if ( result.tax !== '' && result.tax !== null && (isNaN(result.tax) || (result.tax.length !== 10 && result.tax.length !== 13))) {
             messages.push('Mã số thuế không đúng định dạng');
-        }
+        } 
         if (
-            result.website !== '' && result.website !== null &&
+            result.website !== '' && result.website !== null && 
             !/^((https?|ftp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/.test(result.website)
         ) {
             messages.push('Website không đúng định dạng');
