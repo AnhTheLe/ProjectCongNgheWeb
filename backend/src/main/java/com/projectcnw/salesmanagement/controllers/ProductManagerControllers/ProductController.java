@@ -9,6 +9,7 @@ import com.projectcnw.salesmanagement.dto.productDtos.VariantDto;
 import com.projectcnw.salesmanagement.services.ProductManagerServices.BaseProductService;
 import com.projectcnw.salesmanagement.services.ProductManagerServices.VariantService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,11 +18,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class ProductController extends BaseController {
-    @Autowired
-    private BaseProductService baseProductService;
-    @Autowired
-    private VariantService variantService;
+    private final BaseProductService baseProductService;
+    private final VariantService variantService;
     //
     //viewListProducts
     //lấy danh sách sản phẩm (gồm tồn kho, số phiên bản)

@@ -4,6 +4,7 @@ import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.vendorDtos.VendorDTO;
 import com.projectcnw.salesmanagement.services.VendorService.IVendorService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,12 +12,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/admin/vendor")
+@RequiredArgsConstructor
 public class VendorController {
-    private IVendorService vendorService;
-
-    VendorController(IVendorService vendorService){
-        this.vendorService = vendorService;
-    }
+    private final IVendorService vendorService;
 
     @GetMapping
     public ResponseEntity<ResponseObject> getVendorList(){
