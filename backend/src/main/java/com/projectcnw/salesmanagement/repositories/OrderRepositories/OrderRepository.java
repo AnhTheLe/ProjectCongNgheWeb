@@ -69,12 +69,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query("SELECT new com.projectcnw.salesmanagement.dto.orderDtos.OrderStatistical(sum(o.quantity), count(distinct o.order.id), sum(o.price * o.quantity), :startDate) FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
     OrderStatistical statisticalByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-    //    @Query("SELECT o FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate GROUP BY o.variant.id ORDER BY o.price DESC LIMIT 6")
-//    List<OrderLine> topProductByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
-
-//    @Query("SELECT o FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate GROUP BY o.variant.id ORDER BY SUM(o.price) DESC LIMIT 6")
-//    List<OrderLine> topProductByRevenue(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
-
     @Query("SELECT o.variant.id, SUM(o.price * o.quantity) AS totalRevenue " +
             "FROM OrderLine o " +
             "WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate " +
@@ -110,7 +104,5 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
             "ORDER BY totalRevenue DESC")
     List<Object[]> topCustomerByOrder(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
-//    @Query("SELECT new com.sapo.salemanagement.dto.orderdtos.OrderStatistical(sum(o.quantity), count(distinct o.order.id), sum(o.price)) FROM OrderLine o WHERE o.createdAt >= :startDate AND o.createdAt <= :endDate")
-//    List<OrderStatistical> statisticalListByTime(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 }

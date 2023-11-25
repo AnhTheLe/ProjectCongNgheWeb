@@ -1,4 +1,4 @@
-package com.sapo.salemanagement.controllers;
+package com.projectcnw.salesmanagement.controllers;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.services.ImageUploader;

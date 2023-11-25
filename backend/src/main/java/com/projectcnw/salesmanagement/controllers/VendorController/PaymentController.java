@@ -1,4 +1,4 @@
-package com.sapo.salemanagement.controllers.VendorController;
+package com.projectcnw.salesmanagement.controllers.VendorController;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.vendorDtos.ImportOrderDTO;
