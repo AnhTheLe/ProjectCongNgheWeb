@@ -59,11 +59,7 @@ function CreateVendor() {
         if (result.address === '') {
             messages.push('Địa chỉ không được để trống');
         }
-        if (result.email === '') {
-            messages.push('Email không được để trống');
-        } else if (!/\S+@\S+\.\S+/.test(result.email)) {
-            messages.push('Email không đúng định dạng');
-        }
+
         if (result.phone === '') {
             messages.push('SĐT không được để trống');
         } else if (isNaN(result.phone)) {
@@ -157,6 +153,12 @@ function CreateVendor() {
             }
         } catch (error) {
             return error;
+        }
+    };
+
+    const handleOnClickdelete= () => {
+        if (validateInput()) {
+            updateVendor(result);
         }
     };
 
