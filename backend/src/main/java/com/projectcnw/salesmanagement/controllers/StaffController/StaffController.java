@@ -9,6 +9,7 @@ import com.projectcnw.salesmanagement.dto.staff.UpdatePasswordDto;
 import com.projectcnw.salesmanagement.dto.staff.UpdateStaffDto;
 import com.projectcnw.salesmanagement.services.StaffService.StaffService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import com.projectcnw.salesmanagement.models.UserEntity;
@@ -20,10 +21,10 @@ import java.util.List;
 @RestController
 @RequestMapping("/admin/staffs")
 @Validated
+@RequiredArgsConstructor
 public class StaffController {
 
-    @Autowired
-    private StaffService staffService;
+    private final StaffService staffService;
 
     @GetMapping
     public ResponseEntity<PagedResponseObject> getAllStaffs(@RequestParam(value = "page", defaultValue = "0") @Valid int page,

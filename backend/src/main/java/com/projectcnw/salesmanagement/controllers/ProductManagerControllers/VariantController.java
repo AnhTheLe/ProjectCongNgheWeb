@@ -5,6 +5,7 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.productDtos.VariantDto;
 import com.projectcnw.salesmanagement.services.ProductManagerServices.VariantService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class VariantController extends BaseController {
-    @Autowired
-    private VariantService variantService;
+
+    private final VariantService variantService;
 
     @GetMapping("/base-products/variants")
     public ResponseEntity<PagedResponseObject> getAllVariants(@RequestParam(name = "page", defaultValue = "1") int page,
