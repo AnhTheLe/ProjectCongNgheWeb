@@ -33,7 +33,7 @@
 
 .importOrder-btn:hover{
     background-color: rgb(48, 159, 255);
-}
+} 
 
 
 .content{
@@ -54,7 +54,7 @@
         cursor: pointer;
         border-bottom: 3px solid white;
     }
-
+      
     .btnContent:hover {
         border-bottom: 3px solid gray;
     }
@@ -67,14 +67,14 @@
 
     .searchSub {
         padding-right: 64px;
-        width: 100%;
+        width: 100%;     
 
         .searchField {
             border: 1px solid   rgba(168, 168, 168, 0.25);
             color: gray;
             padding: 6px 5px;
             border-radius: 5px;
-            width: 100%;
+            width: 100%;          
         }
         .inputSearch {
             display: flex;
@@ -115,26 +115,26 @@
                     caret-color: #0088ff;
                 }
             }
-
+            
         }
     }
 
     .searchFilter{
         display: flex;
-
+    
         .filter{
             border: 1px solid   rgba(168, 168, 168, 0.25);
             padding: 6px 16px;
-
+        
             button{
                 border: none;
                 background-color: white;
             }
-
+         
             span{
                 padding-left: 16px;
             }
-        }
+        } 
     }
 }
 
@@ -159,8 +159,8 @@
         height: 1.71429rem;
         border: 1px solid rgb(159, 237, 207);
         margin-left: 0.857143rem;
-        color: rgb(51, 163, 120);
-        background-color: rgb(244, 255, 251);
+        color: rgb(51, 163, 120);   
+        background-color: rgb(244, 255, 251); 
 }
 
 .init-pay {
@@ -172,13 +172,13 @@
         height: 1.71429rem;
         border: 1px solid #ffdd98;
         margin-left: 0.857143rem;
-        color: #cd8d02;
+        color: #cd8d02;    
         background-color: #fefaf2;
 }
 
 .init-ship {
-
-
+    
+    
         font-weight: 500;
         align-items: center;
         vertical-align: middle;
@@ -187,7 +187,7 @@
         height: 1.71429rem;
         border: 1px solid #9d9d9d;
         margin-left: 0.857143rem;
-        color: #535353;
+        color: #535353;   
         background-color: #eaeaea;
 }
 
