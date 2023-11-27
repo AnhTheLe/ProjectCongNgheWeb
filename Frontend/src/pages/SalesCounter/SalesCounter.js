@@ -72,6 +72,17 @@ function SalesCounter() {
                 />
             </div>
 
+            <ModalNewCustomer
+                openModal={openAddCustomer}
+                closeModal={handleCloseAddCustomer}
+                setNewCustomer={setNewCustomer}
+            />
+            <ModalNewProduct openModal={openAddProduct} closeModal={handleCloseAddProduct} />
+            <DiscountOrder
+                openModal={openDiscountOrder}
+                closeModal={handleCloseDiscountOrder}
+                setValueDiscountOrder={handleChangeValueDiscountOrder}
+            />
         </div>
     );
 }

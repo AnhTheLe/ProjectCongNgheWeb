@@ -430,7 +430,7 @@ function SideBar({
                         content={() => componentRef.current}
                     />
                 </div>
-                <div onClick={handlePayment}>
+                {/* <div onClick={handlePayment}>
                     {shouldPrint ? (
                         <ReactToPrint
                             trigger={() => {
@@ -442,17 +442,17 @@ function SideBar({
                     ) : (
                         <button className={cx('buttonPayment')}>THANH TOÁN</button>
                     )}
-                </div>
-                <button onClick={handlePayment} className={cx('buttonPayment')}>
+                </div> */}
+                {/* <button onClick={handlePayment} className={cx('buttonPayment')}>
                     THANH TOÁN
-                </button>
+                </button> */}
 
-                <ReactToPrint
+                {/* <ReactToPrint
                         trigger={() => {
                             return <button className={cx('buttonPayment')}>THANH TOÁN</button>;
                         }}
                         content={() => componentRef.current}
-                    />
+                    /> */}
 
                 <div style={{ display: 'none' }}>
                     <PrintOrder
