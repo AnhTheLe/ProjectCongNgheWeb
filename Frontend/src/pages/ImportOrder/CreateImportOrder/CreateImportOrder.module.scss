@@ -1,0 +1,330 @@
+.wrap {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0 32px 40px;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+/**/
+.row{
+    width: 100%;
+    height: 100%;
+    // box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    // background-color: white;
+    margin-top: 2rem;
+    margin-bottom: 1rem;  
+    display: flex;
+}
+
+.title{
+    font-weight: 500;
+    padding: 10px 20px;
+    min-width: 70px;
+}
+
+
+.info{
+    display: flex; 
+    padding-bottom: 20px;
+}
+
+.search {
+    // background-color: white;
+    padding: 15px 0px 15px 20px;
+    display: flex;
+}
+
+.searchSub {
+    padding-right: 48px;
+}
+
+.searchField {
+    border: 1px solid   rgba(168, 168, 168, 0.25);
+    color: gray;
+    padding: 6px 5px;
+
+    input {
+        margin: 1 rem;
+        padding-left: 10px;
+        border: none;
+        outline: white;
+        width: 500px;
+    }
+}
+
+.searchFilter{
+    display: flex;
+}
+
+.vendor-btn{
+    padding: 15px 15px;
+
+    button{
+        border: none;
+        background-color:rgb(0, 136, 255);
+        color: white;
+        font-weight: 500;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+}
+
+.pro-btn{
+    padding: 15px 15px;
+
+    button{
+        border: none;
+        background-color:rgb(0, 136, 255);
+        color: white;
+        font-weight: 500;
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+    }
+}
+
+.filter{
+    border: 1px solid   rgba(168, 168, 168, 0.25);
+    padding: 6px 16px;
+
+    button{
+        border: none;
+        background-color: white;
+    }
+ 
+    span{
+        padding-left: 16px;
+    }
+} 
+
+.infoField {
+    padding: 10px;
+}
+
+.pay-row{
+    padding: 15px;
+}
+/**/
+
+.table {
+    width: 100%;
+    height: 100%;
+    // box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    background-color: white;
+}
+
+.dataGrid {
+    cursor: pointer;
+}
+
+/**/
+body.active-modal {
+    overflow-y: hidden;
+}
+
+.btn-modal {
+    padding: 10px 20px;
+    display: block;
+    margin: 100px auto 0;
+    font-size: 18px;
+}
+
+.modal, .overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    z-index: 999;
+}
+
+.overlay {
+    background: rgba(49,49,49,0.8);
+}
+
+.modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 3px;
+    max-width: 600px;
+    min-width: 300px;
+    z-index: 999;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+
+.addVendor {
+    padding: 5px 7px;
+}
+/**/
+
+/**/
+/* Định dạng bố cục của form và bảng */
+form {
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+td label {
+    display: inline-block;
+    width: 150px;
+}
+
+td input[type="text"] {
+    width: 250px;
+    padding: 5px;
+}
+
+td input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+td input[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+
+/**/
+
+/**/
+.search-bar-container {
+    padding-top: 20vh;
+    width: 40%;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 200px;
+  }
+/**/
+
+/**/
+.search-overlay {
+    position:absolute;
+}
+
+  
+
+
+/**/
+.titleVendor {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.row1{
+    display: flex;
+    margin: 0px 0px 32px 0px;
+
+    .row-vendor1{
+        width: 65%;
+        height: 100%;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        background-color: white;
+        margin-top: 1rem;
+        // display: flex;
+        max-width: 100%;
+        min-height: 194px;
+        margin-right: 1rem;
+    }
+
+    .row-vendor2 {
+        width: 35%;
+        height: 100%;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        background-color: white;
+        margin-top: 1rem;
+        display: flex;
+        min-height: 194px;
+        max-width: 100%;
+    }
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+
+    span {
+        margin-right: 5px;
+    }
+}
+
+.title1 {
+    font-weight: 500;
+    min-width: 70px;
+}
+
+.name_title{
+    color: rgb(48, 159, 255);
+    font-weight: 500;
+}
+
+.title2 {
+    font-weight: 500;
+    min-width: 150px;
+}
+
+.column1-container {
+    padding: 35px 10px 20px 100px;
+    min-width: 500px;
+    
+    .content {
+        border-style: dotted;
+        border-width: 1px;
+        border-color: #3f3f3f;
+        border-radius: 7px;
+
+        .title3 {
+            float: right;
+        }
+    }
+}
+
+.hiddenSearchVendor{
+    background-color: white;
+    border: none;
+}

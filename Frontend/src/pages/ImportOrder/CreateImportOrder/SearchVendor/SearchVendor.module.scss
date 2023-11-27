@@ -1,0 +1,414 @@
+.wrap {
+    flex: 1 1 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.rowHeader {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    margin-top: 2rem;
+    align-items: center;
+    position: relative;
+    margin-bottom: 12px;
+    p {
+        font-size: 14px;
+        padding-right: 20px;
+        position: absolute;
+        top: 6px;
+        left: 140px;
+    }
+    .row-status {
+        top: 2px;
+        left: 252px;
+        position: absolute;
+    }
+}
+
+.complete-status {
+    font-weight: 400;
+    align-items: center;
+    vertical-align: middle;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.14286rem;
+    height: 1.71429rem;
+    border: 1px solid rgb(159, 237, 207);
+    margin-left: 0.857143rem;
+    color: rgb(51, 163, 120);
+    background-color: rgb(244, 255, 251);
+}
+
+.init-pay {
+    font-weight: 400;
+    align-items: center;
+    vertical-align: middle;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.14286rem;
+    height: 1.71429rem;
+    border: 1px solid #ffdd98;
+    margin-left: 0.857143rem;
+    color: #cd8d02;
+    background-color: #fefaf2;
+}
+
+.init-ship {
+    font-weight: 400;
+    align-items: center;
+    vertical-align: middle;
+    padding: 0.25rem 0.5rem;
+    border-radius: 1.14286rem;
+    height: 1.71429rem;
+    border: 1px solid #9d9d9d;
+    margin-left: 0.857143rem;
+    color: #535353;
+    background-color: #eaeaea;
+}
+
+.row1 {
+    display: flex;
+
+    .row-vendor1 {
+        width: 65%;
+        height: 100%;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        background-color: white;
+        margin-top: 1rem;
+        display: flex;
+        max-width: 100%;
+        min-height: 167px;
+        margin-right: 1rem;
+    }
+
+    .row-vendor2 {
+        width: 35%;
+        height: 100%;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        background-color: white;
+        margin-top: 1rem;
+        display: flex;
+        min-height: 167px;
+        max-width: 100%;
+    }
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+
+    div {
+        display: flex;
+        align-items: center;
+    }
+
+    span {
+        margin-right: 5px;
+    }
+}
+
+.title1 {
+    font-weight: 500;
+    min-width: 70px;
+}
+
+.name_title {
+    color: rgb(48, 159, 255);
+    font-weight: 500;
+}
+
+.title2 {
+    font-weight: 500;
+    min-width: 150px;
+}
+
+.column1-container {
+    padding: 35px 10px 20px 100px;
+    min-width: 500px;
+
+    .content {
+        border-style: dotted;
+        border-width: 1px;
+        border-color: #3f3f3f;
+        border-radius: 7px;
+
+        .title3 {
+            float: right;
+        }
+    }
+}
+
+.modal,
+.overlay {
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+
+    z-index: 999;
+}
+
+.overlay {
+    background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 1.4;
+    background: #f1f1f1;
+    padding: 14px 28px;
+    border-radius: 5px;
+    max-width: 500px;
+    min-width: 300px;
+
+    z-index: 999;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 5px 7px;
+}
+
+.payment {
+    height: 100%;
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    background-color: white;
+    margin-top: 2rem;
+}
+
+.payment-row {
+    display: flex;
+}
+
+.payment-title {
+    display: flex;
+    width: 90%;
+
+    h6 {
+        padding: 10px 20px;
+    }
+}
+
+.pay-btn {
+    padding-top: 10px;
+    padding-right: 20px;
+
+    .btn {
+        height: 40px;
+        width: 120px;
+        align-items: center;
+        border-radius: 3px;
+        border: hidden;
+        background-color: rgb(48, 159, 255);
+    }
+
+    .btn-title {
+        font-weight: 500;
+    }
+}
+
+.pay-column {
+    padding: 10px 20px;
+
+    .pay-bg {
+        padding: 10px 20px;
+        display: flex;
+        background-color: rgb(216, 237, 255);
+
+        div {
+            width: 33.33%;
+        }
+    }
+}
+
+.method-pay {
+    width: 100%;
+    height: 30px;
+    border-color: gray;
+    color: rgb(1, 133, 248);
+    margin-bottom: 10px;
+}
+
+.pay-value {
+    width: 100%;
+    height: 30px;
+    color: rgb(1, 133, 248);
+    border-color: #535353;
+    background-color: #e4e4e4;
+}
+
+.payment-btn {
+    margin-left: 30%;
+    padding: 5px 7px;
+    background-color: rgb(48, 159, 255);
+    border: hidden;
+    border-radius: 3px;
+    color: #eaeaea;
+    font-weight: 500;
+}
+
+.exit-btn {
+    margin-left: 15px;
+    padding: 4px 7px;
+    background-color: #f1f1f1;
+    border-radius: 3px;
+    color: rgb(1, 133, 248);
+    border-color: rgb(1, 133, 248);
+    font-weight: 500;
+}
+
+/**/
+.pay-row {
+    padding: 20px;
+}
+
+.table {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    background-color: white;
+    margin-top: 2rem;
+}
+
+.dataGrid {
+    cursor: pointer;
+}
+
+/**/
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    .personalInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 0px;
+        background-color: white;
+        width: 70%;
+        height: 200px;
+
+        .personalInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+            button {
+                border: none;
+                background-color: transparent;
+                color: #0088ff;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .personalInfoContent {
+            padding: 16px 0 4px 16px;
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #747c87;
+                .personalInfoContentCol {
+                    display: flex;
+                    width: 50%;
+                    .personalInfoTitle {
+                        width: 40%;
+                    }
+                    .personalInfoValue {
+                        width: 60%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+                .oneColumnPerRow {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    .personalInfoTitle {
+                        width: 205px;
+                    }
+                    .personalInfoValue {
+                        width: 75%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .purchaseInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 0px;
+        background-color: white;
+        width: 30%;
+        height: 200px;
+        .purchaseInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .purchaseInfoContent {
+            padding: 16px 0 4px 16px;
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                color: #747c87;
+                font-size: 14px;
+                margin-bottom: 12px;
+                .personalInfoTitle {
+                    width: 40%;
+                }
+                .personalInfoValue {
+                    width: 60%;
+                    color: black;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}
