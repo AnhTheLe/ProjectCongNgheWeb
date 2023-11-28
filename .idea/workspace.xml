@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="793dfbd2-b08a-4c91-80cc-1429ef112348" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Frontend/src/services/productManagerServices/getListVariant.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/src/services/productManagerServices/getProductDetail.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Frontend/src/services/productManagerServices/updateProduct.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/pages/Product/ProductCreate.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Frontend/src/pages/Product/ProductCreate.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
