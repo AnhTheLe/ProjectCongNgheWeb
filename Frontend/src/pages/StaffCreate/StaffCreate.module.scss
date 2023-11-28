@@ -1,0 +1,286 @@
+.wrap {
+    padding: 0 32px 40px 32px;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+.activeError {
+    border: 1px solid red !important;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    .personalInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        background-color: white;
+        // width: 808px;
+        width: 65.5%;
+        height: 410px;
+        .personalInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            height: 52px;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+            button {
+                border: none;
+                background-color: transparent;
+                color: #0088ff;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .personalInfoContent {
+            padding: 16px 0 4px 16px;
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #747c87;
+                margin-bottom: 16px;
+
+                .personalInfoContentCol {
+                    width: 50%;
+                    margin-right: 28px;
+                    .personalInfoTitle {
+                        width: 100%;
+                        margin-bottom: 4px;
+                    }
+                    .personalInfoValue {
+                        width: 100%;
+                        height: 40px;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+
+                        input {
+                            background: transparent;
+                            box-sizing: border-box;
+                            padding: 10px 12px;
+                            width: 100%;
+                            height: 100%;
+                            border: 1px solid #ccc;
+                            outline: none;
+                            border-radius: 3px;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px;
+                            margin: 0px;
+                            color: rgb(15, 24, 36);
+                            &:hover {
+                                border: 1px solid #637381;
+                            }
+                            &:focus {
+                                border: 1px solid #0088ff;
+                            }
+                        }
+                    }
+                    .inputPassword {
+                        width: 100%;
+                        height: 40px;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;                   
+                        input {
+                            background: transparent;
+                            box-sizing: border-box;
+                            padding: 10px 12px;
+                            width: 100%;
+                            height: 100%;
+                            outline: none;
+                            border-radius: 3px;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px;
+                            margin: 0px;
+                            color: rgb(15, 24, 36);
+                            
+                        }
+                    }
+                }
+                .oneColumnPerRow {
+                    align-items: center;
+                    width: 100%;
+                    .personalInfoTitle {
+                        width: 205px;
+                        margin-bottom: 4px;
+                    }
+                    .personalInfoValue {
+                        width: calc(100% - 26px);
+                        height: 40px;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                        input {
+                            background: transparent;
+                            box-sizing: border-box;
+                            padding: 10px 12px;
+                            width: 100%;
+                            height: 100%;
+                            border: 1px solid #ccc;
+                            outline: none;
+                            border-radius: 3px;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px;
+                            margin: 0px;
+                            color: rgb(15, 24, 36);
+                            &:hover {
+                                border: 1px solid #637381;
+                            }
+                            &:focus {
+                                border: 1px solid #0088ff;
+                            }
+                        }
+                    }
+                    .roleStaff {
+                        width: calc(100% - 26px);
+                        height: 40px;
+                    }
+                }
+            }
+        }
+    }
+    .purchaseInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        background-color: white;
+        // width: 402px;
+        width: 32.6%;
+        height: 390px;
+        .purchaseInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .purchaseInfoContent {
+            padding: 16px 0 4px 16px;
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #747c87;
+                margin-bottom: 16px;
+                .oneColumnPerRow {
+                    align-items: center;
+                    width: 100%;
+                    .personalInfoTitle {
+                        width: 205px;
+                        margin-bottom: 4px;
+                    }
+                    .personalInfoValue {
+                        width: calc(100% - 16px);
+                        height: 40px;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                        input {
+                            background: transparent;
+                            box-sizing: border-box;
+                            padding: 10px 12px;
+                            width: 100%;
+                            height: 100%;
+                            border: 1px solid #ccc;
+                            outline: none;
+                            border-radius: 3px;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                            font-weight: 400;
+                            font-size: 14px;
+                            line-height: 20px;
+                            margin: 0px;
+                            color: rgb(15, 24, 36);
+                            &:hover {
+                                border: 1px solid #637381;
+                            }
+                            &:focus {
+                                border: 1px solid #0088ff;
+                            }
+                        }
+                    }
+                    textarea {
+                        resize: none;
+                        background: rgb(255, 255, 255);
+                        box-sizing: border-box;
+                        padding: 10px 12px;
+                        width: calc(100% - 16px);
+                        border: 1px solid #ccc;
+                        outline: none;
+                        border-radius: 3px;
+                        min-height: 100px;
+                        max-height: 100px;
+                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+                            'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                        font-weight: 400;
+                        font-size: 14px;
+                        line-height: 20px;
+                        margin: 0px;
+                        color: rgb(15, 24, 36);
+                        &:hover {
+                            border: 1px solid #637381;
+                        }
+                        &:focus {
+                            border: 1px solid #0088ff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
