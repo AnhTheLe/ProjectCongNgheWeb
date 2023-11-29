@@ -1,0 +1,612 @@
+.wrap {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0 32px 40px;
+    flex-direction: column;
+}
+
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+
+.base-product-content {
+    .product-name {
+        font-size: 30px;
+    }
+
+    .personalInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        background-color: white;
+        width: 100%;
+        height: 180px;
+
+        .personalInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+
+            button {
+                border: none;
+                // background-color: rgb(255, 87, 26);
+                color: #ffffff;
+                font-weight: 600;
+                font-size: 12px;
+            }
+        }
+
+        .personalInfoContent {
+            padding: 16px 0 4px 16px;
+
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #747c87;
+
+                .personalInfoContentCol {
+                    display: flex;
+                    width: 50%;
+
+                    .personalInfoTitle {
+                        width: 50%;
+                    }
+
+                    .personalInfoValue {
+                        width: 50%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+
+                        span {
+                            margin-left: 10px;
+                        }
+
+                        input {
+                            height: 30px;
+                            margin-left: 10px;
+                            padding-left: 10px;
+                            width: 80%;
+                            background: transparent;
+                            box-sizing: border-box;
+                            border: 1px solid #ccc;
+                            outline: none;
+                            border-radius: 3px;
+                            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                            font-weight: 400;
+                            font-size: 13px;
+                            line-height: 20px;
+                            color: rgb(15, 24, 36);
+
+                            &:hover {
+                                border: 1px solid #8d97a0;
+                            }
+
+                            &:focus {
+                                border: 1px solid #8d97a0;
+                            }
+                        }
+                    }
+                }
+
+                .oneColumnPerRow {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+                    .personalInfoTitle {
+                        width: 205px;
+                    }
+
+                    .personalInfoValue {
+                        width: 75%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.variant {
+    .variant-header {
+        display: flex;
+        justify-content: space-between;
+
+        .variant-title {
+            font-size: 20px;
+        }
+
+        .variant-button {
+            font-size: 14px;
+
+            button {
+                margin-left: 10px;
+                margin-bottom: 5px;
+            }
+        }
+    }
+
+    .variant-content {
+        display: flex;
+        flex-direction: row;
+
+        .variant-list {
+            flex: 3;
+            box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+            border-radius: 4px;
+            background-color: white;
+            height: 100%;
+            margin-right: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .variant-number {
+                font-size: 15px;
+                padding: 15px;
+                box-shadow: 0px 1px 2px rgba(168, 168, 168, 0.25);
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+
+                button {
+                    padding: 0;
+                    font-size: 12px;
+                }
+            }
+
+            .variant-list-content {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                max-height: 350px;
+                overflow-y: scroll;
+
+                a {
+                    color: black;
+                    text-decoration: none;
+                }
+
+                .active {
+                    background-color: #1565C0;
+                    color: white;
+
+                }
+
+                .variant-item {
+
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: row;
+                    height: 60px;
+
+                    .variant-image {
+                        flex: 2;
+                        margin-right: 10px;
+                        padding: 3px 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        img {
+                            height: 100%;
+                            max-width: 60px;
+
+                        }
+                    }
+
+                    .variant-info {
+                        flex: 8;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .variant-name {
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+
+                        .variant-quantity {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .variant-detail {
+            flex: 7;
+            margin-left: 10px;
+            height: 100%;
+
+            .variant-info-detail {
+                box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+                border-radius: 4px;
+                background-color: white;
+                height: 100%;
+                margin-bottom: 20px;
+
+                .variant-info-detail-title {
+                    font-size: 15px;
+                    padding: 15px;
+                    box-shadow: 0px 1px 2px rgba(168, 168, 168, 0.25);
+                }
+
+                .variant-info-detail-box {
+                    padding: 15px;
+
+
+                    display: flex;
+                    flex-direction: row;
+
+                    .personalInfoContent {
+                        flex: 6;
+
+                        .personalInfoContentRow {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            font-size: 14px;
+                            color: #747c87;
+
+                            .personalInfoContentCol {
+                                display: flex;
+                                width: 100%;
+
+                                .personalInfoTitle {
+                                    width: 50%;
+                                }
+
+                                .personalInfoValue {
+                                    width: 50%;
+                                    color: black;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    margin-right: 16px;
+
+                                    span {
+                                        margin-left: 10px;
+                                    }
+
+                                    input {
+                                        height: 30px;
+                                        padding-left: 10px;
+                                        margin-left: 10px;
+                                        width: 80%;
+                                        background: transparent;
+                                        box-sizing: border-box;
+                                        border: 1px solid #ccc;
+                                        outline: none;
+                                        border-radius: 3px;
+                                        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                            Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                                        font-weight: 400;
+                                        font-size: 13px;
+                                        line-height: 20px;
+                                        color: rgb(15, 24, 36);
+
+                                        &:hover {
+                                            border: 1px solid #8d97a0;
+                                        }
+
+                                        &:focus {
+                                            border: 1px solid #8d97a0;
+                                        }
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    .variant-info-detail-image {
+                        flex: 4;
+                        justify-content: center;
+                        text-align: center;
+                        margin-bottom: 10px;
+                        height: 230px;
+
+                        div:nth-child(0) {
+                            height: 230px;
+
+                            button {
+                                max-height: 250px;
+                                max-width: 250px;
+                                padding: 0;
+                                margin: 0;
+                            }
+
+                            img {
+                                max-height: 230px;
+                                max-width: 230px
+                            }
+                        }
+
+
+                        ;
+                    }
+                }
+            }
+
+            .variant-price {
+                box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+                border-radius: 4px;
+                background-color: white;
+                height: 100%;
+
+                .variant-price-title {
+                    font-size: 15px;
+                    padding: 15px;
+                    box-shadow: 0px 1px 2px rgba(168, 168, 168, 0.25);
+
+                }
+
+                .variant-price-content {
+                    padding: 15px;
+
+                    .personalInfoContentRow {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        margin-bottom: 12px;
+                        font-size: 14px;
+                        color: #747c87;
+
+                        .personalInfoContentCol {
+                            display: flex;
+                            width: 100%;
+
+                            .personalInfoTitle {
+                                width: 50%;
+                            }
+
+                            .personalInfoValue {
+                                width: 50%;
+                                color: black;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                margin-right: 16px;
+
+                                span {
+                                    margin-left: 10px;
+                                }
+
+                                input {
+                                    height: 30px;
+                                    padding-left: 10px;
+                                    margin-left: 10px;
+                                    width: 80%;
+                                    background: transparent;
+                                    box-sizing: border-box;
+                                    border: 1px solid #ccc;
+                                    outline: none;
+                                    border-radius: 3px;
+                                    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                                        Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                                    font-weight: 400;
+                                    font-size: 13px;
+                                    line-height: 20px;
+                                    color: rgb(15, 24, 36);
+
+                                    &:hover {
+                                        border: 1px solid #8d97a0;
+                                    }
+
+                                    &:focus {
+                                        border: 1px solid #8d97a0;
+                                    }
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    span {
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+
+        // @media (max-width: 768px) {
+        //     flex-direction: column;
+
+        //     .variant-list,
+        //     .variant-detail {
+        //         flex: 1;
+        //     }
+        // }
+    }
+
+}
+
+
+.attributeContent {
+    padding: 10px;
+
+    .avatar-variant {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        div:nth-child(0) {
+            height: 160px;
+
+            button {
+                height: 160px;
+                min-width: 160px;
+                padding: 0;
+                margin: 0;
+            }
+
+            img {
+                height: 160px;
+                min-width: 160px;
+            }
+        }
+
+        margin-bottom: 20px;
+    }
+
+    .attributeRow {
+        display: flex;
+        margin-bottom: 10px;
+        flex-direction: row;
+
+        span {
+            line-height: 38px;
+            width: 30%;
+            padding-left: 40px;
+            font-size: 14px;
+            color: #747c87;
+            margin-right: 40px;
+        }
+
+        input {
+            width: 60%;
+            background: transparent;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            height: 100%;
+            border: 1px solid #ccc;
+            outline: none;
+            border-radius: 3px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0px;
+            color: rgb(15, 24, 36);
+
+            &:hover {
+                border: 1px solid #637381;
+            }
+
+            &:focus {
+                border: 1px solid #0088ff;
+            }
+        }
+
+        .update-button {
+            min-width: 0;
+            width: 50px;
+
+            span {
+                padding: 0;
+                margin: 0;
+            }
+        }
+
+        .delete-button {
+            min-width: 0;
+            width: 50px;
+
+            span {
+                padding: 0;
+                margin: 0;
+            }
+        }
+    }
+}
+
+
+.addnew-attribute {
+    display: flex;
+    flex-direction: row;
+
+    >div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+
+        input {
+            width: 48%;
+            background: transparent;
+            box-sizing: border-box;
+            padding: 10px 12px;
+            height: 100%;
+            border: 1px solid #ccc;
+            outline: none;
+            border-radius: 3px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+                Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0px;
+            color: rgb(15, 24, 36);
+
+            &:hover {
+                border: 1px solid #637381;
+            }
+
+            &:focus {
+                border: 1px solid #0088ff;
+            }
+        }
+    }
+
+    .update-button {
+        min-width: 0;
+        width: 50px;
+
+        span {
+            padding: 0;
+            margin: 0;
+        }
+    }
+
+    .delete-button {
+        min-width: 0;
+        width: 50px;
+
+        span {
+            padding: 0;
+            margin: 0;
+        }
+    }
+}
