@@ -60,6 +60,18 @@ const columns = [
         renderHeader: () => <span>Tên sản phẩm</span>,
     },
     {
+        field: 'quantity',
+        type: 'number',
+        flex: 1.6,
+        sortable: false,
+        filterable: false,
+        headerClassName: 'super-app-theme--header',
+        cellClassName: 'super-app-theme--cell order-id',
+        headerAlign: 'center',
+        align: 'center',
+        renderHeader: () => <span>Số lượng nhập</span>,
+    },
+    {
         field: 'importPrice',
         type: 'number',
         flex: 1.8,
@@ -70,6 +82,19 @@ const columns = [
         headerAlign: 'center',
         align: 'center',
         renderHeader: () => <span>Đơn giá</span>,
+    },
+    {
+        field: 'discount',
+        type: 'number',
+        flex: 1.8,
+        sortable: false,
+        filterable: false,
+        headerClassName: 'super-app-theme--header',
+        cellClassName: 'super-app-theme--cell order-id',
+        headerAlign: 'center',
+        align: 'center',
+        renderHeader: () => <span>Chiết khấu</span>,
+        renderCell: (params) => params.row.discount + "%",
     },
     {
         field: 'amountPayment',
@@ -135,6 +160,16 @@ function Dashboard() {
         sumQuantity += variant.quantity;
     }
 
+    const handleChangePaymentMethod = (event) => {
+        setMethodPay(event.target.value);
+        if (event.target.value === 'tien-mat') {
+            setPaymentMethod('CASH');
+        } else if (event.target.value === 'chuyen-khoan') {
+            setPaymentMethod('TRANSFER');
+        } else if (event.target.value === 'the') {
+            setPaymentMethod('CREDIT');
+        }
+    };
 
     const handlePaymentFormToggle = () => {
         setIsPaymentFormVisible(!isPaymentFormVisible);
@@ -345,6 +380,31 @@ function Dashboard() {
                         </div>
                     </div>
                 </div>
+                <div className={cx('row-vendor2')}>
+                    <div className={cx('column2-container')}>
+                        <h6>Thông tin đơn nhập hàng {result.shipmentStatus === 'ARRIVED' && <GreenTick />}</h6>
+                        <div>
+                            <span className={cx('title2')}>Nhân viên phụ trách</span>
+                            <span>: {result.staffName}</span>
+                        </div>
+                        <div>
+                            <span className={cx('title2')}>Ngày tạo</span>
+                            <span>: {formattedCreateAt}</span>
+                        </div>
+                        <div>
+                            <span className={cx('title2')}>Ngày nhập</span>
+                            {result.shipmentStatus === 'ARRIVED' ? <span>: {formattedUpdateAt}</span> : <span>: </span>}
+                        </div>
+                        <div>
+                            <span className={cx('title2')}>Trạng thái nhập</span>
+                            {result.shipmentStatus === 'ARRIVED' ? (
+                                <span style={{ color: ' rgb(3, 126, 233)' }}>: Đã nhập</span>
+                            ) : (
+                                <span>: Chưa nhập</span>
+                            )}
+                        </div>
+                    </div>
+                </div>
             </div>
 
             {result.shipmentStatus === 'ARRIVED' && (
@@ -459,6 +519,28 @@ function Dashboard() {
                     </Modal>
                 
         
+
+            <div className={cx('table')}>
+                <div style={{ width: '100%' }}>
+                    <DataGrid
+                        rows={variantDTOList}
+                        columns={columns}
+                        pageSize={6}
+                        className={cx('dataGrid')}
+                        pageSizeOptions={[20, 50, 100]}
+                    />
+                </div>
+                <div style={{ fontSize: '18px', padding: '20px 25px 20px 0px', width: '30%', float: 'right' }}>
+                    <div>
+                        <span style={{ fontWeight: '500' }}>Số lượng</span>
+                        <span>: {numeral(sumQuantity).format(0, 0)}</span>
+                    </div>
+                    <div>
+                        <span style={{ fontWeight: '500', paddingTop: '10px' }}>Tổng tiền</span>
+                        <span>: {numeral(tempTotal).format(0, 0)}</span>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
