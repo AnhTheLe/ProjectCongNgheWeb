@@ -1,0 +1,356 @@
+.wrap {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0 32px 40px;
+    flex-direction: column;
+}
+
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+
+.base-product-content {
+    .product-name {
+        font-size: 30px;
+    }
+
+    .personalInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        background-color: white;
+        width: 100%;
+        height: 180px;
+
+        .personalInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+
+            button {
+                border: none;
+                background-color: transparent;
+                color: #0088ff;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+
+        .personalInfoContent {
+            padding: 16px 0 4px 16px;
+
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #747c87;
+
+                .personalInfoContentCol {
+                    display: flex;
+                    width: 50%;
+
+                    .personalInfoTitle {
+                        width: 50%;
+                    }
+
+                    .personalInfoValue {
+                        width: 50%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+
+                .oneColumnPerRow {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+
+                    .personalInfoTitle {
+                        width: 205px;
+                    }
+
+                    .personalInfoValue {
+                        width: 75%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+.variant {
+    .variant-title {
+        font-size: 20px;
+    }
+
+    .variant-content {
+        display: flex;
+        flex-direction: row;
+
+        .variant-list {
+            flex: 3;
+            box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+            border-radius: 4px;
+            background-color: white;
+            height: 100%;
+            margin-right: 10px;
+            display: flex;
+            flex-direction: column;
+
+            .variant-number {
+                font-size: 15px;
+                padding: 15px;
+                box-shadow: 0px 1px 2px rgba(168, 168, 168, 0.25);
+            }
+
+            .variant-list-content {
+                display: flex;
+                flex-direction: column;
+                padding: 15px;
+                max-height: 350px;
+                overflow-y: scroll;
+
+                .active {
+                    background-color: #1565C0;
+                    span {
+                        color: white;
+                    }
+                    path {
+                        color: white;
+                    }
+
+                }
+                a {
+                    text-decoration: none;
+                }
+
+                .variant-item {
+                    border-bottom: 0.5px solid rgb(230, 230, 230);
+                    margin-bottom: 5px;
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: row;
+                    min-height: 60px;
+                    color: black;
+                    // .warning {
+                    //     height: 20px;
+                    //     div {
+                    //         svg {
+                    //             font-size: 10px;
+                    //             height: 20px;
+                    //         }
+                    //     }
+                    //     color: red;
+                    // }
+                    
+
+                    .variant-image {
+                        flex: 2;
+                        margin-right: 10px;
+                        padding: 3px 0;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        img {
+                            height: 100%;
+                            max-width: 60px;
+
+                        }
+                    }
+
+                    .variant-info {
+                        flex: 8.5;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+
+                        .variant-name {
+                            font-size: 16px;
+                            font-weight: 700;
+                        }
+
+                        .variant-quantity {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+
+        }
+
+        .variant-detail {
+            flex: 7;
+            margin-left: 10px;
+            height: 100%;
+
+            .variant-info-detail {
+                box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+                border-radius: 4px;
+                background-color: white;
+                height: 100%;
+                margin-bottom: 20px;
+
+                .variant-info-detail-title {
+                    font-size: 15px;
+                    padding: 15px;
+                    box-shadow: 0px 1px 2px rgba(168, 168, 168, 0.25);
+                }
+
+                .variant-info-detail-box {
+                    padding: 15px;
+
+
+                    display: flex;
+                    flex-direction: row;
+
+                    .personalInfoContent {
+                        flex: 6;
+
+                        .personalInfoContentRow {
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            width: 100%;
+                            margin-bottom: 12px;
+                            font-size: 14px;
+                            color: #747c87;
+
+                            .personalInfoContentCol {
+                                display: flex;
+                                width: 100%;
+
+                                .personalInfoTitle {
+                                    width: 50%;
+                                }
+
+                                .personalInfoValue {
+                                    width: 50%;
+                                    color: black;
+                                    white-space: nowrap;
+                                    overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    margin-right: 16px;
+                                }
+                            }
+
+                        }
+
+                    }
+
+                    .variant-info-detail-image {
+                        flex: 4;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        text-align: center;
+                        height: 230px;
+
+                        img {
+                            max-height: 230px;
+                            max-width: 280px
+                        }
+
+                        ;
+                    }
+                }
+            }
+
+            .variant-price {
+                box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+                border-radius: 4px;
+                background-color: white;
+                height: 100%;
+
+                .variant-price-title {
+                    font-size: 15px;
+                    padding: 15px;
+                    box-shadow: 0px 1px 2px rgba(168, 168, 168, 0.25);
+
+                }
+
+                .variant-price-content {
+                    padding: 15px;
+
+                    .personalInfoContentRow {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 100%;
+                        margin-bottom: 12px;
+                        font-size: 14px;
+                        color: #747c87;
+
+                        .personalInfoContentCol {
+                            display: flex;
+                            width: 100%;
+
+                            .personalInfoTitle {
+                                width: 50%;
+                            }
+
+                            .personalInfoValue {
+                                width: 50%;
+                                color: black;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
+                                margin-right: 16px;
+                            }
+                        }
+
+                    }
+
+                    span {
+                        font-weight: 400;
+                    }
+                }
+            }
+        }
+
+        // @media (max-width: 768px) {
+        //     flex-direction: column;
+
+        //     .variant-list,
+        //     .variant-detail {
+        //         flex: 1;
+        //     }
+        // }
+    }
+
+}

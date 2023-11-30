@@ -1,0 +1,162 @@
+.wrap {
+    height: 60px;
+    background: #fff;
+    justify-content: space-between;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    align-items: center;
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        
+        .wrapSearch {
+            height: 38px;
+            padding: 0 13px;
+            border-radius: 10px;
+            background-color: #fff;
+            padding-right: 30px;
+            // width: 365px;
+            width: 720px;
+            min-width: 365px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-left: 15px;
+            border: 2px solid rgb(213, 212, 212);
+            .searchInput {
+                background-color: white;
+                border: none;
+                outline: none;
+                width: 100%;
+                font-size: 15px;
+                color: #8d9298;
+            }
+        }
+        .toolSection {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            .toAdmin {
+                color: white;
+            }
+            .nameStore {
+                color: white;
+                display: flex;
+                align-items: center;
+                margin-right: 30px;
+                gap: 6px;
+            }
+        }
+    }
+}
+
+.popper {
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    width: 748px;
+    transform: translate3d(15px, 5px, 0px);
+    will-change: transform;
+    position: relative;
+    right: 0px;
+    top: 4px;
+    min-height: 200px;
+    max-height: 300px;
+    overflow: auto;
+    border-radius: 6px;
+    z-index: 1300;
+    .innerPopper {
+        font-weight: 400;
+        cursor: pointer;
+        .iconInPopper {
+            color: '#637381';
+            font-size: 24px;
+            margin-left: 4px;
+        }
+        .verticalDividing {
+            height: 100%;
+            width: 1px;
+            background-color: #dddada;
+        }
+        .imageProduct {
+            margin-right: 14px;
+            margin-left: 4px;
+            .alignImageProduct {
+                width: 40px;
+                height: 40px;
+                margin-left: 6px;
+                margin-right: -4px;
+                img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+            }
+        }
+        .contentProduct {
+            padding: 8px 10px 8px 20px;
+        }
+        .innerContentProduct {
+            .quantityProduct,
+            .codeProduct {
+                font-size: 14px;
+                color: #77828d;
+            }
+        }
+        &:hover {
+            color: #0964cf;
+            background-color: rgba(9, 100, 207, 0.1);
+        }
+    }
+    .addProduct {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        color: #77828d;
+        padding-left: 12px;
+        height: 50px;
+        line-height: 34px;
+        position: relative;
+        border-top-left-radius: 6px;
+        border-top-right-radius: 6px;
+        &::after {
+            content: '';
+            display: block;
+            border-bottom: 1px solid #e3e3e3;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0px;
+        }
+    }
+    .itemProduct {
+        height: 60px;
+        line-height: 24px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        .contentProduct {
+            width: 100%;
+            flex-direction: column;
+            .innerContentProduct {
+                display: flex;
+                justify-content: space-between;
+            }
+        }
+        &::after {
+            content: '';
+            display: block;
+            border-bottom: 1px solid #e3e3e3;
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            left: 0px;
+        }
+    }
+    span {
+        display: block;
+    }
+}
