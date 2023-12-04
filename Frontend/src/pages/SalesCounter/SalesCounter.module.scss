@@ -1,0 +1,39 @@
+.wrap {
+    background-color: #e5e5e5;
+    height: 714px;
+}
+
+.box {
+    padding: 12px 16px;
+    position: relative;
+    .headerBox {
+        font-size: 20px;
+        font-weight: 600;
+        display: flex;
+        justify-content: space-between;
+    }
+    .contentBox {
+        padding: 16px 0;
+        .wrapItemInnerContentBox {
+            width: 100%;
+            height: 74px;
+            display: flex;
+            justify-content: space-between;
+            .itemInnerContentBox {
+                min-width: 260px;
+                .tickRed {
+                    color: red;
+                }
+                
+            }
+        }
+    }
+    .footer {
+        display: flex;
+        gap: 16px;
+        position: absolute;
+        bottom: 0;
+        right: 10px;
+    }
+}
+
