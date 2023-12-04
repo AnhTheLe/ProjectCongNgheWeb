@@ -1,0 +1,279 @@
+.wrap {
+    padding: 0 32px 30px 32px;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    .personalInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        background-color: white;
+        width: 858px;
+        height: 247px;
+        .personalInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+            button {
+                border: none;
+                background-color: transparent;
+                color: #0088ff;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .personalInfoContent {
+            padding: 16px 0 4px 16px;
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 12px;
+                font-size: 14px;
+                color: #747c87;
+                .personalInfoContentCol {
+                    display: flex;
+                    width: 50%;
+                    .personalInfoTitle {
+                        width: 50%;
+                    }
+                    .personalInfoValue {
+                        width: 50%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+                .oneColumnPerRow {
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    .personalInfoTitle {
+                        width: 205px;
+                    }
+                    .personalInfoValue {
+                        width: 75%;
+                        color: black;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
+                        margin-right: 16px;
+                    }
+                }
+            }
+        }
+    }
+    .purchaseInfo {
+        display: flex;
+        box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+        flex-direction: column;
+        border-radius: 4px;
+        margin-bottom: 24px;
+        background-color: white;
+        width: 362px;
+        height: 247px;
+        .purchaseInfoHeader {
+            flex: 1 0 auto;
+            max-height: 52px;
+            width: 100%;
+            display: flex;
+            padding: 0 16px;
+            align-items: center;
+            border-bottom: 1px solid #e8eaeb;
+            justify-content: space-between;
+            span {
+                color: black;
+                font-weight: 600;
+                font-size: 15px;
+            }
+        }
+        .purchaseInfoContent {
+            padding: 16px 0 4px 16px;
+            .personalInfoContentRow {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                color: #747c87;
+                font-size: 14px;
+                margin-bottom: 12px;
+                .personalInfoTitle {
+                    width: 60%;
+                }
+                .personalInfoValue {
+                    width: 40%;
+                    color: black;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    margin-right: 16px;
+                }
+            }
+        }
+    }
+}
+
+.history {
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    background-color: white;
+    width: 100%;
+    min-height: 300px;
+    .historyHeader {
+        display: flex;
+        background-color: white;
+        justify-items: center;
+        align-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: rgb(232, 234, 235) 0px -1px 0px 0px inset;
+        height: 48px;
+        margin-bottom: 12px;
+        button {
+            border: none;
+            background-color: transparent;
+            font-weight: 600;
+            font-size: 14px;
+            height: 48px;
+            padding: 6px 16px;
+            border-bottom: 2px solid transparent;
+            transition: 0.5s ease;
+            padding-right: 12px;
+            &:hover {
+                border-bottom: 2px solid #ccc;
+            }
+        }
+        .active {
+            color: #0088ff;
+            border-bottom: 2px solid rgb(0, 136, 255) !important;
+            transition: 0.5s ease;
+        }
+    }
+    .historyContent {
+        background-color: white;
+        padding-bottom: 20px;
+
+        .historyContentTitle {
+            display: flex;
+            align-items: center;
+            height: 52px;
+            color: rgb(15, 24, 36);
+            background-color: rgb(244, 246, 248);
+            font-weight: 600;
+            font-size: 15px;
+            border-bottom: 1px solid #e1dede;
+        }
+        .wrapItem {
+            max-height: 416px;
+            overflow: auto;
+            .historyContentRow {
+                display: flex;
+                align-items: center;
+                height: 52px;
+                font-size: 14px;
+                border-bottom: 1px solid #e1dede;
+                &:hover {
+                    background-color: rgb(243, 244, 245);
+                }
+                .orderCode {
+                    color: #0088ff;
+                    text-decoration: none;
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+            .historyEmpty {
+                font-size: 15px;
+                color: #747c87;
+                text-align: center;
+                margin-top: 60px;
+            }
+        }
+    }
+    .orderCode {
+        width: 143px;
+        text-align: center;
+    }
+    .paymentTime {
+        width: 200px;
+        text-align: center;
+        margin-left: 18px;
+    }
+    .totalPrice {
+        width: 180px;
+        text-align: center;
+        margin-left: 18px;
+    }
+    .totalQuantity {
+        width: 250px;
+        text-align: center;
+        margin-left: 18px;
+    }
+    .staffCharge {
+        width: 360px;
+        margin-left: 48px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .index {
+        width: 100px;
+        text-align: center;
+    }
+    .rating {
+        width: 120px;
+        text-align: center;
+    }
+    .contentResponse {
+        width: 460px;
+        margin-left: 40px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .responseTime {
+        width: 250px;
+        text-align: center;
+    }
+    .staffChargeResponse {
+        width: 200px;
+        text-align: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        
+    }
+}
+
+.sortIcon {
+    margin-left: 8px;
+    cursor: pointer;
+}

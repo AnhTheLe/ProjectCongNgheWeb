@@ -1,0 +1,373 @@
+.wrap {
+  flex: 1 1 auto;
+  display: flex;
+  padding: 0 32px 40px;
+  flex-direction: column;
+}
+
+.header {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header div {
+  display: flex;
+  gap: 12px;
+}
+
+.row {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin-top: 0.5rem;
+}
+.row h4 {
+  padding: 5px 15px;
+}
+.row p {
+  font-size: 14px;
+  padding-top: 15px;
+  padding-right: 20px;
+}
+
+.row-status {
+  padding-top: 4px;
+}
+
+.complete-status {
+  font-weight: 400;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1.14286rem;
+  height: 1.71429rem;
+  border: 1px solid #9fedcf;
+  margin-left: 0.857143rem;
+  color: #33a378;
+  background-color: #f4fffb;
+}
+
+.init-pay {
+  font-weight: 400;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1.14286rem;
+  height: 1.71429rem;
+  border: 1px solid #ffdd98;
+  margin-left: 0.857143rem;
+  color: #cd8d02;
+  background-color: #fefaf2;
+}
+
+.init-ship {
+  font-weight: 400;
+  align-items: center;
+  vertical-align: middle;
+  padding: 0.25rem 0.5rem;
+  border-radius: 1.14286rem;
+  height: 1.71429rem;
+  border: 1px solid #9d9d9d;
+  margin-left: 0.857143rem;
+  color: #535353;
+  background-color: #eaeaea;
+}
+
+.row1 {
+  display: flex;
+}
+.row1 .row-vendor1 {
+  width: 65%;
+  height: 100%;
+  box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+  background-color: white;
+  margin-top: 1rem;
+  display: flex;
+  max-width: 100%;
+  min-height: 167px;
+  max-height: 167px;
+  margin-right: 1rem;
+  border-radius: 5px;
+}
+.row1 .row-vendor2 {
+  width: 35%;
+  height: 100%;
+  box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+  background-color: white;
+  margin-top: 1rem;
+  display: flex;
+  min-height: 167px;
+  max-height: 167px;
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.column-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  width: 40%;
+}
+.column-container div {
+  display: flex;
+  align-items: center;
+}
+.column-container span {
+  margin-right: 5px;
+}
+
+.column2-container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+.column2-container div {
+  display: flex;
+  align-items: center;
+}
+.column2-container span {
+  margin-right: 5px;
+}
+
+.title1 {
+  font-weight: 500;
+  min-width: 70px;
+}
+
+.content_vendor {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.name_title {
+  color: #309fff;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 18px;
+}
+
+.title2 {
+  font-weight: 500;
+  min-width: 150px;
+}
+
+.column1-container {
+  padding: 35px 20px 20px 50px;
+  min-width: 60%;
+}
+.column1-container .content {
+  border-style: dotted;
+  border-width: 1px;
+  border-color: #3f3f3f;
+  border-radius: 7px;
+}
+.column1-container .content .title3 {
+  float: right;
+}
+
+.modal, .overlay {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  z-index: 999;
+}
+
+.overlay {
+  background: rgba(49, 49, 49, 0.8);
+}
+
+.modal-content {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1.4;
+  background: #f1f1f1;
+  padding: 14px 28px;
+  border-radius: 5px;
+  max-width: 500px;
+  min-width: 300px;
+  z-index: 999;
+}
+
+.close-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 7px;
+}
+
+.payment {
+  border-radius: 5px;
+  height: 100%;
+  box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+  background-color: white;
+  margin-top: 2rem;
+}
+
+.payment-row {
+  display: flex;
+}
+
+.payment-title {
+  display: flex;
+  width: 90%;
+}
+.payment-title h6 {
+  padding: 10px 20px;
+}
+
+.pay-btn {
+  padding-top: 10px;
+  padding-right: 20px;
+}
+.pay-btn .btn {
+  height: 40px;
+  width: 120px;
+  align-items: center;
+  border-radius: 3px;
+  border: hidden;
+  background-color: #1976d2;
+}
+.pay-btn .btn-title {
+  font-weight: 400;
+  color: #fff;
+}
+
+.pay-column {
+  padding: 10px 20px;
+}
+.pay-column .pay-bg {
+  padding: 10px 20px;
+  display: flex;
+  background-color: #d8edff;
+}
+.pay-column .pay-bg div {
+  width: 33.33%;
+}
+
+.method-pay {
+  width: 100%;
+  height: 30px;
+  border-color: #979797;
+  background-color: #e4e4e4;
+  color: #1976d2;
+  margin-bottom: 10px;
+  border: hidden;
+  border-radius: 5px;
+}
+
+.pay-value {
+  width: 100%;
+  height: 30px;
+  color: #1976d2;
+  border-color: #979797;
+  background-color: #e4e4e4;
+  border-radius: 5px;
+  padding: 5px;
+  border: hidden;
+}
+
+.payment-btn {
+  margin-left: 30%;
+  padding: 5px 7px;
+  background-color: #1976d2;
+  border: hidden;
+  border-radius: 3px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.exit-btn {
+  margin-left: 15px;
+  padding: 4px 7px;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  color: #1976d2;
+  border-color: #1976d2;
+  font-weight: 500;
+}
+
+.pay-row {
+  padding: 20px;
+}
+
+.table {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+  background-color: white;
+  margin-top: 2rem;
+}
+
+.dataGrid {
+  cursor: pointer;
+}
+
+.personalInfo1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  height: 290px;
+  display: flex;
+  flex-direction: column;
+  border-radius: 4px;
+  background-color: white;
+  z-index: 999;
+}
+.personalInfo1 .personalInfoHeader1 {
+  flex: 1 0 auto;
+  max-height: 52px;
+  width: 100%;
+  display: flex;
+  padding: 30px;
+  align-items: center;
+  border-bottom: 1px solid #e8eaeb;
+  justify-content: space-between;
+}
+.personalInfo1 .personalInfoHeader1 span {
+  color: black;
+  font-weight: 600;
+  font-size: 15px;
+}
+.personalInfo1 .personalInfoHeader1 button {
+  border: none;
+  background-color: transparent;
+  color: #0088ff;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.payment1 {
+  font-size: 15px;
+  padding: 0 30px;
+  display: flex;
+  flex-direction: column;
+}
+.payment1 .amount1 {
+  margin: 20px 0;
+}
+.payment1 .label {
+  color: #46515f;
+  margin-bottom: 10px;
+}
+.payment1 .selects {
+  display: flex;
+  justify-content: space-between;
+}
+.payment1 .buttons {
+  display: flex;
+  gap: 16px;
+  align-self: flex-end;
+  margin-top: 35px;
+}
