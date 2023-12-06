@@ -6,9 +6,8 @@ import com.projectcnw.salesmanagement.models.BaseProduct;
 import com.projectcnw.salesmanagement.models.Variant;
 import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.BaseProductRepository;
 import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.VariantRepository;
-import com.projectcnw.salesmanagement.services.BaseService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,13 +15,13 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
-public class BaseProductService extends BaseService {
-    @Autowired
-    private BaseProductRepository baseProductRepository;
-    @Autowired
-    private VariantRepository variantRepository;
-    @Autowired
-    private VariantService variantService;
+@RequiredArgsConstructor
+public class BaseProductService {
+    private final BaseProductRepository baseProductRepository;
+
+    private final VariantRepository variantRepository;
+
+    private final VariantService variantService;
     private ModelMapper modelMapper = new ModelMapper();
 
 

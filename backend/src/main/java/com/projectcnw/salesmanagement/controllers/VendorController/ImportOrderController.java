@@ -1,9 +1,10 @@
-package com.sapo.salemanagement.controllers.VendorController;
+package com.projectcnw.salesmanagement.controllers.VendorController;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.vendorDtos.ImportOrderDTO;
 import com.projectcnw.salesmanagement.services.VendorService.impl.ImportOrderService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,12 +14,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin/import")
+@RequiredArgsConstructor
 public class ImportOrderController {
-    private ImportOrderService importOrderService;
+    private final ImportOrderService importOrderService;
 
-    ImportOrderController(ImportOrderService importOrderService){
-        this.importOrderService = importOrderService;
-    }
 
     @GetMapping
     public ResponseEntity<ResponseObject> getImportOrderList(){

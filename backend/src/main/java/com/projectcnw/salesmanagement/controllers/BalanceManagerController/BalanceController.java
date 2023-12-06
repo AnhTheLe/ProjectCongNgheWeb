@@ -6,6 +6,7 @@ import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.balanceDtos.WarehouseBalanceDto;
 import com.projectcnw.salesmanagement.services.BalanceManagerServices.BalanceService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -16,9 +17,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class BalanceController {
-    @Autowired
-    private BalanceService balanceService;
+    private final BalanceService balanceService;
 
     //post warehouse_balance
     @PostMapping("/balances")

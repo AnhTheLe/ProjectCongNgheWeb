@@ -1,4 +1,4 @@
-package com.sapo.salemanagement.controllers.VendorController;
+package com.projectcnw.salesmanagement.controllers.VendorController;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

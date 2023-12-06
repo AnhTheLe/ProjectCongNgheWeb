@@ -7,14 +7,15 @@ import com.projectcnw.salesmanagement.models.Payment;
 import com.projectcnw.salesmanagement.models.enums.OrderType;
 import com.projectcnw.salesmanagement.models.enums.PaymentStatus;
 import com.projectcnw.salesmanagement.repositories.PaymentRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class OrderPaymentService {
 
-    @Autowired
-    private PaymentRepository paymentRepository;
+    private final PaymentRepository paymentRepository;
 
     public void makeOrderPayment(MakePaymentDto makePaymentDto) {
 

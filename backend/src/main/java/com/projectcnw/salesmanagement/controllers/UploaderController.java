@@ -1,7 +1,8 @@
-package com.sapo.salemanagement.controllers;
+package com.projectcnw.salesmanagement.controllers;
 
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.services.ImageUploader;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,12 +16,9 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("admin/upload")
+@RequiredArgsConstructor
 public class UploaderController {
     private final ImageUploader imageUploader;
-    @Autowired
-    public UploaderController(ImageUploader imageUploader) {
-        this.imageUploader = imageUploader;
-    }
 
     @PostMapping("/image")
     public ResponseEntity<ResponseObject> uploadImage(@RequestParam("file") MultipartFile file) throws IOException {

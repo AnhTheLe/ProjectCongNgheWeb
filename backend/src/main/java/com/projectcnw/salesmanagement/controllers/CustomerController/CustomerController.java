@@ -27,18 +27,9 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/admin")
+@RequiredArgsConstructor
 public class CustomerController extends BaseController {
     private final CustomerServices customerServices;
-    private final FeedbackService feedbackService;
-    private final OrderService orderService;
-    private final SMSService smsService;
-
-    public CustomerController(CustomerServices customerServices, FeedbackService feedbackService, OrderService orderService, SMSService smsService) {
-        this.customerServices = customerServices;
-        this.feedbackService = feedbackService;
-        this.orderService = orderService;
-        this.smsService = smsService;
-    }
 
     //lấy danh sách khách hàng
     @GetMapping("/customer")

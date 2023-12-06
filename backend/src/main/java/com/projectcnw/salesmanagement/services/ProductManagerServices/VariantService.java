@@ -11,6 +11,7 @@ import com.projectcnw.salesmanagement.models.Variant;
 import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.BaseProductRepository;
 import com.projectcnw.salesmanagement.repositories.ProductManagerRepository.VariantRepository;
 
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,11 +21,12 @@ import java.util.Arrays;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class VariantService {
-    @Autowired
-    private VariantRepository variantRepository;
-    @Autowired
-    private BaseProductRepository baseProductRepository;
+
+    private final VariantRepository variantRepository;
+
+    private final BaseProductRepository baseProductRepository;
     private ModelMapper modelMapper = new ModelMapper();
     public List<VariantDto> getAllVariants(int page, int size) {
         int offset = (page -1)*size;
