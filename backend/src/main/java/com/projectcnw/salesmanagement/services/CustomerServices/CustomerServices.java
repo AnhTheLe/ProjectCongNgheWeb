@@ -91,4 +91,61 @@ public class CustomerServices {
 
         return customerList;
     }
+
+    public Customer createCustomer(Customer customer) {
+        // Kiểm tra xem số điện thoại đã tồn tại trong hệ thống chưa
+        Customer existingCustomer = customerRepository.findByPhone(customer.getPhone());
+
+        if (existingCustomer != null) {
+            throw new BadRequestException("Số điện thoại đã tồn tại trong hệ thống.");
+        }
+
+        // Lấy ID của khách hàng sau khi lưu vào cơ sở dữ liệu
+        Customer savedCustomer = customerRepository.save(customer);
+        Integer customerId = savedCustomer.getId();
+
+        // Tạo mã khách hàng dựa trên ID
+        String customerCode = String.format("CUZ%05d", customerId);
+        savedCustomer.setCustomerCode(customerCode);
+
+        // Lưu lại khách hàng với mã khách hàng đã được tạo
+        return customerRepository.save(savedCustomer);
+    }
+
+
+    public Customer updateCustomer(int customerId, Customer customer) {
+        // Tìm khách hàng theo id trong cơ sở dữ liệu
+        Customer existingCustomer = customerRepository.findById(customerId).orElse(null);
+
+        if (existingCustomer == null) {
+            // Khách hàng không tồn tại, bạn có thể ném một ngoại lệ hoặc trả về null
+            throw new BadRequestException("Khách hàng không tồn tại.");
+        }
+
+        // Cập nhật thông tin của khách hàng từ customer truyền vào
+        existingCustomer.setName(customer.getName());
+        existingCustomer.setAddress(customer.getAddress());
+        existingCustomer.setPhone(customer.getPhone());
+        existingCustomer.setGender(customer.getGender());
+        existingCustomer.setDateOfBirth(customer.getDateOfBirth());
+        existingCustomer.setEmail(customer.getEmail());
+
+        // Lưu khách hàng đã cập nhật vào cơ sở dữ liệu
+        return customerRepository.save(existingCustomer);
+    }
+
+    @Transactional
+    public void deleteCustomerById(int customerId) {
+        // Kiểm tra xem khách hàng có tồn tại dựa trên customerId hay không
+        boolean exists = customerRepository.existsById(customerId);
+
+        if (exists) {
+            // Nếu khách hàng tồn tại, xóa khách hàng khỏi cơ sở dữ liệu
+            customerRepository.deleteById(customerId);
+        } else {
+            // Nếu không tìm thấy khách hàng, bạn có thể ném một ngoại lệ hoặc xử lý theo ý muốn
+            throw new BadRequestException("Không tìm thấy khách hàng với ID: " + customerId);
+        }
+    }
+
 }

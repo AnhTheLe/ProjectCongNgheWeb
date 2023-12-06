@@ -105,4 +105,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     List<Object[]> topCustomerByOrder(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
 
+    @Query("SELECT o FROM Order o WHERE o.customer.id = :customerId")
+    List<Order> findAllOrderByCustomer(@Param("customerId") int customerId);
 }

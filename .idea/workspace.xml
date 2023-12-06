@@ -9,6 +9,7 @@
       <change afterPath="$PROJECT_DIR$/Frontend/src/pages/Vendor/VendorDetail/VendorDetail.module.scss" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/Frontend/src/pages/Vendor/VendorDetail/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/main/java/com/projectcnw/salesmanagement/repositories/CustomerRepositories/CustomerRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/main/java/com/projectcnw/salesmanagement/repositories/CustomerRepositories/CustomerRepository.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,7 +45,7 @@
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "reference.projectsettings.compiler.javacompiler"
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration default="true" type="JetRunConfigurationType">
       <module name="test" />
