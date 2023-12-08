@@ -51,7 +51,7 @@ public class ImportOrderController {
     }
 
     @PutMapping(value= "/{id}")
-    public ResponseEntity<ResponseObject> upadateImportOrder(@RequestBody @Valid ImportOrderDTO importOrderDTO, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<ResponseObject> updateImportOrder(@RequestBody @Valid ImportOrderDTO importOrderDTO, @PathVariable int id, @AuthenticationPrincipal UserDetails userDetails){
         String phoneUser = userDetails.getUsername();
         importOrderDTO.setId(id);
         ImportOrderDTO importOrderDTO1 = importOrderService.save(importOrderDTO, phoneUser);

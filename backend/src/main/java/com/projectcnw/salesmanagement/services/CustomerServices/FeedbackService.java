@@ -3,6 +3,7 @@ package com.projectcnw.salesmanagement.services.CustomerServices;
 
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.customer.FeedbackDTO;
+import com.projectcnw.salesmanagement.dto.customer.feedback.FeedbackCustomerDto;
 import com.projectcnw.salesmanagement.exceptions.BadRequestException;
 import com.projectcnw.salesmanagement.exceptions.NotFoundException;
 import com.projectcnw.salesmanagement.models.*;
@@ -10,6 +11,7 @@ import com.projectcnw.salesmanagement.repositories.CustomerRepositories.Customer
 import com.projectcnw.salesmanagement.repositories.CustomerRepositories.FeedbackRepository;
 import com.projectcnw.salesmanagement.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,33 +21,81 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
+@Slf4j
 public class FeedbackService {
-    private final FeedbackRepository feedbackRepository;
+    private FeedbackRepository feedbackRepository;
 
-    private final CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     private final UserRepository userRepository;
+
+    public FeedbackService(FeedbackRepository feedbackRepository, CustomerRepository customerRepository, UserRepository userRepository) {
+        this.feedbackRepository = feedbackRepository;
+        this.customerRepository = customerRepository;
+        this.userRepository = userRepository;
+    }
 
     public long countFeedback() {
         return feedbackRepository.count();
     }
 
-    public List<Feedback> getFeedbackList(int customerId) {
+    public List<FeedbackCustomerDto> getFeedbackList(int customerId) {
         List<Feedback> feedbackList = feedbackRepository.findAllFeedbackByCustomer(customerId);
-        return feedbackList;
+
+        // Chuyển đổi danh sách Feedback thành danh sách FeedbackCustomerDto
+        List<FeedbackCustomerDto> feedbackDtoList = feedbackList.stream()
+                .map(this::convertToFeedbackCustomerDto)
+                .collect(Collectors.toList());
+
+        return feedbackDtoList;
     }
 
-    public List<Feedback> getAllFeedback(int page, int size) {
-        int offset = (page -1)*size;
+
+    public List<FeedbackCustomerDto> getAllFeedback(int page, int size) {
+        int offset = (page - 1) * size;
         List<Feedback> feedbackList = feedbackRepository.findAllFeedback(size, offset);
-        return feedbackList;
+
+        // Chuyển đổi danh sách Feedback thành danh sách FeedbackCustomerDto
+        List<FeedbackCustomerDto> feedbackDtoList = feedbackList.stream()
+                .map(this::convertToFeedbackCustomerDto)
+                .collect(Collectors.toList());
+
+        return feedbackDtoList;
     }
 
-    public List<Feedback> searchFeedbacks(String searchTerm) {
-        return feedbackRepository.searchFeedback(searchTerm);
+    private FeedbackCustomerDto convertToFeedbackCustomerDto(Feedback feedback) {
+        FeedbackCustomerDto feedbackDto = new FeedbackCustomerDto();
+        feedbackDto.setEvaluate(feedback.getEvaluate());
+        feedbackDto.setContent(feedback.getContent());
+
+        Customer customer = feedback.getCustomer();
+        feedbackDto.setId(UUID.randomUUID());
+        feedbackDto.setCustomerName(customer.getName());
+        feedbackDto.setCustomerCode(customer.getCustomerCode());
+        feedbackDto.setUserFullName(feedback.getUserEntity().getFullName());
+        feedbackDto.setResponseAt(feedback.getUpdatedAt());
+        feedbackDto.setCustomerId(customer.getId());
+        feedbackDto.setCustomerPhone(customer.getPhone());
+        // Đặc biệt, bạn có thể thêm các trường khác cần thiết từ Customer vào FeedbackCustomerDto
+
+        return feedbackDto;
+    }
+    public List<FeedbackCustomerDto> searchFeedbacks(String searchTerm) {
+        if(searchTerm == null || searchTerm.isEmpty()) {
+            return getAllFeedback(1, 10);
+        }
+        List<Feedback> feedbackList = feedbackRepository.searchFeedback(searchTerm);
+
+        // Chuyển đổi danh sách Feedback thành danh sách FeedbackCustomerDto
+        List<FeedbackCustomerDto> feedbackDtoList = feedbackList.stream()
+                .map(this::convertToFeedbackCustomerDto)
+                .collect(Collectors.toList());
+
+        return feedbackDtoList;
     }
 
 
@@ -68,6 +118,7 @@ public class FeedbackService {
         feedback.setContent(feedbackDTO.getContent());
 
         feedbackRepository.save(feedback);
+        log.info("Feedback created: ", feedback);
     }
 
     public Feedback updateFeedback(int feedbackId, FeedbackDTO feedbackDTO, String staffPhone) {

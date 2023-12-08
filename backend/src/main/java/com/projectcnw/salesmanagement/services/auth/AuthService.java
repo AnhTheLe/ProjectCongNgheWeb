@@ -18,16 +18,29 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
 
+    @Autowired
     private final UserRepository userRepository;
 
+    @Autowired
     private final PasswordEncoder passwordEncoder;
 
+    @Autowired
     private final JwtService jwtService;
 
+    @Autowired
     private final AuthenticationManager authenticationManager;
+
+    public AuthService(UserRepository userRepository,
+                       PasswordEncoder passwordEncoder,
+                       JwtService jwtService,
+                       AuthenticationManager authenticationManager) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
+        this.authenticationManager = authenticationManager;
+    }
 
     public AuthResponse authenticate(AuthDto authDto) {
         Authentication authentication = authenticationManager.authenticate(
@@ -47,17 +60,21 @@ public class AuthService {
     }
 
     public AuthResponse register(AuthDto authDto) {
-        UserEntity userEntity = userRepository.findByPhone(authDto.getPhone())
-                .orElseThrow(() -> new NotFoundException("profile not found"));
+        boolean userEntity = userRepository.findByPhone(authDto.getPhone())
+                .isPresent();
+        UserEntity userEntity1 = new UserEntity();
+        if(!userEntity){
 
-        userEntity.setPassword(passwordEncoder.encode(authDto.getPassword()));
-        userRepository.save(userEntity);
-        var jwtToken = jwtService.generateToken(userEntity.getPhone());
-        ModelMapper modelMapper = new ModelMapper();
-        return AuthResponse.builder()
-                .userInfoDto(modelMapper.map(userEntity, UserInfoDto.class))
-                .token(jwtToken)
-                .build();
+            userEntity1.setPassword(passwordEncoder.encode(authDto.getPassword()));
+            userRepository.save(userEntity1);
+            var jwtToken = jwtService.generateToken(userEntity1.getPhone());
+            ModelMapper modelMapper = new ModelMapper();
+            return AuthResponse.builder()
+                    .userInfoDto(modelMapper.map(userEntity1, UserInfoDto.class))
+                    .token(jwtToken)
+                    .build();
+        }
+        return null;
     }
 
     public UserInfoDto verifyToken(VerifyTokenRequest request) {
