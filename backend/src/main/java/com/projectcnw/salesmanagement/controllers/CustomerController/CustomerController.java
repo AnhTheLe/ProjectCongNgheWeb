@@ -6,7 +6,8 @@ import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.customer.CustomerSpendingDTO;
 import com.projectcnw.salesmanagement.dto.customer.FeedbackDTO;
-import com.projectcnw.salesmanagement.dto.orderDtos.OrderListByCustomer;
+import com.projectcnw.salesmanagement.dto.customer.feedback.FeedbackCustomerDto;
+import com.projectcnw.salesmanagement.dto.orderDtos.OrderListByCustomerDto;
 import com.projectcnw.salesmanagement.models.Customer;
 
 import com.projectcnw.salesmanagement.models.Feedback;
@@ -16,6 +17,7 @@ import com.projectcnw.salesmanagement.services.OrderServices.OrderService;
 import com.projectcnw.salesmanagement.services.SMSService;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -30,24 +32,27 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController extends BaseController {
     private final CustomerServices customerServices;
+    private final FeedbackService feedbackService;
+    private final OrderService orderService;
+    private final SMSService smsService;
 
     //lấy danh sách khách hàng
     @GetMapping("/customer")
     public ResponseEntity<PagedResponseObject> getAllCustomer(@RequestParam(value = "page", defaultValue = "1") int page,
-                                                                 @RequestParam(value = "size", defaultValue = "10") int size) {
+                                                              @RequestParam(value = "size", defaultValue = "10") int size) {
 
         long totalItems = customerServices.countCustomer();
         int totalPages = (int) Math.ceil((double) totalItems / size);
         List<Customer> customers = customerServices.getAllCustomer(page, size);
         return ResponseEntity.ok(PagedResponseObject.builder()
-                        .page(page)
-                        .perPage(size)
-                        .totalItems(totalItems)
-                        .totalPages(totalPages)
-                        .responseCode(200)
-                        .message("Success")
-                        .data(customers)
-                        .build());
+                .page(page)
+                .perPage(size)
+                .totalItems(totalItems)
+                .totalPages(totalPages)
+                .responseCode(200)
+                .message("Success")
+                .data(customers)
+                .build());
     }
 
     //lấy danh sách khách hàng theo chi tiêu
@@ -79,6 +84,7 @@ public class CustomerController extends BaseController {
                 .data(customer)
                 .build());
     }
+
     @GetMapping("/customer/count")
     public ResponseEntity<ResponseObject> getCountCustomer() {
         long countCustomer = customerServices.countCustomer();
@@ -114,6 +120,19 @@ public class CustomerController extends BaseController {
         return ResponseEntity.ok(responseObject);
     }
 
+    //tạo mới một khách hàng
+//    @PostMapping("/customer")
+//    public ResponseEntity<ResponseObject> createCustomer(@Valid @RequestBody Customer customer){
+//        Customer newCustomer =  customerServices.createCustomer(customer);
+//        String convertedPhoneNumber = "+84" + customer.getPhone().substring(1);
+//        smsService.sendSMS(convertedPhoneNumber, "Chúc mừng bạn đã trở thành khách hàng thân thiết của SAPO");
+//        return ResponseEntity.ok(ResponseObject.builder()
+//                .responseCode(200)
+//                .message("Success")
+//                .data(newCustomer)
+//                .build());
+//    }
+
     @PostMapping("/customer")
     public ResponseEntity<ResponseObject> createCustomer(@Valid @RequestBody Customer customer) {
         Customer newCustomer = null;
@@ -124,12 +143,12 @@ public class CustomerController extends BaseController {
             System.out.println(e);
         }
 
-        try {
-            String convertedPhoneNumber = "+84" + customer.getPhone().substring(1);
-            smsService.sendSMS(convertedPhoneNumber, "Chúc mừng bạn đã trở thành khách hàng thân thiết của SAPO");
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+//        try {
+//            String convertedPhoneNumber = "+84" + customer.getPhone().substring(1);
+//            smsService.sendSMS(convertedPhoneNumber, "Chúc mừng bạn đã trở thành khách hàng thân thiết của SAPO");
+//        } catch (Exception e) {
+//            System.out.println(e);
+//        }
 
         if (newCustomer != null) {
             return ResponseEntity.ok(ResponseObject.builder()
@@ -150,7 +169,7 @@ public class CustomerController extends BaseController {
 
     //cập nhât một khách hàng
     @PutMapping("/customer/{id}")
-    public ResponseEntity<ResponseObject> updateCustomer(@PathVariable("id") int customerId, @RequestBody Customer customer){
+    public ResponseEntity<ResponseObject> updateCustomer(@PathVariable("id") int customerId, @RequestBody Customer customer) {
         Customer newCustomer = customerServices.updateCustomer(customerId, customer);
         return ResponseEntity.ok(ResponseObject.builder()
                 .responseCode(200)
@@ -173,7 +192,7 @@ public class CustomerController extends BaseController {
     //Feedback
     @GetMapping("/customer/{customerId}/feedback")
     public ResponseEntity<ResponseObject> getFeedbackList(@PathVariable int customerId) {
-        List<Feedback> feedbackList = feedbackService.getFeedbackList(customerId);
+        List<FeedbackCustomerDto> feedbackList = feedbackService.getFeedbackList(customerId);
         ResponseObject responseObject = ResponseObject.builder()
                 .responseCode(200)
                 .message("Success")
@@ -188,7 +207,7 @@ public class CustomerController extends BaseController {
 
         long totalItems = feedbackService.countFeedback();
         int totalPages = (int) Math.ceil((double) totalItems / size);
-        List<Feedback> feedbackList = feedbackService.getAllFeedback(page, size);
+        List<FeedbackCustomerDto> feedbackList = feedbackService.getAllFeedback(page, size);
         return ResponseEntity.ok(PagedResponseObject.builder()
                 .page(page)
                 .perPage(size)
@@ -203,7 +222,7 @@ public class CustomerController extends BaseController {
     // Xử lý yêu cầu GET để tìm khách hàng dựa trên tên và số điện thoại
     @GetMapping("/customer/feedback/search")
     public ResponseEntity<ResponseObject> searchCustomersFeedback(@RequestParam("searchTerm") String searchTerm) {
-        List<Feedback> listFeedback = feedbackService.searchFeedbacks(searchTerm);
+        List<FeedbackCustomerDto> listFeedback = feedbackService.searchFeedbacks(searchTerm);
         ResponseObject responseObject = ResponseObject.builder()
                 .responseCode(200)
                 .message("Success")
@@ -225,7 +244,7 @@ public class CustomerController extends BaseController {
     }
 
     @PutMapping("/customer/feedback/{id}")
-    public ResponseEntity<ResponseObject> updateFeedback(@PathVariable("id") int feedbackId, @RequestBody @Valid FeedbackDTO feedbackDTO, @AuthenticationPrincipal UserDetails userDetails){
+    public ResponseEntity<ResponseObject> updateFeedback(@PathVariable("id") int feedbackId, @RequestBody @Valid FeedbackDTO feedbackDTO, @AuthenticationPrincipal UserDetails userDetails) {
         String staffPhone = userDetails.getUsername();
         Feedback updateFeedback = feedbackService.updateFeedback(feedbackId, feedbackDTO, staffPhone);
         return ResponseEntity.ok(ResponseObject.builder()
@@ -249,7 +268,7 @@ public class CustomerController extends BaseController {
     //Order
     @GetMapping("/customer/{customerId}/order")
     public ResponseEntity<ResponseObject> getOrderListByCustomerId(@PathVariable int customerId) {
-        List<OrderListByCustomer> orderList = orderService.getOrderListByCustomerId(customerId);
+        List<OrderListByCustomerDto> orderList = orderService.getOrderListByCustomerId(customerId);
         ResponseObject responseObject = ResponseObject.builder()
                 .responseCode(200)
                 .message("Success")
@@ -257,6 +276,4 @@ public class CustomerController extends BaseController {
                 .build();
         return ResponseEntity.ok(responseObject);
     }
-
-
 }
