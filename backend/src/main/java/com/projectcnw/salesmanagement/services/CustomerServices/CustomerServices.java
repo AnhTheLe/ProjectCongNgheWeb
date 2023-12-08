@@ -28,11 +28,6 @@ public class CustomerServices {
         return customerList;
     }
 
-
-    public long countCustomer() {
-        return customerRepository.count();
-    }
-
     public List<CustomerSpendingDTO> getAllCustomerBySpending(int page, int size) {
         int offset = (page -1)*size;
         List<Object[]> customerDataList = customerRepository.findAllCustomerBySpending(size, offset);
@@ -54,6 +49,10 @@ public class CustomerServices {
         }
 
         return customerList;
+    }
+
+    public long countCustomer() {
+        return customerRepository.count();
     }
 
     public Customer getDetailCustomer(int customerId) {
@@ -133,6 +132,7 @@ public class CustomerServices {
         // Lưu khách hàng đã cập nhật vào cơ sở dữ liệu
         return customerRepository.save(existingCustomer);
     }
+
 
     @Transactional
     public void deleteCustomerById(int customerId) {

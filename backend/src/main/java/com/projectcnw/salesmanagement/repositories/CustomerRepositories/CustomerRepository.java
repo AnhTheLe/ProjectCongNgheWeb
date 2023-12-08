@@ -14,15 +14,6 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
             , nativeQuery = true)
     List<Customer> findAllCustomer(@Param("size") int size, @Param("offset") int offset);
 
-//    @Query("SELECT new com.projectcnw.salemanagement.dto.customer.CustomerSpendingDTO(o.customer, count(distinct o.order.id), sum(p.amount)) FROM Order o LEFT JOIN Payment p ON o.id = p.orderId GROUP BY o.customer ORDER BY o.customer.id DESC LIMIT :size OFFSET :offset", nativeQuery = true)
-//    List<CustomerSpendingDTO> findAllCustomerBySpending(@Param("size") int size, @Param("offset") int offset);
-
-//    @Query("SELECT new com.projectcnw.salemanagement.dto.customer.CustomerSpendingDTO(SELECT o.customer_id, SUM(p.amount), COUNT(DISTINCT o.id)) " +
-//            "FROM _order o LEFT JOIN payment p ON o.id = p.order_id " +
-//            "GROUP BY o.customer_id " +
-//            "ORDER BY o.customer_id DESC " +
-//            "LIMIT :size OFFSET :offset", nativeQuery = true)
-//    List<CustomerSpendingDTO> findAllCustomerBySpending(@Param("size") int size, @Param("offset") int offset);
 
 //    @Query(value = "SELECT o.customer_id, SUM(p.amount), COUNT(DISTINCT o.id) " +
 //            "FROM _order o LEFT JOIN payment p ON o.id = p.order_id " +
