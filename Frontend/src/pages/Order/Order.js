@@ -118,7 +118,11 @@ function Order() {
             const response = await getOrderDetailInfo(id, token);
             setOrderInfo(response.data);
         };
-        fetchData();
+        try {
+            fetchData();
+        } catch (error) {
+            console.log("error", error);
+        }
     }, [id, token]);
 
     useEffect(() => {

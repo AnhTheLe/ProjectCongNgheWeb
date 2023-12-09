@@ -256,7 +256,7 @@ function ProductDetail() {
                           : {variant.name ? <span >{variant.name}</span> : <span>---</span>}
                         </div>
                       </div>
-
+                      
                     </div>
                     <div className={cx('personalInfoContentRow')}>
                       <div className={cx('personalInfoContentCol')}>

@@ -123,11 +123,41 @@ function Dashboard() {
         fetchData();
     }, [token]);
 
+    const modifiedResults = results.slice().reverse().map((result) => {
+        const { id, updatedAt, vendor, shipmentStatus, paymentDTO } = result;
+        const { name, phone } = vendor;
+        const { amount, paymentStatus } = paymentDTO;
+        const code = 'PON' + String(id).padStart(5, '0');
+
+        return {
+            ...result,
+            id,
+            code,
+            updatedAt,
+            name,
+            phone,
+            shipmentStatus,
+            paymentStatus,
+            amount,
+        };
+    });
 
     function handleFilter(event) {
         const keyword = event.target.value.toLowerCase();
         setSearchValue(keyword);
 
+        if (keyword === '') {
+            setRecord(modifiedResults);
+        } else {
+            const filteredResults = modifiedResults.filter((result) => {
+                return (
+                    result.name.toLowerCase().includes(keyword) ||
+                    result.phone.includes(keyword) ||
+                    result.code.toLowerCase().includes(keyword)
+                );
+            });
+            setRecord(filteredResults);
+        }
     }
 
     const handleRowClick = (params) => {
@@ -161,6 +191,18 @@ function Dashboard() {
                 </div>
             </div>
             
+            <div className={cx('table')}>
+                <div style={{ width: '100%' }}>
+                    <DataGrid
+                        rows={searchValue === '' ? modifiedResults : records}
+                        columns={columns}
+                        pageSize={6}
+                        className={cx('dataGrid')}
+                        onRowClick={handleRowClick}
+                        pageSizeOptions={[10, 20, 50, 100]}
+                    />
+                </div>
+            </div>
         </div>
     );
 }

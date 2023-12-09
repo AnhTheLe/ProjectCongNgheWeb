@@ -10,7 +10,7 @@ import Typography from '@mui/material/Typography';
 import { Modal } from '@mui/material';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import sapoLogo from '../../images/logo192.png';
+import sapoLogo from '../../images/sapo.png';
 import OtpInput from 'react-otp-input';
 
 import classNames from 'classnames/bind';

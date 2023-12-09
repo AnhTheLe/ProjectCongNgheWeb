@@ -17,6 +17,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { AuthContext } from '../../../contexts/AuthContex';
 import * as CustomerServices from '../../../services/CustomerServices';
+import { Alert } from '@mui/material';
 
 const cx = classNames.bind(styles);
 
@@ -127,7 +128,7 @@ function CustomerUpdate() {
             setErrorPhone(true);
         } else {
             setErrorName(false);
-            setErrorPhone(false); 
+            setErrorPhone(false);
             const fetchApi = async () => {
                 try {
                     const result = await CustomerServices.updateCustomer(
@@ -143,21 +144,27 @@ function CustomerUpdate() {
                         token,
                     );
                     if (result) {
-                        toast.success('Cập nhật khách hàng thành công', {
-                            autoClose: 2000,
-                        });
+                        navigate(`/customer/${2}`)
+                        // <Alert severity="success">Cập nhật khách hàng thành công</Alert>
+
+                        setTimeout(() => {
+                            toast.success('Cập nhật khách hàng thành công', {
+                                autoClose: 2000,
+                            });
+                        }, 1);
                     } else {
                         toast.error('Cập nhật khách hàng không thành công thành công', {
                             autoClose: 2000,
                         });
                     }
+
                 } catch (error) {
                     console.log('fetchApi getAllCustomerServices Sidebar.js' + error);
                 }
             };
             fetchApi();
         }
-        
+
     };
 
     // useEffect(() => {
@@ -215,7 +222,7 @@ function CustomerUpdate() {
                                         value={user.customerCode}
                                         readOnly
                                         disabled
-                                        style={{backgroundColor: '#f3f4f5'}}
+                                        style={{ backgroundColor: '#f3f4f5' }}
                                         onChange={(e) =>
                                             setUser((prev) => {
                                                 return { ...prev, customerCode: e.target.value };

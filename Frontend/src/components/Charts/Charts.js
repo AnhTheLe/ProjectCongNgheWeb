@@ -12,7 +12,8 @@ const DailySalesChart = ({ data, nameChart }) => {
                     value >= 1000000 ? `${(value / 1000000).toFixed(2)}Tr` : numeral(value).format('0,0')
                 }
             />
-
+            <Tooltip formatter={(value) => numeral(value).format('0,0')} />
+            <Legend />
             <Bar dataKey="value" fill="#8884d8" name={`Tổng ${nameChart} theo ngày`} />
         </BarChart>
     );
@@ -35,7 +36,11 @@ const WeeklySalesChart = ({ data, nameChart }) => {
     );
 };
 
-
+const MonthlySalesChart = ({ data, nameChart }) => {
+    const customTooltipFormatter = (value, name, props) => {
+        // console.log(value, name, props)
+        return numeral(value).format('0,0');
+    };
 
     return (
         <BarChart width={580} height={350} data={data}>
@@ -53,3 +58,4 @@ const WeeklySalesChart = ({ data, nameChart }) => {
     );
 };
 
+export { DailySalesChart, WeeklySalesChart, MonthlySalesChart };
