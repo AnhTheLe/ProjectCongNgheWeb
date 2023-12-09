@@ -83,6 +83,7 @@ function BalanceList() {
     const [totalPages, setTotalPages] = useState();
     const { token, user } = useContext(AuthContext);
     const roles = user.roles?.map((item) => item.name);
+    console.log("roles", roles);
     const [buttonAllResponse, setButtonAllResponse] = useState(true);
     const [keyword, setKeyword] = useState('');
 
@@ -143,7 +144,7 @@ function BalanceList() {
         navigate(routesConfig.balancesCreate)
     }
 
-    if (!roles?.some((permission) => permission === 'ADMIN' || permission === 'WAREHOUSE')) {
+    if (roles && roles.length > 0 && !roles?.some((permission) => permission === 'ADMIN' || permission === 'WAREHOUSE')) {
         navigate('/403');
     }
 

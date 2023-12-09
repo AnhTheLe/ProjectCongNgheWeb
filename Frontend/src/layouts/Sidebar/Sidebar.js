@@ -182,7 +182,7 @@ function Sidebar({ setToggleButton }) {
                                             <Link
                                                 to={
                                                     roles?.some(
-                                                        (permission) => permission === 'ADMIN' || permission === 'SALE',
+                                                        (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === undefined,
                                                     )
                                                         ? '/orders'
                                                         : '/403'
@@ -197,7 +197,7 @@ function Sidebar({ setToggleButton }) {
                                             <Link
                                                 to={
                                                     roles?.some(
-                                                        (permission) => permission === 'ADMIN' || permission === 'SALE',
+                                                        (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === undefined,
                                                     )
                                                         ? '/order_returns'
                                                         : '/403'
@@ -477,7 +477,7 @@ function Sidebar({ setToggleButton }) {
                                                 to={
                                                     roles?.some(
                                                         (permission) =>
-                                                            permission === 'ADMIN' || permission === 'WAREHOUSE',
+                                                            permission === 'ADMIN' || permission === 'WAREHOUSE' || permission === undefined,
                                                     )
                                                         ? '/import_order'
                                                         : '/403'
@@ -493,7 +493,7 @@ function Sidebar({ setToggleButton }) {
                                                 to={
                                                     roles?.some(
                                                         (permission) =>
-                                                            permission === 'ADMIN' || permission === 'WAREHOUSE',
+                                                            permission === 'ADMIN' || permission === 'WAREHOUSE' || permission === undefined,
                                                     )
                                                         ? '/admin/balances'
                                                         : '/403'
@@ -555,7 +555,7 @@ function Sidebar({ setToggleButton }) {
                                             <Link
                                                 to={
                                                     roles?.some(
-                                                        (permission) => permission === 'ADMIN' || permission === 'SALE',
+                                                        (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === undefined,
                                                     )
                                                         ? '/statistics_sales'
                                                         : '/403'
