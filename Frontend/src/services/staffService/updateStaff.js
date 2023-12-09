@@ -1,13 +1,12 @@
 import request from '../../utils/httpRequest';
 import { createAuthHeader } from '../../utils/createAuthHeader';
 
-export const getStaffDetail = async (id, accessToken) => {
+export const updateStaff = async (id, data, accessToken) => {
     try {
         const headers = createAuthHeader(accessToken);
-        const res = await request.get(`staffs/${id}`, { headers });
-
+        const res = await request.put(`/staffs/${id}`, data, { headers });
         return res.data;
-    } catch (err) {
-        console.log(err);
+    } catch (error) {
+        console.log(error);
     }
 };
