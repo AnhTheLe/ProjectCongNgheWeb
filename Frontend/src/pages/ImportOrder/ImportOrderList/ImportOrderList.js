@@ -164,7 +164,7 @@ function Dashboard() {
         navigate(`/detail_import_order/${params.row.id}`);
     };
 
-    if (!roles?.some((permission) => permission === 'ADMIN' || permission === 'WAREHOUSE')) {
+    if (!roles?.some((permission) => permission === 'ADMIN' || permission === 'WAREHOUSE' || permission === undefined)) {
         navigate('/403');
     }
 

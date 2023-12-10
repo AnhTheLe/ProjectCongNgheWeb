@@ -182,7 +182,7 @@ function Sidebar({ setToggleButton }) {
                                             <Link
                                                 to={
                                                     roles?.some(
-                                                        (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === undefined,
+                                                        (permission) => permission === 'ADMIN' || permission === 'SALE',
                                                     )
                                                         ? '/orders'
                                                         : '/403'
@@ -261,12 +261,12 @@ function Sidebar({ setToggleButton }) {
                                             <span>Danh sách sản phẩm</span>
                                         </div>
                                     </Link>
-                                    {/* <Link
+                                    <Link
                                         to={
                                             roles?.some(
                                                 (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === 'WAREHOUSE',
                                             )
-                                                ? '/admin/base-products'
+                                                ? '/vendor_list'
                                                 : '/403'
                                         }
                                         className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
@@ -275,7 +275,7 @@ function Sidebar({ setToggleButton }) {
                                         <div className={cx('menuItemTitle')}>
                                             <span>Danh sách nhà cung cấp</span>
                                         </div>
-                                    </Link> */}
+                                    </Link>
                                 </div>
                             )}
 
@@ -477,7 +477,7 @@ function Sidebar({ setToggleButton }) {
                                                 to={
                                                     roles?.some(
                                                         (permission) =>
-                                                            permission === 'ADMIN' || permission === 'WAREHOUSE' || permission === undefined,
+                                                            permission === 'ADMIN' || permission === 'WAREHOUSE'
                                                     )
                                                         ? '/import_order'
                                                         : '/403'
