@@ -8,7 +8,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import sapoLogo from '../../images/logo192.png';
+import sapoLogo from '../../images/sapo.png';
 import validator from 'validator';
 import { toast, ToastContainer } from 'react-toastify';
 
@@ -25,7 +25,7 @@ const cx = classNames.bind(styles);
 const defaultTheme = createTheme();
 
 export default function Login() {
-    const { handleLoggedin } = React.useContext(AuthContext);
+    const { handleLoggedin, user } = React.useContext(AuthContext);
     const [isPhoneEmpty, setIsPhoneEmpty] = React.useState(false);
     const [isPasswordEmpty, setIsPasswordEmpty] = React.useState(false);
     const navigate = useNavigate();
@@ -52,7 +52,14 @@ export default function Login() {
                     const token = res.data.token;
                     const user = res.data.userInfoDto;
                     handleLoggedin(token, user);
-                    navigate('/');
+                    if(user.roles.some((item) => item.name !== "SALE")) {
+                        navigate('/');
+                    }
+                    if(user.roles.some((item) => item.name !== "ADMIN" && item.name === "SALE")) {
+                        navigate('/sales_counter');
+                    }
+               
+                    
                 })
                 .catch((err) => {
                     toast.error('Sai thông tin đăng nhập !');

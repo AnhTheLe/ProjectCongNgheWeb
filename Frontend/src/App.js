@@ -4,8 +4,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import './App.css';
 import { AuthContext } from './contexts/AuthContex';
 
-import { publicRoutes, privateRoutes } from './routes';
 import DefaultLayout from './layouts/DefaultLayout';
+import { privateRoutes, publicRoutes } from './routes';
 
 function App() {
     const { token } = useContext(AuthContext);

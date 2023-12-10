@@ -197,7 +197,7 @@ function Sidebar({ setToggleButton }) {
                                             <Link
                                                 to={
                                                     roles?.some(
-                                                        (permission) => permission === 'ADMIN' || permission === 'SALE',
+                                                        (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === undefined,
                                                     )
                                                         ? '/order_returns'
                                                         : '/403'
@@ -246,7 +246,14 @@ function Sidebar({ setToggleButton }) {
                                     className={cx('wrapCollapseItem', { showCollapseItem: details.showDetailProduct })}
                                 >
                                     <Link
-                                        to="/admin/base-products"
+                                        to={
+                                            roles?.some(
+                                                (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === 'WAREHOUSE',
+                                            )
+                                                ? '/admin/base-products'
+                                                : '/403'
+                                        }
+                                        // to="/admin/base-products"
                                         className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
                                         onClick={() => handleActive('listProduct')}
                                     >
@@ -255,7 +262,13 @@ function Sidebar({ setToggleButton }) {
                                         </div>
                                     </Link>
                                     <Link
-                                        to="/vendor_list"
+                                        to={
+                                            roles?.some(
+                                                (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === 'WAREHOUSE',
+                                            )
+                                                ? '/vendor_list'
+                                                : '/403'
+                                        }
                                         className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
                                         onClick={() => handleActive('listProvider')}
                                     >
@@ -270,59 +283,59 @@ function Sidebar({ setToggleButton }) {
                                 (permission) =>
                                     permission === 'ADMIN' || permission === 'SALE' || permission === 'CARE',
                             ) && (
-                                <>
-                                    {/* Khách hàng */}
-                                    <div
-                                        className={cx('homeMenuItem', 'itemNav', {
-                                            active: active.listCustomer || active.listResponse,
-                                        })}
-                                        onClick={() => handleShowDetail('showDetailClient')}
-                                    >
-                                        <div className={cx('wrapIconItem')}>
-                                            <ClientIcon />
-                                        </div>
-                                        {!toggle.action && (
-                                            <>
-                                                <div className={cx('menuItemTitle')}>
-                                                    <span>Khách hàng</span>
-                                                </div>
-                                                <div>
-                                                    <FontAwesomeIcon
-                                                        className={cx('iconArrowRight', {
-                                                            activeIcon: details.showDetailClient,
-                                                        })}
-                                                        icon={faAngleRight}
-                                                    />
-                                                </div>
-                                            </>
-                                        )}
-                                    </div>
-                                    {/* Chi tiết trong khách hàng */}
-                                    {!toggle.action && (
+                                    <>
+                                        {/* Khách hàng */}
                                         <div
-                                            className={cx('wrapCollapseItem', {
-                                                showCollapseItem: details.showDetailClient,
+                                            className={cx('homeMenuItem', 'itemNav', {
+                                                active: active.listCustomer || active.listResponse,
                                             })}
+                                            onClick={() => handleShowDetail('showDetailClient')}
                                         >
-                                            <Link
-                                                to={
-                                                    roles?.some(
-                                                        (permission) =>
-                                                            permission === 'ADMIN' ||
-                                                            permission === 'SALE' ||
-                                                            permission === 'CARE',
-                                                    )
-                                                        ? '/customer_all'
-                                                        : '/403'
-                                                }
-                                                className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
-                                                onClick={() => handleActive('listCustomer')}
+                                            <div className={cx('wrapIconItem')}>
+                                                <ClientIcon />
+                                            </div>
+                                            {!toggle.action && (
+                                                <>
+                                                    <div className={cx('menuItemTitle')}>
+                                                        <span>Khách hàng</span>
+                                                    </div>
+                                                    <div>
+                                                        <FontAwesomeIcon
+                                                            className={cx('iconArrowRight', {
+                                                                activeIcon: details.showDetailClient,
+                                                            })}
+                                                            icon={faAngleRight}
+                                                        />
+                                                    </div>
+                                                </>
+                                            )}
+                                        </div>
+                                        {/* Chi tiết trong khách hàng */}
+                                        {!toggle.action && (
+                                            <div
+                                                className={cx('wrapCollapseItem', {
+                                                    showCollapseItem: details.showDetailClient,
+                                                })}
                                             >
-                                                <div className={cx('menuItemTitle')}>
-                                                    <span>Danh sách khách hàng</span>
-                                                </div>
-                                            </Link>
-                                            {/* <Link
+                                                <Link
+                                                    to={
+                                                        roles?.some(
+                                                            (permission) =>
+                                                                permission === 'ADMIN' ||
+                                                                permission === 'SALE' ||
+                                                                permission === 'CARE',
+                                                        )
+                                                            ? '/customer_all'
+                                                            : '/403'
+                                                    }
+                                                    className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
+                                                    onClick={() => handleActive('listCustomer')}
+                                                >
+                                                    <div className={cx('menuItemTitle')}>
+                                                        <span>Danh sách khách hàng</span>
+                                                    </div>
+                                                </Link>
+                                                {/* <Link
                                         to={
                                             roles?.some(
                                                 (permission) =>
@@ -340,33 +353,33 @@ function Sidebar({ setToggleButton }) {
                                             <span>Nhóm khách hàng</span>
                                         </div>
                                     </Link> */}
-                                            <Link
-                                                to={
-                                                    roles?.some(
-                                                        (permission) =>
-                                                            permission === 'ADMIN' ||
-                                                            permission === 'SALE' ||
-                                                            permission === 'CARE',
-                                                    )
-                                                        ? '/customer_response'
-                                                        : '/403'
-                                                }
-                                                className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
-                                                onClick={() => handleActive('listResponse')}
-                                            >
-                                                <div className={cx('menuItemTitle')}>
-                                                    <span>Danh sách phản hồi</span>
-                                                </div>
-                                            </Link>
-                                            {/* <Link href="/" className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}>
+                                                <Link
+                                                    to={
+                                                        roles?.some(
+                                                            (permission) =>
+                                                                permission === 'ADMIN' ||
+                                                                permission === 'SALE' ||
+                                                                permission === 'CARE',
+                                                        )
+                                                            ? '/customer_response'
+                                                            : '/403'
+                                                    }
+                                                    className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}
+                                                    onClick={() => handleActive('listResponse')}
+                                                >
+                                                    <div className={cx('menuItemTitle')}>
+                                                        <span>Danh sách phản hồi</span>
+                                                    </div>
+                                                </Link>
+                                                {/* <Link href="/" className={cx('homeMenuItem', 'itemNav', 'innerWrapCollapseItem')}>
                                         <div className={cx('menuItemTitle')}>
                                             <span>Nhóm khách hàng</span>
                                         </div>
                                     </Link> */}
-                                        </div>
-                                    )}
-                                </>
-                            )}
+                                            </div>
+                                        )}
+                                    </>
+                                )}
 
                             {/* Chăm sóc khách hàng */}
                             {/* <div
@@ -464,7 +477,7 @@ function Sidebar({ setToggleButton }) {
                                                 to={
                                                     roles?.some(
                                                         (permission) =>
-                                                            permission === 'ADMIN' || permission === 'WAREHOUSE',
+                                                            permission === 'ADMIN' || permission === 'WAREHOUSE'
                                                     )
                                                         ? '/import_order'
                                                         : '/403'
@@ -480,7 +493,7 @@ function Sidebar({ setToggleButton }) {
                                                 to={
                                                     roles?.some(
                                                         (permission) =>
-                                                            permission === 'ADMIN' || permission === 'WAREHOUSE',
+                                                            permission === 'ADMIN' || permission === 'WAREHOUSE' || permission === undefined,
                                                     )
                                                         ? '/admin/balances'
                                                         : '/403'
@@ -542,7 +555,7 @@ function Sidebar({ setToggleButton }) {
                                             <Link
                                                 to={
                                                     roles?.some(
-                                                        (permission) => permission === 'ADMIN' || permission === 'SALE',
+                                                        (permission) => permission === 'ADMIN' || permission === 'SALE' || permission === undefined,
                                                     )
                                                         ? '/statistics_sales'
                                                         : '/403'
@@ -671,9 +684,9 @@ function Sidebar({ setToggleButton }) {
                             </Link>
                         </nav>
                     </div>
-                </div>
-            </nav>
-        </div>
+                </div >
+            </nav >
+        </div >
     );
 }
 

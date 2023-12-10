@@ -109,23 +109,31 @@ function CustomerDetailGroup() {
                 //     staffCharge: 'Nguyễn Thu Phương',
                 // });
                 setHistoryPurchase(
-                    result.map((item) => {
+                    result?.map((item) => {
                         return {
-                            id: item.order.id,
-                            orderCode: item.order.id,
-                            paymentTime: moment(item.payment.createdAt).format('DD/MM/YYYY HH:mm'),
-                            totalPrice: item.payment.amount,
-                            totalQuantity: item.order.orderLineList.reduce((acc, i) => acc + i.quantity, 0),
-                            staffCharge: item.order.userEntity.fullName,
+                            id: item.orderId,
+                            orderCode: item.orderId,
+                            paymentTime: item.payment ? moment(item.payment.createdAt).format('DD/MM/YYYY HH:mm') : "",
+                            totalPrice: item.payment ? item.payment.amount : 0,
+                            totalQuantity: item.orderLines.reduce((acc, i) => acc + i.quantity, 0),
+                            staffCharge: item.staffFullName,
                         };
                     }),
                 );
+                setPurchaseInformation({
+                    totalSpending: result?.reduce((accumulator, currentValue) => accumulator + currentValue.payment.amount, 0),
+                    totalOrder: result.length,
+                    totalQuantityPurchased: result?.reduce((accumulator, currentValue) => accumulator + currentValue.orderLines[0].quantity, 0),
+                    totalReturnedQuantity: 0,
+                    lastPurchaseDate: result[result?.length - 1].payment?.amount,
+                });
             } catch (error) {
                 console.log('fetchApi getAllCustomerServices CustomerDetal.js' + error);
             }
         };
         fetchApi();
     }, [id, token, openAddResponse, openEditResponse]);
+    
 
     useEffect(() => {
         const fetchApi = async () => {
@@ -171,6 +179,8 @@ function CustomerDetailGroup() {
             lastPurchaseDate: '29/08/2023',
         });
     }, [id]);
+
+    console.log("purchaseInformation", purchaseInformation)
 
     const handleHistoryPurchase = () => {
         setButtonHistoryPurchase(true);
@@ -607,10 +617,10 @@ function CustomerDetailGroup() {
                                         <div className={cx('rating')}>{item.evaluate}</div>
                                         <div className={cx('contentResponse')}>{item.content}</div>
                                         <div className={cx('responseTime')}>
-                                            {moment(item.createdAt).format('DD/MM/YYYY HH:mm')}
+                                            {moment(item.responseAt).format('DD/MM/YYYY HH:mm')}
                                         </div>
                                         <div className={cx('staffChargeResponse')}>
-                                            {item.userEntity.fullName || 'ManhPhuong'}
+                                            {item.userFullName || '---'}
                                         </div>
                                     </div>
                                 ))}

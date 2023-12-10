@@ -101,11 +101,11 @@ function CustomerResponse() {
                     result.data.map((item) => {
                         return {
                             id: item.id,
-                            customerId: item?.customer.id,
-                            customerCode: item?.customer.customerCode,
-                            clientName: item?.customer.name,
-                            numberPhone: item?.customer.phone,
-                            responseDate: moment(item.updatedAt || item.createdAt).format('DD/MM/YYYY HH:mm'),
+                            customerId: item?.customerId,
+                            customerCode: item?.customerCode,
+                            clientName: item?.customerName,
+                            numberPhone: item?.customerPhone,
+                            responseDate: moment(item.responseAt).format('DD/MM/YYYY HH:mm'),
                             responseContent: item.content,
                         };
                     }),
@@ -126,11 +126,11 @@ function CustomerResponse() {
                 var resRows = result.data.map((item) => {
                     return {
                         id: item.id,
-                        customerId: item?.customer.id,
-                        customerCode: item?.customer.customerCode,
-                        clientName: item?.customer.name,
-                        numberPhone: item?.customer.phone,
-                        responseDate: moment(item.updatedAt || item.createdAt).format('DD/MM/YYYY HH:mm'),
+                        customerId: item?.customerId,
+                        customerCode: item?.customerCode,
+                        clientName: item?.customerName,
+                        numberPhone: item?.customerPhone,
+                        responseDate: moment(item.responseAt).format('DD/MM/YYYY HH:mm'),
                         responseContent: item.content,
                     };
                 });

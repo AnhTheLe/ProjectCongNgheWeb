@@ -1,0 +1,289 @@
+.wrap {
+    flex: 1 1 auto;
+    display: flex;
+    padding: 0 32px 40px;
+    flex-direction: column;
+}
+
+.header {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: right;
+
+    div {
+        display: flex;
+        gap: 12px;
+    }
+}
+
+.header-all-product {
+    display: flex;
+    min-height: 116px;
+    flex-direction: column;
+    background-color: white;
+    position: relative;
+
+    .InputVariantTable {
+        position: absolute;
+        top: 110px;
+        left: 10px;
+    }
+
+    .headerTitle {
+        display: flex;
+        background-color: white;
+        justify-items: center;
+        align-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: rgb(232, 234, 235) 0px -1px 0px 0px inset;
+        height: 48px;
+
+        button {
+            border: none;
+            background-color: transparent;
+            font-weight: 600;
+            font-size: 14px;
+            height: 48px;
+            padding: 6px 16px;
+        }
+
+        .active {
+            color: #0088ff;
+            border-bottom: 2px solid rgb(0, 136, 255);
+        }
+    }
+
+    .headerSearch {
+        display: flex;
+        padding: 10px;
+        align-items: center;
+        flex-direction: row;
+        height: 68px;
+
+        div {
+            // margin-right: 15px;
+        }
+
+        button {
+            background: none;
+            border: none;
+            color: #000000;
+            height: 36px;
+            border-top: 1px solid #ccc;
+            border-right: 1px solid #ccc;
+            border-bottom: 1px solid #ccc;
+            outline: none;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+                'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+            font-weight: 400;
+            font-size: 14px;
+            padding: 0 10px;
+            line-height: 20px;
+        }
+
+        .inputSearch {
+            display: flex;
+            padding: 10px 0;
+            align-items: center;
+            flex-direction: row;
+            position: relative;
+
+
+            input {
+                margin-right: 12px;
+                background: transparent;
+                padding: 10px 12px 10px 20px;
+                width: 600px;
+                height: 36px;
+                border: 1px solid #ccc;
+                outline: none;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+                    'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 20px;
+                margin: 0px;
+                color: rgb(15, 24, 36);
+            }
+
+        }
+    }
+}
+
+.table {
+    width: 100%;
+    height: 100%;
+    box-shadow: 0px 2px 4px rgba(168, 168, 168, 0.25);
+    background-color: white;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    .table-header {
+        height: 50px;
+        border: 1px solid rgba(168, 168, 168, 0.25);
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        text-align: center;
+        font-weight: 600;
+        font-size: 14px;
+
+        >div {
+            border-right: 1px solid rgb(231, 231, 231);
+        }
+
+        .stt-header {
+            width: 70px;
+        }
+
+        .image-header {
+            width: 110px;
+        }
+
+        .name-header {
+            text-align: start;
+            padding-left: 40px;
+            width: 320px;
+        }
+
+        .quantity-header {
+            width: 140px;
+        }
+
+        .real-header {
+            width: 140px;
+        }
+
+        .balance-header {
+            width: 140px;
+        }
+
+        .note-header {
+            width: 210px;
+        }
+    }
+
+    .variant-item {
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        border-bottom: 1px solid rgb(224, 224, 224);
+        text-align: center;
+        height: 50px;
+
+        >div {
+            border-right: 1px solid rgb(224, 224, 224);
+        }
+
+        >div:last-child {
+            border: none;
+
+            button {
+                color: #b8b8b9;
+
+            }
+        }
+
+        .stt {
+            width: 70px;
+        }
+
+        .image {
+            width: 110px;
+            display: flex;
+            justify-content: center;
+
+            img {
+                max-height: 45px;
+                max-width: 45px;
+            }
+
+        }
+
+        .name-sku {
+            width: 320px;
+            display: flex;
+            flex-direction: column;
+            justify-content: left;
+            padding-left: 40px;
+            text-align: start;
+
+            >span {
+                font-weight: 700;
+                font-size: 14px;
+            }
+
+            a {
+                font-size: 10px;
+
+            }
+        }
+
+        .quantity {
+            width: 140px;
+        }
+
+        .real-quantity {
+            width: 140px;
+            padding: 0 10px;
+
+            input {
+                padding: 0;
+                font-size: 16px;
+                text-align: center;
+                width: 60%;
+                border: 1px solid rgb(224, 224, 224);
+            }
+        }
+
+        .balance {
+            width: 140px;
+        }
+
+        .note {
+            width: 210px;
+            padding: 0;
+
+            input {
+                padding: 0;
+                font-size: 14px;
+                text-align: center;
+                width: 100%;
+            }
+
+        }
+    }
+}
+
+.dataGrid {
+    cursor: pointer;
+    min-height: 300px;
+}
+
+.text-note {
+    .text-note-header {
+        font-weight: 500;
+        display: inline-block;
+        padding: 5px 10px;
+        background-color: rgb(255, 255, 255);
+        border-left: 1px solid rgb(227, 227, 227);
+        border-top: 1px solid rgb(227, 227, 227);
+        border-right: 1px solid rgb(227, 227, 227);
+        border-bottom: 1px dashed rgb(227, 227, 227);
+    }
+
+    textarea {
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 5px;
+        font-size: 12px;
+        border-top: 0px;
+        border-left: 1px solid rgb(227, 227, 227);
+        border-right: 1px solid rgb(227, 227, 227);
+        border-bottom: 1px solid rgb(227, 227, 227);
+        border-radius: 0 15px 15px 15px;
+    }
+}

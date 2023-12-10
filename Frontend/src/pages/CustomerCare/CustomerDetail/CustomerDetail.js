@@ -111,15 +111,22 @@ function CustomerDetail() {
                 setHistoryPurchase(
                     result?.map((item) => {
                         return {
-                            id: item.order.id,
-                            orderCode: item.order.id,
-                            paymentTime: moment(item.payment.createdAt).format('DD/MM/YYYY HH:mm'),
-                            totalPrice: item.payment.amount,
-                            totalQuantity: item.order.orderLineList.reduce((acc, i) => acc + i.quantity, 0),
-                            staffCharge: item.order.userEntity.fullName,
+                            id: item.orderId,
+                            orderCode: item.orderId,
+                            paymentTime: item.payment ? moment(item.payment.createdAt).format('DD/MM/YYYY HH:mm') : "",
+                            totalPrice: item.payment ? item.payment.amount : 0,
+                            totalQuantity: item.orderLines.reduce((acc, i) => acc + i.quantity, 0),
+                            staffCharge: item.staffFullName,
                         };
                     }),
                 );
+                setPurchaseInformation({
+                    totalSpending: result?.reduce((accumulator, currentValue) => accumulator + currentValue.payment.amount, 0),
+                    totalOrder: result.length,
+                    totalQuantityPurchased: result?.reduce((accumulator, currentValue) => accumulator + currentValue.orderLines.reduce((value, item) => value + item?.quantity, 0), 0),
+                    totalReturnedQuantity: 0,
+                    lastPurchaseDate: moment(result[result?.length - 1].payment?.createdAt).format('DD/MM/YYYY HH:mm'),
+                });
             } catch (error) {
                 console.log('fetchApi getAllCustomerServices CustomerDetal.js' + error);
             }
@@ -185,9 +192,9 @@ function CustomerDetail() {
     //     navigate(`/orders/${orderId}`);
     // };
 
-    if (!roles?.some((permission) => permission === 'ADMIN' || permission === 'SALE' || permission === 'CARE')) {
-        navigate('/403');
-    }
+    // if (!roles?.some((permission) => permission === 'ADMIN' || permission === 'SALE' || permission === 'CARE')) {
+    //     navigate('/403');
+    // }
 
     return (
         <>
@@ -575,7 +582,7 @@ function CustomerDetail() {
                                 {historyPurchase.map((item) => (
                                     <div className={cx('historyContentRow')} key={item.id}>
                                         <Link to={`/order/${item.id}`} className={cx('orderCode')}>
-                                        SON000{item.orderCode}
+                                            SON000{item.orderCode}
                                         </Link>
                                         <div className={cx('paymentTime')}>{item.paymentTime}</div>
                                         <div className={cx('totalPrice')}>{numeral(item.totalPrice).format('0,0')}</div>
@@ -595,10 +602,10 @@ function CustomerDetail() {
 
                         {buttonHistoryResponse ? (
                             <div className={cx('wrapItem')}>
-                                {historyResponse.map((item, index) => (
+                                {historyResponse ? (<div>{historyResponse?.map((item, index) => (
                                     <div
                                         className={cx('historyContentRow')}
-                                        key={item.id}
+                                        key={index}
                                         style={{ cursor: 'pointer' }}
                                         onClick={() => handleOpenEditResponse(item)}
                                     >
@@ -609,13 +616,14 @@ function CustomerDetail() {
                                             {moment(item.createdAt).format('DD/MM/YYYY HH:mm')}
                                         </div>
                                         <div className={cx('staffChargeResponse')}>
-                                            {item.userEntity.fullName || 'ManhPhuong'}
+                                            {item.userFullName || 'AnhTheLe'}
                                         </div>
                                     </div>
                                 ))}
-                                {historyResponse.length === 0 && (
-                                    <div className={cx('historyEmpty')}>Không dữ liệu lịch sử phản hồi</div>
-                                )}
+                                    {historyResponse.length === 0 && (
+                                        <div className={cx('historyEmpty')}>Không dữ liệu lịch sử phản hồi</div>
+                                    )}</div>) : <></>}
+
                             </div>
                         ) : (
                             <></>

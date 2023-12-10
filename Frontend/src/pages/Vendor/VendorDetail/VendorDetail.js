@@ -50,6 +50,23 @@ const columns = [
         renderHeader: () => <span>Ngày tạo</span>,
     },
     {
+        field: 'paymentStatus',
+        flex: 1.8,
+        sortable: false,
+        filterable: false,
+        headerClassName: 'super-app-theme--header',
+        cellClassName: 'super-app-theme--cell order-id',
+        headerAlign: 'center',
+        align: 'center',
+        renderHeader: () => <span>Trạng thái đơn</span>,
+        renderCell: (params) =>
+            params.row.paymentStatus === 'COMPLETE' ? (
+                <span className={cx('complete-status')}>{'Đã thanh toán'}</span>
+            ) : (
+                <span className={cx('init-ship')}>{'Chưa thanh toán'}</span>
+            ),
+    },
+    {
         field: 'amount',
         type: 'number',
         flex: 1.8,
@@ -60,6 +77,18 @@ const columns = [
         headerAlign: 'center',
         align: 'center',
         renderHeader: () => <span>Giá trị đơn</span>,
+    },
+    {
+        field: 'isPaid',
+        type: 'number',
+        flex: 1.8,
+        sortable: false,
+        filterable: false,
+        headerClassName: 'super-app-theme--header',
+        cellClassName: 'super-app-theme--cell order-id',
+        headerAlign: 'center',
+        align: 'center',
+        renderHeader: () => <span>Đã thanh toán</span>,
     },
     {
         field: 'methodPay',
@@ -162,16 +191,9 @@ function Dashboard() {
         navigate(`/detail_import_order/${params.row.orderId}`);
     };
 
-
-    useEffect(() => {
-        document.title = 'Chi tiết nhà cung cấp';
-        const fetchData = async () => {
-            const res = await getVendorDetail(vendorId, token);
-            console.log(res);
-            setResult(res.data);
-        };
-        fetchData();
-    }, [token, vendorId]);
+    const handleOnUpdateVendor = () => {
+        navigate(`/vendor_update/${vendorId}`);
+    }
 
     return (
         <div className={cx('wrap')}>

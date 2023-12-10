@@ -261,6 +261,43 @@ function ChooseOrderModal({ open, handleClose, token }) {
                         ></input>
                     </div>
                 </div>
+                <Box
+                    sx={{
+                        height: '380px',
+                        width: '100%',
+                        '& .super-app-theme--cell': {
+                            display: 'flex !important',
+                            justifyContent: 'center !important',
+                        },
+                        '& .order-id': {
+                            color: '#0088FF',
+                            cursor: 'pointer',
+                        },
+                        '& .order-id:hover': {
+                            textDecoration: 'underline',
+                        },
+                    }}
+                >
+                    <DataGrid
+                        getRowId={(row) => row.orderId}
+                        rows={orderPageState.data}
+                        rowCount={orderPageState.totalItems}
+                        columns={orderColumns}
+                        pagination
+                        pageSizeOptions={[5, 10]}
+                        disableColumnSelector={true}
+                        disableRowSelectionOnClick={true}
+                        paginationMode="server"
+                        paginationModel={{ page: orderPageState.page, pageSize: orderPageState.perPage }}
+                        onPaginationModelChange={(paginationModel) => {
+                            setOrderPageState({
+                                ...orderPageState,
+                                page: paginationModel.page,
+                                perPage: paginationModel.pageSize,
+                            });
+                        }}
+                    />
+                </Box>
             </div>
         </Modal>
     );

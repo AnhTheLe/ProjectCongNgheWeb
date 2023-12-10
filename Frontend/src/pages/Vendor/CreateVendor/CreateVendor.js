@@ -46,13 +46,13 @@ function CreateVendor() {
             messages.push('SĐT không đúng định dạng');
         } else if (phone.length !== 10) {
             messages.push('SĐT không đúng định dạng');
-        } 
+        }
         if (fax !== '' && !/^[+]?[0-9.-]+$/.test(fax)) {
             messages.push('Số fax không đúng định dạng');
-        } 
+        }
         if (tax !== '' && (isNaN(tax) || (tax.length !== 10 && tax.length !== 13))) {
             messages.push('Mã số thuế không đúng định dạng');
-        } 
+        }
         if (
             website !== '' &&
             !/^((https?|ftp):\/\/)?(www\.)?[a-z0-9]+\.[a-z]+(\/[a-zA-Z0-9#]+\/?)*$/.test(website)
@@ -142,7 +142,18 @@ function CreateVendor() {
                 });
             }
         } catch (error) {
-            return error;
+            console.log("error vender", error);
+            toast.error(error.response.data.message, {
+                position: 'top-right',
+                autoClose: 2000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'light',
+            });
+
         }
     };
 

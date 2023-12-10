@@ -165,7 +165,7 @@ function ProductList() {
                                 if (e.key === 'Enter') searchData(keyword);
                             }}
                         ></input>
-                    </div>
+                    </div>                   
                 </div>
             </div>
             <div className={cx('table')}>

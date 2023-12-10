@@ -173,6 +173,8 @@ function CreateImportOrder() {
                     <ContentProduct dataFromHeader={dataFromHeader} onArrayProduct={handleDataArrayProduct} />
                 </div>
             </div>
+            <ModalNewProduct openModal={openAddProduct} closeModal={handleCloseAddProduct}/>
+            <ModalNewVendor openModal={openAddVendor} closeModal={handleCloseAddVendor} onDataNewVendor={handleDataFromHeaderVendor}/>
         </div>
     );
 }
