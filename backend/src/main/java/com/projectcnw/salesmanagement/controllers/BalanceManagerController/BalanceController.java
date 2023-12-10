@@ -4,12 +4,15 @@ package com.projectcnw.salesmanagement.controllers.BalanceManagerController;
 import com.projectcnw.salesmanagement.dto.PagedResponseObject;
 import com.projectcnw.salesmanagement.dto.ResponseObject;
 import com.projectcnw.salesmanagement.dto.balanceDtos.WarehouseBalanceDto;
+import com.projectcnw.salesmanagement.repositories.UserRepository;
 import com.projectcnw.salesmanagement.services.BalanceManagerServices.BalanceService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +26,13 @@ public class BalanceController {
 
     //post warehouse_balance
     @PostMapping("/balances")
-    //chưa thực hiện authen
-    public ResponseEntity<ResponseObject> createBalance(@Valid @RequestBody WarehouseBalanceDto warehouseBalanceDto, UserDetails userDetails) {
+    public ResponseEntity<ResponseObject> createBalance(@Valid @RequestBody WarehouseBalanceDto warehouseBalanceDto) {
+        // Lấy thông tin Authentication từ SecurityContextHolder
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        // Lấy UserDetails từ Authentication
+        UserDetails userDetails = (UserDetails) authentication.getPrincipal();
+
         WarehouseBalanceDto warehouseBalanceDto1 = balanceService.createBalance(warehouseBalanceDto, userDetails);
         return ResponseEntity.ok(ResponseObject.builder()
                 .responseCode(200)
